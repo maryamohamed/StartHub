@@ -18,16 +18,41 @@
         tools:layout="@layout/fragment_view_pager"
         android:name="com.training.starthub.ui.ViewPagerFragment"
         android:label="ViewPagerFragment" >
+
         <action
-            android:id="@+id/action_viewPagerFragment_to_LoginFragment"
-            app:destination="@id/LoginFragment" />
+            android:id="@+id/action_viewPagerFragment_to_SelectFragment"
+            app:destination="@id/SelectFragment" />
     </fragment>
     <fragment
-        android:id="@+id/LoginFragment"
-        android:name="com.training.starthub.ui.LoginFragment"
-        android:label="FragmentLogin"
-        tools:layout="@layout/fragment_login" >
+        android:id="@+id/SelectFragment"
+        android:name="com.training.starthub.ui.SelectFragment"
+        android:label="FragmentSelect"
+        tools:layout="@layout/fragment_select" >
 
+        <action
+            android:id="@+id/action_SelectFragment_to_loginCustomerFragment"
+            app:destination="@id/loginCustomerFragment" />
+        <action
+            android:id="@+id/action_SelectFragment_to_loginCompanyFragment"
+            app:destination="@id/loginCompanyFragment" />
+        <action
+            android:id="@+id/action_SelectFragment_to_loginInvestorFragment"
+            app:destination="@id/loginInvestorFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/loginCustomerFragment"
+        tools:layout="@layout/fragment_login_customer"
+        android:name="com.training.starthub.ui.login.LoginCustomerFragment"
+        android:label="LoginCustomerFragment" />
+    <fragment
+        android:id="@+id/loginCompanyFragment"
+        tools:layout="@layout/fragment_login_company"
+        android:name="com.training.starthub.ui.login.LoginCompanyFragment"
+        android:label="LoginCompanyFragment" />
+    <fragment
+        android:id="@+id/loginInvestorFragment"
+        tools:layout="@layout/fragment_login_investor"
+        android:name="com.training.starthub.ui.login.LoginInvestorFragment"
+        android:label="LoginInvestorFragment" />
 
 </navigation>

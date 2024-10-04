@@ -35,7 +35,7 @@ class FirstScreen : Fragment() {
             declareViewPager(1)
         }
         binding.skipButton1.setOnClickListener {
-            findNavController().navigate(R.id.action_viewPagerFragment_to_LoginFragment)
+            findNavController().navigate(R.id.action_viewPagerFragment_to_SelectFragment)
         }
         onBoardingFinished()
     }

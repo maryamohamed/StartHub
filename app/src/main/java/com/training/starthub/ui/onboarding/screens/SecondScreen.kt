@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.training.starthub.R
 import com.training.starthub.databinding.FragmentSecondScreenBinding
 import com.training.starthub.utils.declareViewPager
 
@@ -34,6 +36,10 @@ class SecondScreen : Fragment() {
         binding.next2.setOnClickListener {
             declareViewPager(2)
         }
+        binding.skipButton2.setOnClickListener {
+            findNavController().navigate(R.id.action_viewPagerFragment_to_SelectFragment)
+        }
+
         onBoardingFinished()
     }
 

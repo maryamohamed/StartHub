@@ -34,7 +34,10 @@ class ThirdScreen : Fragment() {
 
     private fun onClick() {
         binding.next3.setOnClickListener {
-            findNavController().navigate(R.id.action_viewPagerFragment_to_LoginFragment)
+            findNavController().navigate(R.id.action_viewPagerFragment_to_SelectFragment)
+        }
+        binding.skipButton3.setOnClickListener {
+            findNavController().navigate(R.id.action_viewPagerFragment_to_SelectFragment)
         }
 
         onBoardingFinished()
