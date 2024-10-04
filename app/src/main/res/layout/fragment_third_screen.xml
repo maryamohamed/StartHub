@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primarywhite">
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/image3"
+        android:layout_width="@dimen/space300"
+        android:layout_height="@dimen/space300"
+        android:layout_marginTop="130dp"
+        android:src="@drawable/onboarding3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/skip_button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space52"
+        android:layout_marginBottom="@dimen/space52"
+        android:text="@string/skip"
+        android:textColor="@color/primarywhite"
+        android:backgroundTint="@color/secondaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/title3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space32"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Grow Your Business"
+        android:textColor="@color/secondaryDark"
+        android:textSize="@dimen/text16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image3" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/description3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:padding="@dimen/space32"
+        android:text="Showcase products, manage sales, and reach customers and investors."
+        android:textColor="@color/primaryDark"
+        android:textSize="@dimen/text14"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title3" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/next3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/space52"
+        android:layout_marginBottom="@dimen/space52"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:text="Next"
+        android:textColor="@color/secondaryDark"
+        android:textSize="@dimen/text16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
