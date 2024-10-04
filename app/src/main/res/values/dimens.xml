@@ -18,5 +18,8 @@
     <dimen name="text24">24sp</dimen>
     <dimen name="space56">56dp</dimen>
     <!--Other-->
+    <dimen name="space200">200dp</dimen>
+    <dimen name="space300">300dp</dimen>
+    <dimen name="space52">52dp</dimen>
 
 </resources>
