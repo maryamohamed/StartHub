@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!--Primary Palette-->
+    <color name="primarywhite">#F3EEEA</color>
+    <color name="primaryDark">#B0A695</color>
+    <!--Secondary Palette-->
+    <color name="secondarywhite">#EBE3D5</color>
+    <color name="secondaryDark">#776B5D</color>
+    <!--Black Palette-->
+    <color name="black87">#DE121212</color>
+    <color name="black60">#99121212</color>
+    <color name="black37">#5E121212</color>
+    <color name="black8">#14121212</color>
+    <!--White Palette-->
+    <color name="white_ff">#FFFFFFFF</color>
+    <color name="white_fa">#FFFAFAFA</color>
+    <color name="white_ec">#FFECECEC</color>
+    <color name="white_e1">#FFE1E1E1</color>
+    <!--Other-->
+    <color name="green">#12B76A</color>
+    <color name="red">#E13B3B</color>
+    <color name="yellow">#F4DB4A</color>
+
 </resources>
