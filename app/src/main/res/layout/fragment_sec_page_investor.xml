@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/primarywhite"
+    tools:context=".ui.Signup.SignUpCompanyFragment">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/top_right"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:src="@drawable/top_right"
+        tools:layout_editor_absoluteX="259dp"
+        tools:layout_editor_absoluteY="-84dp"
+        tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/inv_text"
+        android:layout_width="186dp"
+        android:layout_height="29dp"
+        android:layout_marginLeft="@dimen/space32"
+        android:layout_marginTop="88dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Investment Size"
+        android:textColor="@color/secondaryDark"
+        android:textSize="@dimen/text18"
+        app:layout_constraintEnd_toStartOf="@+id/top_right"
+        app:layout_constraintHorizontal_bias="0.219"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/from"
+        android:layout_width="77dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="@dimen/space32"
+        android:layout_marginTop="144dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="From"
+        android:textColor="@color/secondaryDark"
+        android:textSize="@dimen/text18"
+        app:layout_constraintEnd_toStartOf="@+id/top_right"
+        app:layout_constraintHorizontal_bias="0.087"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/to"
+        android:layout_width="77dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="@dimen/space32"
+        android:layout_marginTop="220dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="To"
+        android:textColor="@color/secondaryDark"
+        android:textSize="@dimen/text18"
+        app:layout_constraintEnd_toStartOf="@+id/top_right"
+        app:layout_constraintHorizontal_bias="0.087"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/categoryP1"
+        android:layout_width="86dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="@dimen/space32"
+        android:layout_marginTop="324dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Category"
+        android:textColor="@color/secondaryDark"
+        android:textSize="@dimen/text18"
+        app:layout_constraintEnd_toStartOf="@+id/top_right"
+        app:layout_constraintHorizontal_bias="0.087"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/doted_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/doted_circle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/top_right"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+    </com.google.android.material.imageview.ShapeableImageView>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_inv_from"
+        android:layout_width="198dp"
+        android:layout_height="45dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="132dp"
+        android:background="#FFFFFF"
+        android:textColorHint="@color/primaryDark"
+        app:errorEnabled="true"
+        app:helperTextTextColor="@color/primaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.807"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/from_investment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primaryDark"
+            android:inputType="numberDecimal"
+            android:textColor="@color/secondaryDark" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_inv_to"
+        android:layout_width="203dp"
+        android:layout_height="45dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginTop="208dp"
+        android:background="#FFFFFF"
+        android:textColorHint="@color/primaryDark"
+        app:errorEnabled="true"
+        app:helperTextTextColor="@color/primaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.802"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/to_investment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primaryDark"
+            android:inputType="number"
+            android:textColor="@color/secondaryDark" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/company_sign_upButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/space24"
+        android:layout_marginTop="18dp"
+        android:backgroundTint="@color/secondaryDark"
+        android:paddingVertical="10dp"
+        android:text="Sign up"
+        android:textColor="@color/primarywhite"
+        android:textSize="18sp"
+        app:cornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/policyP1" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space24"
+        android:src="@drawable/second_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/company_sign_upButton" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/dont_have_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="95dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Already have an Account? "
+        android:textColor="@color/primaryDark"
+        android:textSize="@dimen/text14"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.178" />
+
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/bottom_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-20dp"
+        android:src="@drawable/bottom_left"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/sign_up_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/space32"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:text="Login"
+        android:textColor="@color/secondaryDark"
+        android:textSize="@dimen/text16"
+        app:layout_constraintBottom_toBottomOf="@+id/dont_have_account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/dont_have_account"
+        app:layout_constraintTop_toTopOf="@+id/dont_have_account"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Spinner
+        android:id="@+id/spinnerP1"
+        android:layout_width="227dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="312dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.82"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/policyP1"
+        android:layout_width="301dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="84dp"
+        android:text="I accept the terms and privacy policy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerP1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
