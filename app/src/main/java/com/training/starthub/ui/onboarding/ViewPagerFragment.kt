@@ -6,6 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.training.starthub.databinding.FragmentViewPagerBinding
+import com.training.starthub.ui.onboarding.ViewPagerAdapter
+import com.training.starthub.ui.onboarding.screens.FirstScreen
+import com.training.starthub.ui.onboarding.screens.SecondScreen
+import com.training.starthub.ui.onboarding.screens.ThirdScreen
 
 
 class ViewPagerFragment : Fragment() {

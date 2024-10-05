@@ -1,4 +1,4 @@
-package com.training.starthub.ui
+package com.training.starthub.ui.onboarding
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

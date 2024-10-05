@@ -1,4 +1,4 @@
-package com.training.starthub.ui
+package com.training.starthub.ui.onboarding.screens
 
 import android.content.Context
 import android.os.Bundle
