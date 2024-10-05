@@ -43,16 +43,73 @@
         android:id="@+id/loginCustomerFragment"
         tools:layout="@layout/fragment_login_customer"
         android:name="com.training.starthub.ui.login.LoginCustomerFragment"
-        android:label="LoginCustomerFragment" />
+        android:label="LoginCustomerFragment" >
+        <action
+            android:id="@+id/action_loginCustomerFragment_to_SignupCustomerFragment"
+            app:destination="@+id/SignupCustomerFragment" />
+
+    </fragment>
+
     <fragment
         android:id="@+id/loginCompanyFragment"
         tools:layout="@layout/fragment_login_company"
         android:name="com.training.starthub.ui.login.LoginCompanyFragment"
-        android:label="LoginCompanyFragment" />
+        android:label="LoginCompanyFragment" >
+        <action
+            android:id="@+id/action_loginCompanyFragment_to_SignupCompanyFragment"
+            app:destination="@+id/SignupCompanyFragment" />
+    </fragment>
+
+
     <fragment
         android:id="@+id/loginInvestorFragment"
         tools:layout="@layout/fragment_login_investor"
         android:name="com.training.starthub.ui.login.LoginInvestorFragment"
-        android:label="LoginInvestorFragment" />
+        android:label="LoginInvestorFragment" >
+        <action
+            android:id="@+id/action_loginInvestorFragment_to_SignupInvestorFragment"
+            app:destination="@+id/SignupInvestorFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SignupCustomerFragment"
+        tools:layout="@layout/fragment_signup_client"
+        android:name="com.training.starthub.ui.Signup.SignupClientFragment"
+        android:label="SignupCustomerFragment" />
+
+    <fragment
+        android:id="@+id/SignupCompanyFragment"
+        tools:layout="@layout/fragment_sign_up_company"
+        android:name="com.training.starthub.ui.Signup.SignUpCompanyFragment"
+        android:label="SignupCompanyFragment" >
+        <action
+            android:id="@+id/action_SignupCompanyFragment_to_SecPageCompanyFragment"
+            app:destination="@id/SecPageCompanyFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SignupInvestorFragment"
+        tools:layout="@layout/fragment_signup_investor"
+        android:name="com.training.starthub.ui.Signup.SignupInvestorFragment"
+        android:label="SignupInvestorFragment" >
+        <action
+            android:id="@+id/action_SignupInvestorFragment_to_SecPageInvestorFragment"
+            app:destination="@id/SecPageInvestorFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SecPageInvestorFragment"
+        tools:layout="@layout/fragment_sec_page_investor"
+        android:name="com.training.starthub.ui.Signup.SecPageInvestorFragment"
+        android:label="SecPageInvestorFragment" />
+
+    <fragment
+        android:id="@+id/SecPageCompanyFragment"
+        tools:layout="@layout/fragment_sec_page_company"
+        android:name="com.training.starthub.ui.Signup.SecPageCompanyFragment"
+        android:label="SecPageCompanyFragment" />
+
+
+
 
 </navigation>

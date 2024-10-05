@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primarywhite"
+    tools:context=".ui.Signup.SignUpCompanyFragment">
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/top_right"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_marginStart="259dp"
+        android:layout_marginBottom="614dp"
+        android:src="@drawable/top_right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/inv_text"
+        android:layout_width="186dp"
+        android:layout_height="29dp"
+        android:layout_marginLeft="@dimen/space32"
+        android:layout_marginTop="104dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Date Of Creation"
+        android:textColor="@color/secondaryDark"
+        android:textSize="@dimen/text14"
+        app:layout_constraintEnd_toStartOf="@+id/top_right"
+        app:layout_constraintHorizontal_bias="0.219"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/doted_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/doted_circle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/top_right"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+    </com.google.android.material.imageview.ShapeableImageView>
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/description"
+        android:layout_width="186dp"
+        android:layout_height="29dp"
+        android:layout_marginLeft="@dimen/space32"
+        android:layout_marginTop="196dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Description"
+        android:textColor="@color/secondaryDark"
+        android:textSize="@dimen/text14"
+        app:layout_constraintEnd_toStartOf="@+id/top_right"
+        app:layout_constraintHorizontal_bias="0.219"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/company_sign_upButton"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/space24"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/secondaryDark"
+        android:paddingVertical="10dp"
+        android:text="sign up"
+        android:textColor="@color/primarywhite"
+        android:textSize="18sp"
+        app:cornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.635"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/policyP2" />
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/second_shape"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.597"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/company_sign_upButton" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/dont_have_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="95dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Already have an Account? "
+        android:textColor="@color/primaryDark"
+        android:textSize="@dimen/text14"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.175" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/bottom_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-20dp"
+        android:src="@drawable/bottom_left"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/sign_up_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/space32"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:text="Login"
+        android:textColor="@color/secondaryDark"
+        android:textSize="@dimen/text16"
+        app:layout_constraintBottom_toBottomOf="@+id/dont_have_account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/dont_have_account"
+        app:layout_constraintTop_toTopOf="@+id/dont_have_account"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <CheckBox
+        android:id="@+id/policyP2"
+        android:layout_width="301dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="476dp"
+        android:text="I accept the terms and privacy policy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutDate"
+        android:layout_width="49dp"
+        android:layout_height="35dp"
+        android:hint="Date Of Creation"
+        app:endIconDrawable="@drawable/calendar_svgrepo_com"
+        app:endIconMode="custom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.636"
+        app:layout_constraintStart_toStartOf="@+id/editTextDate"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="133dp" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/editTextDate"
+        android:layout_width="254dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="132dp"
+        android:hint="MM/DD/YYYY"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.254"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="327dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="236dp"
+        android:textColorHint="@color/primaryDark"
+        android:background="@color/white_ff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="147dp"
+            android:hint="description" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/categoryP2"
+        android:layout_width="100dp"
+        android:layout_height="27dp"
+        android:layout_marginLeft="@dimen/space32"
+        android:layout_marginTop="416dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Category"
+        android:textColor="@color/secondaryDark"
+        android:textSize="@dimen/text18"
+        app:layout_constraintEnd_toStartOf="@+id/top_right"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerP2"
+        android:layout_width="227dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="404dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.76"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

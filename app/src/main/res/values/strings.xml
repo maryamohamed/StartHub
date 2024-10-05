@@ -4,4 +4,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="skip">Skip</string>
     <string name="welcome_login">Welcome, \nLogin</string>
+    <string name="welcome_signup">Welcome, \nSign up</string>
+    <string name="or_sign_up_with">or sign up with</string>
 </resources>
