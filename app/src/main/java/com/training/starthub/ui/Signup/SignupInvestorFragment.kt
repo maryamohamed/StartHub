@@ -28,5 +28,8 @@ class SignupInvestorFragment : Fragment() {
         binding.investorSignupNext.setOnClickListener{
             findNavController().navigate(R.id.action_SignupInvestorFragment_to_SecPageInvestorFragment)
         }
+        binding.loginTextBtn.setOnClickListener{
+            findNavController().navigate(R.id.action_SignupInvestorFragment_to_loginInvestorFragment)
+        }
     }
 }

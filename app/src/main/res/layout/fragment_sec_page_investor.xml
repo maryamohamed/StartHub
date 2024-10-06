@@ -13,6 +13,8 @@
         android:layout_height="200dp"
         android:layout_marginStart="259dp"
         android:layout_marginBottom="614dp"
+        android:layout_marginTop="-84dp"
+
         android:src="@drawable/top_right"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -99,7 +101,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_input_inv_from"
         android:layout_width="198dp"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="132dp"
         android:background="#FFFFFF"
@@ -123,7 +125,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_input_inv_to"
         android:layout_width="203dp"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="208dp"
         android:background="#FFFFFF"
@@ -199,7 +201,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/sign_up_text"
+        android:id="@+id/login_textBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/space32"

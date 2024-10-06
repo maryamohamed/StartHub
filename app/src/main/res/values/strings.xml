@@ -6,4 +6,14 @@
     <string name="welcome_login">Welcome, \nLogin</string>
     <string name="welcome_signup">Welcome, \nSign up</string>
     <string name="or_sign_up_with">or sign up with</string>
+
+
+    <string name="FullName_Is_Required">FullName Is Required</string>
+    <string name="Email_Is_Required">Email Is Required</string>
+    <string name="Phone_Number_Is_Required">Phone Number Is Required</string>
+    <string name="Password_Is_Required">Password Is Required</string>
+    <string name="Confirm_Password_Is_Required">Confirm Password Is Required</string>
+    <string name="Password_Do_not_match">Password Don\'t match</string>
+    <string name="success">Success</string>
+
 </resources>

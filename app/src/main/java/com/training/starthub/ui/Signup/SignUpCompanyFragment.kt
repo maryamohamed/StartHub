@@ -26,6 +26,10 @@ class SignUpCompanyFragment : Fragment() {
         binding.companySignupNext.setOnClickListener{
             findNavController().navigate(R.id.action_SignupCompanyFragment_to_SecPageCompanyFragment)
         }
+        binding.loginTextBtn.setOnClickListener{
+            findNavController().navigate(R.id.action_SignupCompanyFragment_to_loginCompanyFragment)
+        }
+
 
     }
 

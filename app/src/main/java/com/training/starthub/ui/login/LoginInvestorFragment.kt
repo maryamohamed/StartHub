@@ -28,5 +28,4 @@ class LoginInvestorFragment : Fragment() {
             findNavController().navigate(R.id.action_loginInvestorFragment_to_SignupInvestorFragment)
         }
     }
-
 }

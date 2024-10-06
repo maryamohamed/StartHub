@@ -14,6 +14,8 @@
         android:layout_height="200dp"
         android:layout_marginStart="259dp"
         android:layout_marginBottom="614dp"
+        android:layout_marginTop="-84dp"
+
         android:src="@drawable/top_right"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -121,7 +123,7 @@
 
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/sign_up_text"
+        android:id="@+id/login_textBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/space32"

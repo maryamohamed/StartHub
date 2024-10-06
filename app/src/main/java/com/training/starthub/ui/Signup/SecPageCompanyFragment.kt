@@ -5,17 +5,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.training.starthub.R
+import com.training.starthub.databinding.FragmentSecPageCompanyBinding
 
 
 class SecPageCompanyFragment : Fragment() {
 
+    private lateinit var binding: FragmentSecPageCompanyBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sec_page_company, container, false)
+        binding = FragmentSecPageCompanyBinding.inflate(inflater,container,false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.loginTextBtn.setOnClickListener{
+            findNavController().navigate(R.id.action_SecPageCompanyFragment_to_loginCompanyFragment)
+        }
     }
 
 }
