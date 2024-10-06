@@ -49,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/top_right">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/login_name"
+            android:id="@+id/login_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/primaryDark"
@@ -99,7 +99,7 @@
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/InvestorloginButton"
+        android:id="@+id/loginButton"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/space24"
@@ -131,7 +131,7 @@
         android:src="@drawable/shape"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/InvestorloginButton" />
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
 
     <ImageView
         android:id="@+id/google_icon"
@@ -155,16 +155,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-<!--    <ImageView-->
-<!--        android:id="@+id/eye_password"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginEnd="@dimen/space16"-->
-<!--        android:layout_marginBottom="24dp"-->
-<!--        android:src="@drawable/eye_password"-->
-<!--        app:layout_constraintBottom_toBottomOf="@+id/textInputLayout4"-->
-<!--        app:layout_constraintEnd_toEndOf="@+id/textInputLayout4"-->
-<!--        app:layout_constraintTop_toTopOf="@+id/textInputLayout4" />-->
+    <!--    <ImageView-->
+    <!--        android:id="@+id/eye_password"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginEnd="@dimen/space16"-->
+    <!--        android:layout_marginBottom="24dp"-->
+    <!--        android:src="@drawable/eye_password"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/textInputLayout4"-->
+    <!--        app:layout_constraintEnd_toEndOf="@+id/textInputLayout4"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/textInputLayout4" />-->
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/dont_have_account"
