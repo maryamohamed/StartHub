@@ -11,7 +11,7 @@ fun Fragment.declareViewPager(currentItem: Int) {
     val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)
     viewPager?.currentItem = currentItem
 }
-fun Int.toAyaFormat() = "$this $ "
+fun Int.toDollarFormat() = "$this $ "
 
 fun Fragment.setLinearLayoutRecyclerView(recyclerView: RecyclerView?) {
     recyclerView?.layoutManager = LinearLayoutManager(
