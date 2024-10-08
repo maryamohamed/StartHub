@@ -6,7 +6,7 @@
     android:id="@+id/signup_customer_fragment"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/primarywhite"
-    tools:context=".ui.signup.SignUpCompanyFragment">
+    tools:context=".ui.signup.company.page1.SignUpCompanyFragment">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/top_right"

@@ -1,4 +1,4 @@
-package com.training.starthub.ui.signup
+package com.training.starthub.ui.signup.company.page2
 
 import android.app.DatePickerDialog
 import android.icu.util.Calendar
@@ -23,12 +23,18 @@ class SecPageCompanyFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var db : FirebaseFirestore
     private lateinit var selectedItem : String
+    private lateinit var companyRepoTwo  : CompanyRepoTwo
+    private lateinit var viewModel  : CompanyViewModelTwo
 
     val list : List<String> = listOf("Choose Category","Tech", "Clothes", "Food" , "Sports", "Other")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        auth = FirebaseAuth.getInstance()
+        db = FirebaseFirestore.getInstance()
+
         binding = FragmentSecPageCompanyBinding.inflate(inflater,container,false)
         return binding.root
     }
@@ -36,38 +42,26 @@ class SecPageCompanyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showToast("Sec Page Company Fragment")
+
+        companyRepoTwo  = CompanyRepoTwo(view,requireContext(),db,auth)
+        viewModel  = CompanyViewModelTwo(requireContext(),companyRepoTwo)
+
 
         binding.loginTextBtn.setOnClickListener{
             findNavController().navigate(R.id.action_SecPageCompanyFragment_to_loginCompanyFragment)
         }
 
+        // for spinner
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, list)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinner.adapter = adapter
 
-//        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-//            override fun onItemSelected(
-//                parent: AdapterView<*>?,
-//                view: View?,
-//                position: Int,
-//                id: Long
-//            ) {
-//                selectedItem = parent?.getItemAtPosition(position).toString().trim()
-//            }
-//
-//            override fun onNothingSelected(parent: AdapterView<*>?) {
-//                showToast("Nothing Category selected")
-//            }
-//
-//        }
 
-
+        // for date picker
         binding.DateOfCreation.setOnClickListener {
             showDatePickerDialog()
         }
-        auth = FirebaseAuth.getInstance()
-        db = FirebaseFirestore.getInstance()
+
 
 
         binding.signup.setOnClickListener {
@@ -75,50 +69,11 @@ class SecPageCompanyFragment : Fragment() {
             val description = binding.description.text.toString().trim()
             val category = binding.spinner.selectedItem.toString().trim()
 
-            if (isValidDate(dateOfCreation, description, category)){
-                val userId = auth.currentUser?.uid.toString()
-                saveCompanyData(userId,dateOfCreation, description, category)
-            }
+            viewModel.registerUser(dateOfCreation, description, category)
         }
 
     }
 
-    private fun isValidDate( dateOfCreation: String, description: String, category: String): Boolean {
-        when {
-            dateOfCreation.isEmpty() -> {
-                showToast("Date of creation is required")
-                return false
-            }
-
-            description.isEmpty() -> {
-                showToast("Description is required")
-                return false
-            }
-
-            category.isEmpty()|| category == "Choose Category" -> {
-                showToast("Category is required")
-            }
-            else -> return true
-        }
-        return true
-    }
-
-    private fun saveCompanyData(userId: String, dateOfCreation: String, description: String, category: String) {
-        val companyData = hashMapOf(
-            "dateOfCreation" to dateOfCreation,
-            "description" to description,
-            "category" to category
-        )
-
-        db.collection("Companies/$userId/secPage").document(userId)
-            .set(companyData).addOnCompleteListener {
-                if (it.isSuccessful) {
-                    showToast("Company data successfully added to Firestore.")
-                } else {
-                    showToast("Error adding company data to Firestore: ${it.exception?.message}")
-                }
-            }
-    }
 
 
     private fun showDatePickerDialog() {

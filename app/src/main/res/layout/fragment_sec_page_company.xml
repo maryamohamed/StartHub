@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primarywhite"
-    tools:context=".ui.signup.SignUpCompanyFragment">
+    tools:context=".ui.signup.company.page1.SignUpCompanyFragment">
 
 
     <com.google.android.material.imageview.ShapeableImageView

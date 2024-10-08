@@ -75,7 +75,7 @@
     <fragment
         android:id="@+id/SignupCustomerFragment"
         tools:layout="@layout/fragment_signup_client"
-        android:name="com.training.starthub.ui.signup.SignupClientFragment"
+        android:name="com.training.starthub.ui.signup.customer.SignupClientFragment"
         android:label="SignupCustomerFragment" >
         <action
             android:id="@+id/action_SignupCustomerFragment_to_loginCustomerFragment"
@@ -85,7 +85,7 @@
     <fragment
         android:id="@+id/SignupCompanyFragment"
         tools:layout="@layout/fragment_sign_up_company"
-        android:name="com.training.starthub.ui.signup.SignUpCompanyFragment"
+        android:name="com.training.starthub.ui.signup.company.page1.SignUpCompanyFragment"
         android:label="SignupCompanyFragment" >
         <action
             android:id="@+id/action_SignupCompanyFragment_to_SecPageCompanyFragment"
@@ -121,7 +121,7 @@
     <fragment
         android:id="@+id/SecPageCompanyFragment"
         tools:layout="@layout/fragment_sec_page_company"
-        android:name="com.training.starthub.ui.signup.SecPageCompanyFragment"
+        android:name="com.training.starthub.ui.signup.company.page2.SecPageCompanyFragment"
         android:label="SecPageCompanyFragment">
         <action
             android:id="@+id/action_SecPageCompanyFragment_to_loginCompanyFragment"
