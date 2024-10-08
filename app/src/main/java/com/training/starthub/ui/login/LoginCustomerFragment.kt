@@ -58,6 +58,7 @@ class LoginCustomerFragment : Fragment() {
         }
     }
 
+    // signIn util
     private fun signInUser(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
@@ -70,6 +71,9 @@ class LoginCustomerFragment : Fragment() {
             }
     }
 
+
+
+    // Toast message Util
     private fun showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }

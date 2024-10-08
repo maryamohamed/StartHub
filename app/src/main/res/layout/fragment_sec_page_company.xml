@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primarywhite"
-    tools:context=".ui.Signup.SignUpCompanyFragment">
+    tools:context=".ui.signup.SignUpCompanyFragment">
 
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -54,7 +54,7 @@
 
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/description"
+        android:id="@+id/desText"
         android:layout_width="186dp"
         android:layout_height="29dp"
         android:layout_marginLeft="@dimen/space32"
@@ -69,7 +69,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/company_sign_upButton"
+        android:id="@+id/signup"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/space24"
@@ -83,7 +83,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.635"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/policyP2" />
+        app:layout_constraintTop_toBottomOf="@+id/policy" />
 
 
     <ImageView
@@ -95,7 +95,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.597"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/company_sign_upButton" />
+        app:layout_constraintTop_toBottomOf="@+id/signup" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/dont_have_account"
@@ -138,7 +138,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <CheckBox
-        android:id="@+id/policyP2"
+        android:id="@+id/policy"
         android:layout_width="301dp"
         android:layout_height="38dp"
         android:layout_marginTop="476dp"
@@ -149,21 +149,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutDate"
-        android:layout_width="49dp"
-        android:layout_height="35dp"
-        android:hint="Date Of Creation"
-        app:endIconDrawable="@drawable/calendar_svgrepo_com"
-        app:endIconMode="custom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.636"
-        app:layout_constraintStart_toStartOf="@+id/editTextDate"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="133dp" />
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:id="@+id/textInputLayoutDate"-->
+<!--        android:layout_width="49dp"-->
+<!--        android:layout_height="35dp"-->
+<!--        android:hint="Date Of Creation"-->
+<!--        android:text="Select Date"-->
+<!--        app:endIconDrawable="@drawable/calendar_svgrepo_com"-->
+<!--        app:endIconMode="custom"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.636"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/DateOfCreation"-->
+<!--        tools:ignore="MissingConstraints"-->
+<!--        tools:layout_editor_absoluteY="133dp" />-->
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/editTextDate"
+        android:id="@+id/DateOfCreation"
         android:layout_width="254dp"
         android:layout_height="40dp"
         android:layout_marginTop="132dp"
@@ -186,6 +187,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="147dp"
             android:hint="description" />
@@ -210,7 +212,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
-        android:id="@+id/spinnerP2"
+        android:id="@+id/spinner"
         android:layout_width="227dp"
         android:layout_height="49dp"
         android:layout_marginTop="404dp"

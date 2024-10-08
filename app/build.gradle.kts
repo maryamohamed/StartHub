@@ -36,6 +36,8 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    // for binding
     buildFeatures{
         viewBinding = true
     }
@@ -47,9 +49,13 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("com.google.firebase:firebase-auth-ktx:23.0.0")
+    implementation("androidx.databinding:databinding-runtime:8.7.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+
+    // data binding
     implementation("androidx.databinding:viewbinding:8.5.1")
 
     // recycler view
@@ -76,6 +82,11 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.2")
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.8.2")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.2")
+
+
+    //dagger hilt
+    implementation("com.google.dagger:hilt-android:2.38.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.38.1")
 
     //room database
     implementation("androidx.room:room-runtime:2.6.1")

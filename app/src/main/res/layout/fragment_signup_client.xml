@@ -6,7 +6,7 @@
     android:id="@+id/signup_customer_fragment"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/primarywhite"
-    tools:context=".ui.Signup.SignUpCompanyFragment">
+    tools:context=".ui.signup.SignUpCompanyFragment">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/top_right"
@@ -91,7 +91,7 @@
             android:id="@+id/signup_gmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Gmail"
+            android:hint="Email"
             android:backgroundTint="@color/primaryDark"
             android:textColor="@color/secondaryDark"
             android:inputType="textEmailAddress"/>

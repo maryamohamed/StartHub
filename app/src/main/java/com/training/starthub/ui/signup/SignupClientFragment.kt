@@ -1,4 +1,4 @@
-package com.training.starthub.ui.Signup
+package com.training.starthub.ui.signup
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import com.training.starthub.R
 import com.training.starthub.databinding.FragmentSignupClientBinding
-import kotlinx.coroutines.tasks.await
+
 
 class SignupClientFragment : Fragment() {
 
@@ -27,6 +29,18 @@ class SignupClientFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
 
+
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.loginTextBtn.setOnClickListener{
+            findNavController().navigate(R.id.action_SignupCustomerFragment_to_loginCustomerFragment)
+        }
+
         binding.signUpButton.setOnClickListener {
             val name = binding.signupName.text.toString().trim()
             val email = binding.signupGmail.text.toString().trim()
@@ -39,9 +53,8 @@ class SignupClientFragment : Fragment() {
             registerUser(name, email, password, phone)
         }
 
-        return binding.root
-    }
 
+    }
     private fun validateInputs(name: String, email: String, password: String, confirmPassword: String, phone: String): Boolean {
         return when {
             name.isEmpty() || email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || phone.isEmpty() -> {
@@ -56,13 +69,13 @@ class SignupClientFragment : Fragment() {
         }
     }
 
-    private fun registerUser(name: String, email: String, password: String, phone: String) {
+    private fun registerUser(name: String, email: String, password: String, phone: String ) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     auth.currentUser?.let { user ->
                         sendEmailVerification(user)
-                        saveUserToFirestore(user.uid, name, email, phone)
+                        saveUserToFirestore(user.uid, name, email, phone , password)
                         showToast("Your account has been successfully created!")
                     }
                 } else {
@@ -82,11 +95,12 @@ class SignupClientFragment : Fragment() {
             }
     }
 
-    private fun saveUserToFirestore(userId: String, name: String, email: String, phone: String) {
+    private fun saveUserToFirestore(userId: String, name: String, email: String, phone: String , password: String) {
         val user = hashMapOf(
             "name" to name,
             "email" to email,
-            "phone" to phone
+            "phone" to phone,
+            "password" to password
         )
 
         db.collection("customers").document(userId)
