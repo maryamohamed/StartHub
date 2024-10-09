@@ -42,7 +42,7 @@
     <fragment
         android:id="@+id/loginCustomerFragment"
         tools:layout="@layout/fragment_login_customer"
-        android:name="com.training.starthub.ui.login.LoginCustomerFragment"
+        android:name="com.training.starthub.ui.login.customer.LoginCustomerFragment"
         android:label="LoginCustomerFragment" >
         <action
             android:id="@+id/action_loginCustomerFragment_to_SignupCustomerFragment"
@@ -53,7 +53,7 @@
     <fragment
         android:id="@+id/loginCompanyFragment"
         tools:layout="@layout/fragment_login_company"
-        android:name="com.training.starthub.ui.login.LoginCompanyFragment"
+        android:name="com.training.starthub.ui.login.company.LoginCompanyFragment"
         android:label="LoginCompanyFragment" >
         <action
             android:id="@+id/action_loginCompanyFragment_to_SignupCompanyFragment"
@@ -65,7 +65,7 @@
     <fragment
         android:id="@+id/loginInvestorFragment"
         tools:layout="@layout/fragment_login_investor"
-        android:name="com.training.starthub.ui.login.LoginInvestorFragment"
+        android:name="com.training.starthub.ui.login.investor.LoginInvestorFragment"
         android:label="LoginInvestorFragment" >
         <action
             android:id="@+id/action_loginInvestorFragment_to_SignupInvestorFragment"
@@ -98,7 +98,7 @@
     <fragment
         android:id="@+id/SignupInvestorFragment"
         tools:layout="@layout/fragment_signup_investor"
-        android:name="com.training.starthub.ui.signup.SignupInvestorFragment"
+        android:name="com.training.starthub.ui.signup.investor.page1.SignupInvestorFragment"
         android:label="SignupInvestorFragment" >
         <action
             android:id="@+id/action_SignupInvestorFragment_to_SecPageInvestorFragment"
@@ -111,7 +111,7 @@
     <fragment
         android:id="@+id/SecPageInvestorFragment"
         tools:layout="@layout/fragment_sec_page_investor"
-        android:name="com.training.starthub.ui.signup.SecPageInvestorFragment"
+        android:name="com.training.starthub.ui.signup.investor.page2.SecPageInvestorFragment"
         android:label="SecPageInvestorFragment" >
         <action
             android:id="@+id/action_SecPageInvestorFragment_to_loginInvestorFragment"

@@ -1,4 +1,4 @@
-package com.training.starthub.ui.login
+package com.training.starthub.ui.login.customer
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.training.starthub.R
@@ -14,7 +16,7 @@ import com.training.starthub.databinding.FragmentLoginCustomerBinding
 class LoginCustomerFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginCustomerBinding
-    private lateinit var auth: FirebaseAuth
+    private val viewModel: LoginCustomerViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,21 +29,30 @@ class LoginCustomerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        auth = FirebaseAuth.getInstance()
+        binding.signUpText.setOnClickListener {
+            findNavController().navigate(R.id.action_loginCustomerFragment_to_SignupCustomerFragment)
+        }
 
         binding.loginButton.setOnClickListener {
             val email = binding.loginEmail.text.toString().trim()
             val password = binding.loginPassword.text.toString().trim()
 
             if (validateInputs(email, password)) {
-                signInUser(email, password)
+                viewModel.login(email, password)
             }
         }
 
-        binding.signUpText.setOnClickListener {
-            findNavController().navigate(R.id.action_loginCustomerFragment_to_SignupCustomerFragment)
-        }
+        viewModel.loginResult.observe(viewLifecycleOwner, Observer { result ->
+            result.fold(
+                onSuccess = {
+                    showToast("Sign-in successful!")
+                    // Navigate to the next fragment
+                },
+                onFailure = { e ->
+                    showToast("Failed to sign in: ${e.message}")
+                }
+            )
+        })
     }
 
     private fun validateInputs(email: String, password: String): Boolean {
@@ -58,22 +69,6 @@ class LoginCustomerFragment : Fragment() {
         }
     }
 
-    // signIn util
-    private fun signInUser(email: String, password: String) {
-        auth.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    showToast("Sign-in successful!")
-                    // Navigate to the next fragment
-                } else {
-                    showToast("Failed to sign in: ${task.exception?.message}")
-                }
-            }
-    }
-
-
-
-    // Toast message Util
     private fun showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }

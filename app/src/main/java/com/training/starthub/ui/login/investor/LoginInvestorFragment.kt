@@ -1,45 +1,57 @@
-package com.training.starthub.ui.login
+package com.training.starthub.ui.login.investor
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.auth.FirebaseAuth
 import com.training.starthub.R
 import com.training.starthub.databinding.FragmentLoginInvestorBinding
 
 class LoginInvestorFragment : Fragment() {
 
-    private lateinit var binding : FragmentLoginInvestorBinding
-    private lateinit var auth: FirebaseAuth
+    private lateinit var binding: FragmentLoginInvestorBinding
+    private val viewModel: LoginViewModel by viewModels()
+
     override fun onCreateView(
-        inflater : LayoutInflater, container : ViewGroup?,
-        savedInstanceState : Bundle?
-    ) : View? {
-        binding = FragmentLoginInvestorBinding.inflate(inflater,container,false)
-        // Inflate the layout for this fragment
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentLoginInvestorBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.signUpText.setOnClickListener{
+
+        binding.signUpText.setOnClickListener {
             findNavController().navigate(R.id.action_loginInvestorFragment_to_SignupInvestorFragment)
         }
-        auth = FirebaseAuth.getInstance()
-        binding.loginButton.setOnClickListener{
+
+        binding.loginButton.setOnClickListener {
             val email = binding.email.text.toString().trim()
             val password = binding.password.text.toString().trim()
-            if(validateInputs(email,password)){
-                signInUser(email,password)
+            if (validateInputs(email, password)) {
+                viewModel.login(email, password)
             }
         }
 
+        viewModel.loginResult.observe(viewLifecycleOwner, Observer { result ->
+            result.fold(
+                onSuccess = {
+                    showToast("Sign-in successful!")
+                    // Navigate to the next fragment
+                },
+                onFailure = { e ->
+                    showToast("Failed to sign in: ${e.message}")
+                }
+            )
+        })
     }
-
 
     private fun validateInputs(email: String, password: String): Boolean {
         return when {
@@ -55,20 +67,7 @@ class LoginInvestorFragment : Fragment() {
         }
     }
 
-    private fun signInUser(email: String,password: String){
-        auth.signInWithEmailAndPassword(email,password)
-        .addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                showToast("Sign-in successful!")
-                // Navigate to the next fragment
-            } else {
-                showToast("Failed to sign in: ${task.exception?.message}")
-            }
-        }
-    }
-
     private fun showToast(message: String) {
-        Toast.makeText(requireContext(),message,Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
-
 }
