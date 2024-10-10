@@ -51,6 +51,7 @@ class SecPageCompanyFragment : Fragment() {
             findNavController().navigate(R.id.action_SecPageCompanyFragment_to_loginCompanyFragment)
         }
 
+
         // for spinner
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, list)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -70,6 +71,7 @@ class SecPageCompanyFragment : Fragment() {
             val category = binding.spinner.selectedItem.toString().trim()
 
             viewModel.registerUser(dateOfCreation, description, category)
+            findNavController().navigate(R.id.action_SecPageCompanyFragment_to_CompanyAddProductFragment)
         }
 
     }

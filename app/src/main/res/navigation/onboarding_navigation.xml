@@ -58,6 +58,9 @@
         <action
             android:id="@+id/action_loginCompanyFragment_to_SignupCompanyFragment"
             app:destination="@+id/SignupCompanyFragment" />
+        <action
+            android:id="@+id/action_loginCompanyFragment_to_CompanyAddProductFragment"
+            app:destination="@id/CompanyAddProductFragment" />
 
     </fragment>
 
@@ -126,9 +129,19 @@
         <action
             android:id="@+id/action_SecPageCompanyFragment_to_loginCompanyFragment"
             app:destination="@id/loginCompanyFragment" />
+        <action
+            android:id="@+id/action_SecPageCompanyFragment_to_CompanyAddProductFragment"
+            app:destination="@id/CompanyAddProductFragment" />
     </fragment>
 
 
+    <fragment
+        android:id="@+id/CompanyAddProductFragment"
+        tools:layout="@layout/fragment_company_add_product"
+        android:name="com.training.starthub.ui.CompanyAddProductFragment"
+        android:label="SecPageCompanyFragment">
+
+    </fragment>
 
 
 </navigation>

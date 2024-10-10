@@ -106,4 +106,17 @@ dependencies {
     // Add the dependency for the Firebase Authentication library
     implementation("com.google.firebase:firebase-auth")
 
+
+    //circle image view
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
+
+
+    // glide
+    implementation("com.github.bumptech.glide:glide:4.15.1")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.15.1")
+
+    // Add the dependency for the Cloud Storage library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation("com.google.firebase:firebase-storage")
+
 }

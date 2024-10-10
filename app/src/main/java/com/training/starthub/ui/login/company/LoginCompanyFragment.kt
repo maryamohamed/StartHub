@@ -42,6 +42,7 @@ class LoginCompanyFragment : Fragment() {
             if (validateInputs(email, password)) {
                 viewModel.login(email, password)
             }
+            findNavController().navigate(R.id.action_loginCompanyFragment_to_CompanyAddProductFragment)
         }
 
 
