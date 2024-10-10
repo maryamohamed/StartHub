@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primarywhite"
-    tools:context=".ui.LoginFragment">
+    android:background="@color/primaryWhite">
 
 
     <com.google.android.material.imageview.ShapeableImageView
@@ -99,7 +98,7 @@
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/InvestorloginButton"
+        android:id="@+id/CustomerloginButton"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/space24"
@@ -107,7 +106,7 @@
         android:backgroundTint="@color/secondaryDark"
         android:paddingVertical="10dp"
         android:text="Login"
-        android:textColor="@color/primarywhite"
+        android:textColor="@color/primaryWhite"
         android:textSize="18sp"
         app:cornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -131,7 +130,7 @@
         android:src="@drawable/shape"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/InvestorloginButton" />
+        app:layout_constraintTop_toBottomOf="@+id/CustomerloginButton" />
 
     <ImageView
         android:id="@+id/imageView3"

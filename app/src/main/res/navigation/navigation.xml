@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.training.starthub.ui.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home">
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_favorites"
+        android:name="com.training.starthub.ui.FavoritesFragment"
+        android:label="@string/favorites"
+        tools:layout="@layout/fragment_favorites">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_cart"
+        android:name="com.training.starthub.ui.CartFragment"
+        tools:layout="@layout/fragment_cart">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.training.starthub.ui.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile"></fragment>
+
+</navigation>

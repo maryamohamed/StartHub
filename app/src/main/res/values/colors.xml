@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--Primary Palette-->
-    <color name="primarywhite">#F3EEEA</color>
+    <color name="primaryWhite">#F3EEEA</color>
     <color name="primaryDark">#B0A695</color>
     <!--Secondary Palette-->
     <color name="secondarywhite">#EBE3D5</color>

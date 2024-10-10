@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primarywhite"
+    android:background="@color/primaryWhite"
     tools:context=".ui.LoginFragment">
 
 
@@ -107,7 +107,7 @@
         android:backgroundTint="@color/secondaryDark"
         android:paddingVertical="10dp"
         android:text="Login"
-        android:textColor="@color/primarywhite"
+        android:textColor="@color/primaryWhite"
         android:textSize="18sp"
         app:cornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"

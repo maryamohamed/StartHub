@@ -3,11 +3,11 @@
     <style name="Base.Theme.StartHub" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primaryDark</item>
         <item name="colorPrimaryVariant">@color/primaryDark</item>
-        <item name="colorOnPrimary">@color/primarywhite</item>
+        <item name="colorOnPrimary">@color/primaryWhite</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/primaryDark</item>
         <item name="colorSecondaryVariant">@color/primaryDark</item>
-        <item name="colorOnSecondary">@color/primarywhite</item>
+        <item name="colorOnSecondary">@color/primaryWhite</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
     </style>
