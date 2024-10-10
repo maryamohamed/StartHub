@@ -1,0 +1,11 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="28dp"
+    android:viewportWidth="24"
+    android:viewportHeight="28">
+
+    <!-- Trash Bin Path -->
+    <path
+        android:fillColor="@color/secondaryDark"
+        android:pathData="M7,24.5C6.45,24.5 5.979,24.2715 5.5875,23.8146C5.19583,23.3576 5,22.8083 5,22.1667V7H4V4.66667H9V3.5H15V4.66667H20V7H19V22.1667C19,22.8083 18.8042,23.3576 18.4125,23.8146C18.0208,24.2715 17.55,24.5 17,24.5H7ZM17,7H7V22.1667H17V7ZM9,19.8333H11V9.33333H9V19.8333ZM13,19.8333H15V9.33333H13V19.8333Z"/>
+</vector>

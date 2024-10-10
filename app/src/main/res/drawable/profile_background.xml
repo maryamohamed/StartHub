@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="348dp"
+    android:height="180dp"
+    android:viewportWidth="348"
+    android:viewportHeight="180">
+
+    <!-- Outer rounded rectangle and inner path -->
+    <path
+        android:pathData="M72.5,156.875h203c16.016,0 29,-6.902 29,-15.417V33.5417c0,-8.5144 -12.984,-15.417 -29,-15.417h-203c-16.016,0 -29,6.9026 -29,15.417v107.917c0,8.5144 12.984,15.4167 29,15.4167zM72.5,156.875L232,72.0833L304.5,110.625"
+        android:strokeColor="#EBE3D5"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        />
+
+    <!-- Circle or point -->
+    <path
+        android:pathData="M145,60.5208c0,6.3858 -9.738,11.5625 -21.75,11.5625s-21.75,-5.1767 -21.75,-11.5625s9.738,-11.5625 21.75,-11.5625s21.75,5.1767 21.75,11.5625z"
+        android:strokeColor="#EBE3D5"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

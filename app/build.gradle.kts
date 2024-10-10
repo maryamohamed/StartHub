@@ -106,4 +106,13 @@ dependencies {
     // Add the dependency for the Firebase Authentication library
     implementation("com.google.firebase:firebase-auth")
 
+
+    //circle image view
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
+
+
+    // glide
+    implementation ("com.github.bumptech.glide:glide:4.15.0") // Check for the latest version
+    kapt ("com.github.bumptech.glide:compiler:4.15.0 ")// If you're using Kotlin
+
 }
