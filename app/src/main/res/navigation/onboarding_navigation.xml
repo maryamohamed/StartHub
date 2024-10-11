@@ -58,9 +58,10 @@
         <action
             android:id="@+id/action_loginCompanyFragment_to_SignupCompanyFragment"
             app:destination="@+id/SignupCompanyFragment" />
+
         <action
-            android:id="@+id/action_loginCompanyFragment_to_CompanyAddProductFragment"
-            app:destination="@id/CompanyAddProductFragment" />
+            android:id="@+id/action_loginCompanyFragment_to_CompanyHomeFragment"
+            app:destination="@id/CompanyHomeFragment" />
 
     </fragment>
 
@@ -129,9 +130,10 @@
         <action
             android:id="@+id/action_SecPageCompanyFragment_to_loginCompanyFragment"
             app:destination="@id/loginCompanyFragment" />
+
         <action
-            android:id="@+id/action_SecPageCompanyFragment_to_CompanyAddProductFragment"
-            app:destination="@id/CompanyAddProductFragment" />
+            android:id="@+id/action_SecPageCompanyFragment_to_CompanyHomeFragment"
+            app:destination="@id/CompanyHomeFragment" />
     </fragment>
 
 
@@ -141,6 +143,20 @@
         android:name="com.training.starthub.ui.CompanyAddProductFragment"
         android:label="SecPageCompanyFragment">
 
+        <action
+            android:id="@+id/action_CompanyAddProductFragment_to_CompanyHomeFragment"
+            app:destination="@id/CompanyHomeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/CompanyHomeFragment"
+        tools:layout="@layout/fragment_company_home"
+        android:name="com.training.starthub.ui.CompanyHomeFragment"
+        android:label="SecPageCompanyFragment">
+
+        <action
+            android:id="@+id/action_CompanyHomeFragment_to_CompanyAddProductFragment"
+            app:destination="@id/CompanyAddProductFragment" />
     </fragment>
 
 

@@ -22,8 +22,11 @@ import com.training.starthub.databinding.FragmentCompanyAddProductBinding
 import java.util.UUID
 import android.provider.Settings
 import android.widget.ArrayAdapter
+import androidx.core.app.NavUtils
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.training.starthub.R
 import com.training.starthub.ui.adapter.Product
 import com.training.starthub.utils.ToastUtil
 import kotlinx.coroutines.Dispatchers
@@ -99,13 +102,17 @@ class CompanyAddProductFragment : Fragment() {
             val name = binding.productName.text.toString().trim()
 
             // Pass the selected image URI to the uploadImage function
-            selectedImageUri?.let {
-                // Upload the image to Firebase Storage
-                uploadImage(it)
-            }
+
             if (isValidData(name,description, price, category)) {
                 saveProductData(getCurrentUserId()!!,name ,description, price, category, selectedImageUri)
+                selectedImageUri?.let {
+                    // Upload the image to Firebase Storage
+                    uploadImage(it)
+                }
+                Toast.makeText(requireContext(), "Product added successfully", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_CompanyAddProductFragment_to_CompanyHomeFragment)
             }
+
         }
 
 
