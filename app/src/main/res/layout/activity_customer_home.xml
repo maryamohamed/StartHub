@@ -95,8 +95,11 @@
     <!-- Navigation Drawer -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
-        android:layout_width="300dp"
+        android:layout_width="@dimen/space300"
         android:layout_height="match_parent"
+        app:itemTextColor="@color/primaryWhite"
+        app:itemIconTint="@color/primaryWhite"
+        android:background="@color/primaryDark"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/drawer_header"

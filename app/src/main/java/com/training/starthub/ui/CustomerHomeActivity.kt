@@ -71,7 +71,9 @@ class CustomerHomeActivity : AppCompatActivity(), NavigationView.OnNavigationIte
                 R.id.navigation_home,
                 R.id.navigation_favorites,
                 R.id.navigation_cart,
-                R.id.navigation_profile -> showBottomNavigationView(bottomNavigationView)
+                R.id.navigation_profile,
+                R.id.nav_Companies,   // Drawer fragment navigation IDs
+                R.id.nav_products -> showBottomNavigationView(bottomNavigationView)
                 else -> hideBottomNavigationView(bottomNavigationView)
             }
         }
@@ -94,8 +96,8 @@ class CustomerHomeActivity : AppCompatActivity(), NavigationView.OnNavigationIte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_Companies -> replaceFragment(AllCompaniesFragment())
-            R.id.nav_products -> replaceFragment(AllProductsFragment())
+            R.id.nav_Companies -> navController.navigate(R.id.nav_Companies)
+            R.id.nav_products -> navController.navigate(R.id.nav_products)
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true

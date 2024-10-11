@@ -20,6 +20,7 @@
     <!--Other-->
     <dimen name="space100">100dp</dimen>
     <dimen name="space200">200dp</dimen>
+    <dimen name="space250">250dp</dimen>
     <dimen name="space300">300dp</dimen>
     <dimen name="space52">52dp</dimen>
 
