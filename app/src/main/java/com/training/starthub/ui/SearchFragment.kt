@@ -22,6 +22,10 @@ class SearchFragment : Fragment() {
         savedInstanceState : Bundle?
     ) : View {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
+        binding.iconFilter.setOnClickListener {
+            val dialog = FilterDialog()
+            dialog.show(parentFragmentManager, "FilterDialog")
+        }
 
         setupRecyclerView()
         setupSearchListener()

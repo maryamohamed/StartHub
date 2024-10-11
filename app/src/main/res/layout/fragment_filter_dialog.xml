@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/characterCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/secondaryDark"
+    android:layout_marginVertical="@dimen/space12"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/secondaryDark"
+        android:padding="@dimen/space32">
+
+
+        <Spinner
+            android:id="@+id/spinnerCategory"
+            android:layout_width="match_parent"
+            android:background="@drawable/custom_shape"
+            android:layout_height="50dp" />
+
+        <!-- EditText field 1 -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price Range"
+            android:layout_marginVertical="@dimen/space12"
+            android:textColor="@color/primaryWhite"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:layout_marginTop="12dp"
+            android:textSize="@dimen/text18" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:weightSum="4"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/min"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Min"
+                android:layout_marginHorizontal="@dimen/space12"
+                android:layout_weight="0.5"
+                android:textColor="@color/primaryWhite"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:layout_marginTop="12dp"
+                android:textSize="@dimen/text18" />
+
+            <EditText
+                android:id="@+id/min_box"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:padding="@dimen/space4"
+                android:textColor="@color/primaryWhite"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/price_shape"
+                android:hint="" />
+            <TextView
+                android:id="@+id/max"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Max"
+                android:layout_marginHorizontal="@dimen/space12"
+                android:layout_weight="0.5"
+                android:textColor="@color/primaryWhite"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:layout_marginTop="12dp"
+                android:textSize="@dimen/text18" />
+
+            <EditText
+                android:id="@+id/max_box"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:padding="@dimen/space4"
+                android:textColor="@color/primaryWhite"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/price_shape"
+                android:hint="" />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonOk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ok"
+                android:layout_marginStart="@dimen/space56" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
