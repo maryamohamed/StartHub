@@ -4,7 +4,7 @@
     <color name="primaryWhite">#F3EEEA</color>
     <color name="primaryDark">#B0A695</color>
     <!--Secondary Palette-->
-    <color name="secondarywhite">#EBE3D5</color>
+    <color name="secondaryWhite">#EBE3D5</color>
     <color name="secondaryDark">#776B5D</color>
     <!--Black Palette-->
     <color name="black87">#DE121212</color>

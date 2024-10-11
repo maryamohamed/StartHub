@@ -11,7 +11,7 @@
         android:id="@+id/AdvicesRecyclerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/favorites"
+        android:text="@string/all_companies"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
