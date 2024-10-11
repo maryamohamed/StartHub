@@ -36,6 +36,10 @@ class CompanyHomeFragment : Fragment() {
             findNavController().navigate(R.id.action_CompanyHomeFragment_to_CompanyAddProductFragment)
         }
 
+        binding.profile.setOnClickListener {
+            findNavController().navigate(R.id.action_CompanyHomeFragment_to_CompanyProfileFragment)
+        }
+
     }
 
 }

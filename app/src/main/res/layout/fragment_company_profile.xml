@@ -206,6 +206,7 @@
         app:layout_constraintStart_toStartOf="parent" >
 
         <ImageView
+            android:id="@+id/home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="17.5dp"
@@ -213,6 +214,7 @@
             android:src="@drawable/home"/>
 
         <ImageView
+            android:id="@+id/reviews"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="17.5dp"
@@ -221,6 +223,7 @@
             android:layout_marginStart="134dp"/>
 
         <ImageView
+            android:id="@+id/favorites"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="17.5dp"
@@ -228,6 +231,7 @@
             android:layout_marginStart="233dp"/>
 
         <ImageView
+            android:id="@+id/profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="17.5dp"

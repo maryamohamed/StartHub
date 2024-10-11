@@ -39,14 +39,15 @@
 
         <EditText
             android:id="@+id/product_name"
-            android:layout_width="133dp"
+            android:layout_width="156dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/space56"
             android:background="@drawable/edittext_background"
             android:hint="name"
-            android:textColor="@color/secondaryDark"
-            android:inputType="numberDecimal"
-            android:padding="8dp" />
+            android:gravity="center"
+            android:inputType="textAutoComplete"
+            android:padding="8dp"
+            android:textColor="@color/secondaryDark" />
 
 
     </LinearLayout>

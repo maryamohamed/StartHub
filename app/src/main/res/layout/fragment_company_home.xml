@@ -26,8 +26,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:layout_width="413dp"
-        android:layout_height="583dp"
+        android:layout_width="410dp"
+        android:layout_height="595dp"
         android:clipToPadding="false"
         android:padding="16dp"
         android:scrollbars="vertical"
@@ -43,7 +43,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/secondaryDark"
         android:src="@drawable/plus"
         app:layout_constraintBottom_toBottomOf="@+id/recycler_view"
@@ -62,6 +61,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
+            android:id="@+id/home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="33dp"
@@ -69,6 +69,7 @@
             android:src="@drawable/home_dark" />
 
         <ImageView
+            android:id="@+id/reviews"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="134dp"
@@ -77,6 +78,7 @@
             android:src="@drawable/reviews" />
 
         <ImageView
+            android:id="@+id/favorites"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="233dp"
@@ -84,6 +86,7 @@
             android:src="@drawable/favorites" />
 
         <ImageView
+            android:id="@+id/profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="333dp"
