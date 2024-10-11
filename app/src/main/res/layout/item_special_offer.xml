@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:id="@+id/spacial_offer_card"
+    android:layout_width="@dimen/space200"
+    android:layout_height="@dimen/space200"
+    android:layout_marginStart="@dimen/space32"
+    android:backgroundTint="@color/primaryWhite"
+    app:cardCornerRadius="@dimen/space16"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/product_img"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/mac" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/product_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space12"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="Wireless Earbuds"
+            android:textColor="@color/primaryDark"
+            android:textSize="@dimen/text14"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/product_img" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/product_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space12"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="100$"
+            android:textColor="@color/secondaryDark"
+            android:textSize="@dimen/text14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/product_img" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/product_price_before"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="150$"
+            android:textColor="@color/primaryDark"
+            android:textSize="@dimen/text14"
+            app:layout_constraintEnd_toEndOf="@+id/product_price"
+            app:layout_constraintStart_toStartOf="@+id/product_price"
+            app:layout_constraintTop_toBottomOf="@+id/product_price" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/product_price_before"
+            app:layout_constraintEnd_toEndOf="@+id/product_price_before"
+            app:layout_constraintStart_toStartOf="@+id/product_price_before"
+            app:layout_constraintTop_toBottomOf="@+id/product_price"
+            app:srcCompat="@drawable/offer_line" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/product_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space12"
+            android:layout_marginBottom="@dimen/space8"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Tech"
+            android:textColor="@color/primaryDark"
+            android:textSize="@dimen/text16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/product_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/space12"
+            android:layout_marginBottom="@dimen/space8"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Apple"
+            android:textColor="@color/primaryDark"
+            android:textSize="@dimen/text16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>

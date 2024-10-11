@@ -72,6 +72,7 @@ class CustomerHomeActivity : AppCompatActivity(), NavigationView.OnNavigationIte
                 R.id.navigation_favorites,
                 R.id.navigation_cart,
                 R.id.navigation_profile,
+                R.id.navigation_search,
                 R.id.nav_Companies,   // Drawer fragment navigation IDs
                 R.id.nav_products -> showBottomNavigationView(bottomNavigationView)
                 else -> hideBottomNavigationView(bottomNavigationView)

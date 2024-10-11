@@ -5,6 +5,7 @@
     <string name="skip">Skip</string>
     <string name="welcome_login">Welcome, \nLogin</string>
     <string name="home">Home</string>
+    <string name="search">Search</string>
     <string name="favorites">Favorites</string>
     <string name="cart">Cart</string>
     <string name="profile">Profile</string>
@@ -14,4 +15,5 @@
     <string name="all_products">All Products</string>
     <string name="hi">Hi,</string>
     <string name="search_product">Search Product</string>
+    <string name="lorem">Lorem ipsum dolor sit amet consectetur. Molestie elit sit a tempor suscipit pretium faucibus.</string>
 </resources>
