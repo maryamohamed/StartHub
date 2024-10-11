@@ -12,4 +12,6 @@
     <string name="navigation_drawer_close">close</string>
     <string name="all_companies">All Companies</string>
     <string name="all_products">All Products</string>
+    <string name="hi">Hi,</string>
+    <string name="search_product">Search Product</string>
 </resources>
