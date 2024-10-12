@@ -83,7 +83,7 @@
             android:fontFamily="@font/poppins_medium"
             android:gravity="center"
             android:maxLines="2"
-            android:text="@string/lorem"
+            android:text="@string/lorem_short"
             android:textColor="@color/primaryDark"
             android:textSize="@dimen/text12"
             app:layout_constraintEnd_toStartOf="@+id/thirdGuideline"

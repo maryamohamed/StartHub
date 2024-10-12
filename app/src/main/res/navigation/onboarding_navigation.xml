@@ -16,7 +16,7 @@
     <fragment
         android:id="@+id/viewPagerFragment"
         tools:layout="@layout/fragment_view_pager"
-        android:name="com.training.starthub.ui.ViewPagerFragment"
+        android:name="com.training.starthub.ui.onboarding.ViewPagerFragment"
         android:label="ViewPagerFragment" >
 
         <action

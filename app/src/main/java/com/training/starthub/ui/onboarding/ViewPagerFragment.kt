@@ -1,4 +1,4 @@
-package com.training.starthub.ui
+package com.training.starthub.ui.onboarding
 
 import android.os.Bundle
 import android.view.LayoutInflater
