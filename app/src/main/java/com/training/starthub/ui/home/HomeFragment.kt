@@ -24,11 +24,18 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.newestText.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_home_to_productDetailsFragment)
+
+        binding.recyclerViewSpecialOffer.adapter = SpecialOffersAdapter { position ->
+            navigateToProductDetails(position)
         }
-        binding.recyclerViewSpecialOffer.adapter = SpecialOffersAdapter()
-        binding.recyclerViewVewest.adapter = NewestAdapter()
+
+        binding.recyclerViewVewest.adapter = NewestAdapter { position ->
+            navigateToProductDetails(position)
+        }
+    }
+
+    private fun navigateToProductDetails(position: Int) {
+        findNavController().navigate(R.id.action_navigation_home_to_productDetailsFragment)
     }
 
     override fun onDestroyView() {

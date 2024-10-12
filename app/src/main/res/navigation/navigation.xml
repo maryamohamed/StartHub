@@ -50,6 +50,9 @@
         <action
             android:id="@+id/action_nav_products_to_navigation_home"
             app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_nav_products_to_productDetailsFragment2"
+            app:destination="@id/productDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_search"
@@ -60,6 +63,10 @@
         android:id="@+id/productDetailsFragment"
         android:name="com.training.starthub.ui.ProductDetailsFragment"
         android:label="fragment_product_details"
-        tools:layout="@layout/fragment_product_details" />
+        tools:layout="@layout/fragment_product_details" >
+        <action
+            android:id="@+id/action_productDetailsFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
 
 </navigation>

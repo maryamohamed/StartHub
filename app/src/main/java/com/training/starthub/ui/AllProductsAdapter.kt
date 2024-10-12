@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.training.starthub.R
 
-class AllProductsAdapter : RecyclerView.Adapter<AllProductsAdapter.AllProductsViewHolder>() {
+class AllProductsAdapter(private val onItemClicked: (Int) -> Unit) : RecyclerView.Adapter<AllProductsAdapter.AllProductsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AllProductsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_product, parent, false)
@@ -15,15 +15,14 @@ class AllProductsAdapter : RecyclerView.Adapter<AllProductsAdapter.AllProductsVi
     }
 
     override fun onBindViewHolder(holder: AllProductsViewHolder, position: Int) {
-        // Bind your data here
-    }
+        holder.itemView.setOnClickListener {
+            onItemClicked(position)  // Trigger click event
+        }    }
 
     override fun getItemCount(): Int {
-        // Return the number of items
         return 30
     }
 
     class AllProductsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // Initialize your views (e.g., ImageView, TextView) here
     }
 }

@@ -6,7 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.training.starthub.R
 
-class SpecialOffersAdapter : RecyclerView.Adapter<SpecialOffersAdapter.SpecialOfferViewHolder>() {
+class SpecialOffersAdapter(private val onItemClicked: (Int) -> Unit) :
+    RecyclerView.Adapter<SpecialOffersAdapter.SpecialOfferViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SpecialOfferViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_special_offer, parent, false)
@@ -14,15 +15,12 @@ class SpecialOffersAdapter : RecyclerView.Adapter<SpecialOffersAdapter.SpecialOf
     }
 
     override fun onBindViewHolder(holder: SpecialOfferViewHolder, position: Int) {
-        // Bind  data here
+        holder.itemView.setOnClickListener {
+            onItemClicked(position)  // Trigger click event
+        }
     }
 
-    override fun getItemCount(): Int {
-        // Return the number of items
-        return 10
-    }
+    override fun getItemCount(): Int = 20
 
-    class SpecialOfferViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        // Initialize  views here
-    }
+    class SpecialOfferViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 }

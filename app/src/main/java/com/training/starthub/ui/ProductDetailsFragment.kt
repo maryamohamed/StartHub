@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -21,9 +22,8 @@ class ProductDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
-
+        handleBackArrowClick()
         setupViewPagerAndTabs()
-
         return binding.root
     }
 
@@ -41,6 +41,11 @@ class ProductDetailsFragment : Fragment() {
                 2 -> tab.text = "Rate Product"
             }
         }.attach()
+    }
+    private fun handleBackArrowClick() {
+        binding.backArrow.setOnClickListener {
+            findNavController().navigate(R.id.action_productDetailsFragment_to_navigation_home)
+        }
     }
 
     override fun onDestroyView() {
