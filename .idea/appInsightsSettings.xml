@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.training.starthub" />
+                  <option name="mobileSdkAppId" value="1:175098471792:android:678d4404d83dc614badbb5" />
+                  <option name="projectId" value="starthub-69c80" />
+                  <option name="projectNumber" value="175098471792" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
