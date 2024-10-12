@@ -13,86 +13,58 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
-class CompanyRepoOne constructor(val view: View, private val context: Context, private val db: FirebaseFirestore, private val auth: FirebaseAuth) {
+class CompanyRepoOne  {
 
-    // user: User
-    suspend fun saveUserToFirestore(name: String, email: String, phone: String, password: String){
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
+
+    suspend fun registerUser(name: String, email: String, password: String, phone: String): FirebaseUser? {
+        return try {
+            val user = withContext(Dispatchers.IO) {
+                auth.createUserWithEmailAndPassword(email, password).await()
+                auth.currentUser
+            }
+            user?.let {
+                saveUserToFirestore(it.uid, name, email, phone)
+                sendEmailVerification(it)
+            }
+            user
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+   suspend fun saveUserToFirestore(userId: String, name: String, email: String, phone: String) {
         val user = hashMapOf(
             "name" to name,
             "email" to email,
-            "phone" to phone,
-            "password" to password)
-
+            "phone" to phone
+        )
         withContext(Dispatchers.IO) {
-
-
-            // Check if the user is already authenticated
-            try {
-                auth.createUserWithEmailAndPassword(email, password).await()
-                sendEmailVerification(auth.currentUser!!)
-                checkEmailVerification(auth.currentUser!!)
-                db.collection("Companies").document(auth.currentUser!!.uid).set(user)
-                    .addOnSuccessListener {
-                        ToastUtil.showToast(
-                            context = context,
-                            "User data successfully added to Firestore."
-                        )
-                    }
-                    .addOnFailureListener { e ->
-                        ToastUtil.showToast(
-                            context = context,
-                            "Error adding user data to Firestore: ${e.message}"
-                        )
-                    }.await()
-
-                checkEmailVerification(auth.currentUser!!)
-            }catch (e: Exception){
-                ToastUtil.showToast(context = context,"Failed to create account: ${e.message}")
-            }
-
+            db.collection("Companies").document(userId).set(user).await()
         }
-
     }
 
-
-    private suspend fun sendEmailVerification(user: FirebaseUser){
-        try {
-            user.sendEmailVerification()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        ToastUtil.showToast(context = context,"Verification email sent to ${user.email}")
-                    } else {
-                        ToastUtil.showToast(context = context,"Error sending verification email: ${task.exception?.message}")
-                    }
-                }.await()
-        }catch (e: Exception){
-            ToastUtil.showToast(context = context,"Failed to create account: ${e.message}")
+     suspend fun sendEmailVerification(user: FirebaseUser) {
+        withContext(Dispatchers.IO) {
+            user.sendEmailVerification().await()
         }
-
     }
 
-
-    suspend fun checkEmailVerification(user: FirebaseUser = auth.currentUser!!){
-
-
+    suspend fun checkEmailVerification(
+        user: FirebaseUser,
+        onSuccess: () -> Unit,
+        onFailure: () -> Unit
+    ) {
         while (true) {
-
             user.reload()
             if (user.isEmailVerified) {
-                ToastUtil.showToast(context = context, "Email verified")
-                withContext(Dispatchers.Main){
-                    view.findNavController().navigate(R.id.action_SignupCompanyFragment_to_SecPageCompanyFragment)
-                }
+                withContext(Dispatchers.Main) { onSuccess() }
                 break
-
             } else {
-                delay(3000)
+                withContext(Dispatchers.Main) { onFailure() }
+                delay(5000)
             }
         }
-
     }
-
-
-
-
 }

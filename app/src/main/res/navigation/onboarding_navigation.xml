@@ -157,6 +157,18 @@
         <action
             android:id="@+id/action_CompanyHomeFragment_to_CompanyAddProductFragment"
             app:destination="@id/CompanyAddProductFragment" />
+        <action
+            android:id="@+id/action_CompanyHomeFragment_to_CompanyProfileFragment"
+            app:destination="@id/CompanyProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/CompanyProfileFragment"
+        tools:layout="@layout/fragment_company_profile"
+        android:name="com.training.starthub.ui.CompanyProfileFragment"
+        android:label="SecPageCompanyFragment">
+        <action
+            android:id="@+id/action_CompanyProfileFragment_to_CompanyHomeFragment"
+            app:destination="@id/CompanyHomeFragment" />
     </fragment>
 
 

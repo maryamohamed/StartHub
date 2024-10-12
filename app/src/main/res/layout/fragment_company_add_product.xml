@@ -45,7 +45,8 @@
             android:background="@drawable/edittext_background"
             android:hint="name"
             android:textColor="@color/secondaryDark"
-            android:inputType="numberDecimal"
+            android:gravity="center"
+            android:inputType="textAutoComplete"
             android:padding="8dp" />
 
 

@@ -32,8 +32,10 @@ class CompanyHomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         loadUserProducts()
         binding.addProduct.setOnClickListener {
-
             findNavController().navigate(R.id.action_CompanyHomeFragment_to_CompanyAddProductFragment)
+        }
+        binding.profile.setOnClickListener {
+            findNavController().navigate(R.id.action_CompanyHomeFragment_to_CompanyProfileFragment)
         }
 
     }

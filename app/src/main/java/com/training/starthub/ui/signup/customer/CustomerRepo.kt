@@ -11,6 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import kotlin.text.Typography.dagger
 
 class CustomerRepo constructor( private val context: Context, private val db: FirebaseFirestore, private val auth: FirebaseAuth) {
 
