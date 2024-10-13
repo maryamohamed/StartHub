@@ -2,12 +2,21 @@ package com.training.starthub.ui.signup.company.page2
 
 import android.content.Context
 import androidx.databinding.ObservableField
+//import androidx.lifecycle.LiveData
+//import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.training.starthub.utils.ToastUtil
 import kotlinx.coroutines.launch
 
 class CompanyViewModelTwo constructor(private val context: Context, private val companyRepoTwo: CompanyRepoTwo) : ViewModel() {
+    val db : FirebaseFirestore = FirebaseFirestore.getInstance()
+    val auth : FirebaseAuth = FirebaseAuth.getInstance()
+
+//    private val _name = MutableLiveData<Map<String, String>>()
+//    val name: LiveData<Map<String, String>> get() = _name
 
     val _dateOfCreation = ObservableField("")
     var dateOfCreation: String?
@@ -48,14 +57,27 @@ class CompanyViewModelTwo constructor(private val context: Context, private val 
     }
 
 
-    fun registerUser(dateOfCreation: String, description: String, category: String) {
+    fun registerUser(dateOfCreation: String, description: String, category: String ) {
 
         if (isValidDate(dateOfCreation, description, category)) {
             viewModelScope.launch {
+//                var name = saveNameToFirestore().toString()
+//                val nameRef = db.collection("Companies/${auth.currentUser!!.uid}").document("auth.currentUser!!.uid")
+//                val name = nameRef.get().await().getString("name")
+//                companyRepoTwo.saveUserToFirestore(dateOfCreation, description, category, name)
                 companyRepoTwo.saveUserToFirestore(dateOfCreation, description, category)
             }
         } else {
             return
         }
     }
+
+//    fun saveNameToFirestore() {
+//        viewModelScope.launch {
+//            name.let {
+//                companyRepoTwo.saveNameToFirestore()
+//            }
+//        }
+//    }
+
 }

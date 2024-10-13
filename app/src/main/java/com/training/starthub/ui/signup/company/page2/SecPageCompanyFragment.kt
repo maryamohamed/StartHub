@@ -70,10 +70,9 @@ class SecPageCompanyFragment : Fragment() {
             val description = binding.description.text.toString().trim()
             val category = binding.spinner.selectedItem.toString().trim()
 
-            viewModel.registerUser(dateOfCreation, description, category)
+            viewModel.registerUser(dateOfCreation, description, category )
             findNavController().navigate(R.id.action_SecPageCompanyFragment_to_CompanyHomeFragment)
         }
-
     }
 
 

@@ -22,15 +22,17 @@ class CompanyRepoOne constructor(val view: View, private val context: Context, p
             "email" to email,
             "phone" to phone,
             "password" to password)
+        val name = hashMapOf(
+            "name" to name)
 
         withContext(Dispatchers.IO) {
-
 
             // Check if the user is already authenticated
             try {
                 auth.createUserWithEmailAndPassword(email, password).await()
                 sendEmailVerification(auth.currentUser!!)
                 checkEmailVerification(auth.currentUser!!)
+
                 db.collection("Companies").document(auth.currentUser!!.uid).set(user)
                     .addOnSuccessListener {
                         ToastUtil.showToast(
@@ -45,10 +47,28 @@ class CompanyRepoOne constructor(val view: View, private val context: Context, p
                         )
                     }.await()
 
+
                 checkEmailVerification(auth.currentUser!!)
             }catch (e: Exception){
                 ToastUtil.showToast(context = context,"Failed to create account: ${e.message}")
             }
+
+        }
+
+        withContext(Dispatchers.IO){
+            db.collection("Companies/${auth.currentUser!!.uid}/secPage").document(auth.currentUser!!.uid)
+                .set(name).addOnSuccessListener {
+                    ToastUtil.showToast(
+                        context = context,
+                        "User data successfully added to Firestore."
+                    )
+                }
+                .addOnFailureListener { e ->
+                    ToastUtil.showToast(
+                        context = context,
+                        "Error adding user data to Firestore: ${e.message}"
+                    )
+                }.await()
 
         }
 
@@ -86,7 +106,7 @@ class CompanyRepoOne constructor(val view: View, private val context: Context, p
                 break
 
             } else {
-                delay(3000)
+                delay(1000)
             }
         }
 
