@@ -16,10 +16,10 @@ class SearchAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(product : Product) {
             binding.productName.text = product.name
-            binding.productPrice.text = product.price
+            binding.productPrice.text = product.price.toString()
             binding.productCategory.text = product.category
             binding.productCompany.text = product.company
-            binding.productImg.setImageResource(product.imageResId)
+            binding.productImg.setImageResource(product.image.toInt())
         }
     }
 

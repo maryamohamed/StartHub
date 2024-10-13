@@ -2,6 +2,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id ("com.google.gms.google-services")
+
 
 }
 
@@ -80,4 +82,13 @@ dependencies {
     implementation("androidx.room:room-runtime:2.6.1")
     kapt("androidx.room:room-compiler:2.6.1")
     implementation ("androidx.room:room-ktx:2.5.1")
+    
+    //glide
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+
+    //firebase
+    implementation ("com.google.firebase:firebase-firestore:23.0.3")
+    // Add the dependency for the Firebase SDK for Google Analytics
+//    implementation("com.google.firebase:firebase-analytics")
 }
