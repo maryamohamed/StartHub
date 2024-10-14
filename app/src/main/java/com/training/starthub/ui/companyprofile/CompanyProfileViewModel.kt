@@ -1,4 +1,4 @@
-package com.training.starthub.ui
+package com.training.starthub.ui.companyprofile
 
 import android.content.Context
 import android.net.Uri
@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
-import com.training.starthub.data.CompanyProfileRepo
 import kotlinx.coroutines.launch
 
 class CompanyProfileViewModel : ViewModel() {

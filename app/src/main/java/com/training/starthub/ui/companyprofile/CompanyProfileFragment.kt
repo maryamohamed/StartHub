@@ -1,8 +1,7 @@
-package com.training.starthub.ui
+package com.training.starthub.ui.companyprofile
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater

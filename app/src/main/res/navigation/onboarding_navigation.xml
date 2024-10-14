@@ -166,7 +166,7 @@
     <fragment
         android:id="@+id/CompanyProfileFragment"
         tools:layout="@layout/fragment_company_profile"
-        android:name="com.training.starthub.ui.CompanyProfileFragment"
+        android:name="com.training.starthub.ui.companyprofile.CompanyProfileFragment"
         android:label="CompanyProfileFragment">
 
         <action
