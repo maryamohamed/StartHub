@@ -13,7 +13,7 @@ import com.training.starthub.R
 import com.training.starthub.databinding.FragmentCompanyHomeBinding
 import com.training.starthub.ui.adapter.ProductsAdapter
 import com.training.starthub.ui.model.Product
-import com.training.starthub.viewmodel.HomeProductViewModel
+import com.training.starthub.ui.company.home.HomeProductViewModel
 
 class CompanyHomeFragment : Fragment() {
 
