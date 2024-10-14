@@ -1,15 +1,16 @@
 package com.training.starthub.ui.home
 
+import Product
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
 import com.training.starthub.R
-import com.training.starthub.data.local.Product
 import com.training.starthub.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -29,42 +30,50 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view,savedInstanceState)
+        super.onViewCreated(view, savedInstanceState)
 
         firestore = FirebaseFirestore.getInstance()
 
-        // Initialize the adapter with an empty list
+        // Initialize the RecyclerView and Adapter
         newestAdapter = NewestAdapter(mutableListOf()) { position ->
             navigateToProductDetails(position)
         }
-        binding.recyclerViewVewest.adapter = newestAdapter
+        binding.recyclerViewVewest.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = newestAdapter
+        }
 
-        // Fetch products from Firestore
+        // Fetch the product list from Firestore
         fetchProductsFromFirebase()
     }
 
     private fun fetchProductsFromFirebase() {
         firestore.collection("Companies")
             .document("All-products")
+            .collection("products") 
             .get()
-            .addOnSuccessListener { document ->
-                if (document.exists()) {
-                    // Extract the product fields directly from the document
-                    val product = Product(
-                        name = document.getString("name") ?: "N/A",
-                        price = document.getDouble("price") ?: 0.0,
-                        description = document.getString("description") ?: "No description",
-                        category = document.getString("category") ?: "Unknown",
-                        company = document.getString("company") ?: "Unknown",
-                        image = document.getString("image") ?: ""
-                    )
-                    newestAdapter.setData(listOf(product)) // Update adapter with the product
-                } else {
-                    Log.d("HomeFragment", "No such document found!")
+            .addOnSuccessListener { querySnapshot ->
+                val productList = querySnapshot.documents.mapNotNull { document ->
+                    try {
+                        // Extract product fields safely
+                        val name = document.getString("name") ?: "N/A"
+                        val price = document.getDouble("price") ?: 0.0
+                        val description = document.getString("description") ?: "No description"
+                        val category = document.getString("category") ?: "Unknown"
+                        val company = document.getString("company") ?: "Unknown"
+                        val image = document.getString("image") ?: ""
+
+                        // Create and return the Product object
+                        Product(name, price, description, category, company, image)
+                    } catch (e: Exception) {
+                        Log.e("HomeFragment", "Error parsing product: ${e.message}")
+                        null  // Skip invalid documents
+                    }
                 }
+                newestAdapter.setData(productList)  // Update the RecyclerView adapter
             }
             .addOnFailureListener { exception ->
-                Log.e("HomeFragment", "Error fetching product", exception)
+                Log.e("HomeFragment", "Error fetching products", exception)
             }
     }
 

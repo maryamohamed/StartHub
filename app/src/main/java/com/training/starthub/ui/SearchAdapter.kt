@@ -1,9 +1,9 @@
 package com.training.starthub.ui
 
+import Product
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.training.starthub.data.local.Product
 import com.training.starthub.databinding.ItemProductBinding
 
 class SearchAdapter(
