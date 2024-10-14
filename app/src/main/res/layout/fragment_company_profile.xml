@@ -62,20 +62,19 @@
     <!-- Divider -->
 
     <!-- Sales Button -->
-    <EditText
+    <TextView
         android:id="@+id/input_dec"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/edittext_background"
         android:hint="................................................................................................................................................................................................................................................................................................................................................................................................................................................................................."
         android:padding="10dp"
-        android:textColorHint="@color/secondaryDark"
         android:textColor="@color/secondaryDark"
+        android:textColorHint="@color/secondaryDark"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@id/sales_button"
-        app:layout_constraintTop_toTopOf="@id/user_name"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="274dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/user_name" />
 
     <LinearLayout
         android:id="@+id/sales_button"
