@@ -36,12 +36,24 @@ class CompanyProfileRepo(private val context: Context, private val auth: Firebas
                     val category = snapshot.getString("category") ?: ""
                     val imageUrl = snapshot.getString("imageUrl") ?: ""
                     val coverImageUrl = snapshot.getString("coverImageUrl") ?: ""
-                    mapOf(
-                        "description" to description,
-                        "category" to category,
-                        "imageUrl" to imageUrl,
-                        "coverImageUrl" to coverImageUrl
-                    )
+                    val name = snapshot.getString("name") ?: ""
+//                    if (name.isEmpty()) {
+//                        mapOf(
+//                            "description" to description,
+//                            "category" to category,
+//                            "imageUrl" to imageUrl,
+//                            "coverImageUrl" to coverImageUrl
+//                        )
+//                    }else{
+
+                        mapOf(
+                            "description" to description,
+                            "category" to category,
+                            "imageUrl" to imageUrl,
+                            "coverImageUrl" to coverImageUrl,
+                            "name" to name
+                        )
+//                    }
                 } else {
                     null
                 }

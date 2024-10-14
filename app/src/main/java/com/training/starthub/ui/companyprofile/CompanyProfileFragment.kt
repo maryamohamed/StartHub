@@ -28,47 +28,9 @@ class CompanyProfileFragment : Fragment() {
         binding = FragmentCompanyProfileBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(requireActivity()).get(CompanyProfileViewModel::class.java)
         viewModel.initialize(requireContext(), auth)
-//
-//        viewModel.imageUrl.observe(viewLifecycleOwner, { url ->
-//            url?.let {
-//                if (it != null) {
-//                Glide.with(requireContext()).load(it).into(binding.profileImage)
-//                }else {
-//                    binding.profileImage.setImageResource(R.drawable.user)
-//                }
-//            }
-//        })
-//
-//        viewModel.coverImageUrl.observe(viewLifecycleOwner, { url ->
-//            url?.let {
-//                if (it != null) {
-//                    Glide.with(requireContext()).load(it).into(binding.coverImage)
-//                }else{
-//                    binding.coverImage.setImageResource(R.drawable.profile_background)
-//                }
-//            }
-//        })
-//
-//        viewModel.userData.observe(viewLifecycleOwner, { data ->
-//            data?.let {
-//                binding.userName.setText(it["category"])
-//                binding.inputDec.setText(it["description"])
-//                val imageUrl = it["imageUrl"] ?: R.drawable.user
-////                if (imageUrl != null) {
-//                    Glide.with(requireContext()).load(imageUrl).into(binding.profileImage)
-////                }else {
-////                    binding.profileImage.setImageResource(R.drawable.user)
-////                }
-//                val coverImageUrl = it["coverImageUrl"] ?: R.drawable.profile_background
-////                if (coverImageUrl != null) {
-//                    Glide.with(requireContext()).load(coverImageUrl).into(binding.coverImage)
-////                }else{
-////                    binding.coverImage.setImageResource(R.drawable.profile_background)
-////                }
-//            }
-//        })
 
-//        auth)
+
+        fetchUserData()
 
         // Handle the profile image
         viewModel.imageUrl.observe(viewLifecycleOwner, { url ->
@@ -100,8 +62,9 @@ class CompanyProfileFragment : Fragment() {
 
         viewModel.userData.observe(viewLifecycleOwner, { data ->
             data?.let {
-                binding.userName.setText(it["category"])
+                binding.userName.setText(it["name"])
                 binding.inputDec.setText(it["description"])
+                binding.inputDec.visibility = View.VISIBLE
                 val profileImageUrl = it["imageUrl"] ?: ""
                 val coverImageUrl = it["coverImageUrl"] ?: ""
                 if (profileImageUrl.isEmpty()) {
@@ -118,11 +81,13 @@ class CompanyProfileFragment : Fragment() {
         })
 
         savedInstanceState?.let {
-            binding.userName.setText(it.getString("category", ""))
+            binding.userName.setText(it.getString("name", ""))
             binding.inputDec.setText(it.getString("description", ""))
+            viewModel.setImageUrl(it.getString("imageUrl", ""))
+            viewModel.setCoverImageUrl(it.getString("coverImageUrl", ""))
         }
 
-        fetchUserData()
+
 
         return binding.root
     }
@@ -142,8 +107,10 @@ class CompanyProfileFragment : Fragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putString("category", binding.userName.text.toString())
+        outState.putString("name", binding.userName.text.toString())
         outState.putString("description", binding.inputDec.text.toString())
+        viewModel.imageUrl.value?.let { outState.putString("imageUrl", it) }
+        viewModel.coverImageUrl.value?.let { outState.putString("coverImageUrl", it) }
     }
 
     private fun openGallery(requestCode: Int) {
