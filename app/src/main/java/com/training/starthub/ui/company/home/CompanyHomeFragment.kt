@@ -1,4 +1,4 @@
-package com.training.starthub.ui
+package com.training.starthub.ui.company.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,19 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import com.training.starthub.R
 import com.training.starthub.databinding.FragmentCompanyHomeBinding
 import com.training.starthub.ui.adapter.ProductsAdapter
 import com.training.starthub.ui.model.Product
+import com.training.starthub.viewmodel.HomeProductViewModel
 
 class CompanyHomeFragment : Fragment() {
 
     private lateinit var binding: FragmentCompanyHomeBinding
+
+    // بنستخدم viewModels عشان نجيب الـ ViewModel
+    private val productViewModel: HomeProductViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,37 +32,26 @@ class CompanyHomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loadUserProducts()
+
+        // تحميل المنتجات لما يبدأ الفريجمنت
+        productViewModel.loadUserProducts()
+
+        // متابعة الـ LiveData الخاصة بالمنتجات
+        productViewModel.products.observe(viewLifecycleOwner) { productList ->
+            displayProducts(productList)
+        }
+
+        // متابعة أي أخطاء تظهر في تحميل المنتجات
+        productViewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
+            Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+        }
+
         binding.addProduct.setOnClickListener {
             findNavController().navigate(R.id.action_CompanyHomeFragment_to_CompanyAddProductFragment)
         }
+
         binding.profile.setOnClickListener {
             findNavController().navigate(R.id.action_CompanyHomeFragment_to_CompanyProfileFragment)
-        }
-
-    }
-
-    private fun loadUserProducts() {
-        val firestore = Firebase.firestore
-        val userId = FirebaseAuth.getInstance().currentUser?.uid
-
-        if (userId != null) {
-            val productsCollection = firestore.collection("Companies")
-                .document(userId)
-                .collection("Products")
-
-            productsCollection.get()
-                .addOnSuccessListener { result ->
-                    val productList = mutableListOf<Product>()
-                    for (document in result) {
-                        val product = document.toObject(Product::class.java)
-                        productList.add(product)
-                    }
-                    displayProducts(productList)
-                }
-                .addOnFailureListener {
-                    Toast.makeText(requireContext(), "Failed to fetch products", Toast.LENGTH_SHORT).show()
-                }
         }
     }
 
