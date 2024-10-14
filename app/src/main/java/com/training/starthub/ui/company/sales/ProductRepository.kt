@@ -1,15 +1,15 @@
-package com.training.starthub.ui.company.home
+package com.training.starthub.ui.company.sales
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.training.starthub.ui.model.Product
 import kotlinx.coroutines.tasks.await
 
-class HomeProductRepository {
+class ProductRepository {
 
     private val db = FirebaseFirestore.getInstance()
 
-    suspend fun getUserProducts(): List<Product> {
+    suspend fun fetchProductsForUser(userId: String): List<Product> {
         val userId = FirebaseAuth.getInstance().currentUser?.uid
         val productList = mutableListOf<Product>()
 

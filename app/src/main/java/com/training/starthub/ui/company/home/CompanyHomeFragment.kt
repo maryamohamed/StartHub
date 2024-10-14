@@ -19,7 +19,6 @@ class CompanyHomeFragment : Fragment() {
 
     private lateinit var binding: FragmentCompanyHomeBinding
 
-    // بنستخدم viewModels عشان نجيب الـ ViewModel
     private val productViewModel: HomeProductViewModel by viewModels()
 
     override fun onCreateView(
@@ -33,15 +32,12 @@ class CompanyHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // تحميل المنتجات لما يبدأ الفريجمنت
         productViewModel.loadUserProducts()
 
-        // متابعة الـ LiveData الخاصة بالمنتجات
         productViewModel.products.observe(viewLifecycleOwner) { productList ->
             displayProducts(productList)
         }
 
-        // متابعة أي أخطاء تظهر في تحميل المنتجات
         productViewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
             Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
         }

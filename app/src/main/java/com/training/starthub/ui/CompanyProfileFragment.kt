@@ -27,5 +27,8 @@ class CompanyProfileFragment : Fragment() {
       binding.home.setOnClickListener {
           findNavController().navigate(R.id.action_CompanyProfileFragment_to_CompanyHomeFragment)
       }
+        binding.salesButton.setOnClickListener {
+            findNavController().navigate(R.id.action_CompanyProfileFragment_to_CompanySalesFragment)
+        }
     }
 }

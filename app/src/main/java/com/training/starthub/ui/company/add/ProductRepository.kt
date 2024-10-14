@@ -13,15 +13,14 @@ class ProductRepository {
     private val db = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()
 
-    // دالة لرفع الصورة باستخدام Coroutines
+
     suspend fun uploadImage(fileUri: Uri): String {
         val storageRef = storage.reference
         val imageRef = storageRef.child("images/${UUID.randomUUID()}.jpg")
-        imageRef.putFile(fileUri).await()  // بنستخدم await عشان نخلي الـ coroutine يستنى
-        return imageRef.downloadUrl.await().toString()  // بنرجع رابط الصورة بعد الرفع
+        imageRef.putFile(fileUri).await()
+        return imageRef.downloadUrl.await().toString()
     }
 
-    // دالة لحفظ بيانات المنتج باستخدام Coroutines
     suspend fun saveProductData(name: String, description: String, price: String, category: String, imageUrl: String) {
         val productDetails = hashMapOf(
             "name" to name,
@@ -36,6 +35,6 @@ class ProductRepository {
             .document(userId)
             .collection("Products")
             .add(productDetails)
-            .await()  // بنستخدم await عشان نخلي العملية تنتظر لحد ما يتم إضافة المنتج
+            .await()
     }
 }

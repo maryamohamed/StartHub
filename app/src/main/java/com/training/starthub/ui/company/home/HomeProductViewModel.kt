@@ -1,4 +1,4 @@
-package com.training.starthub.viewmodel
+package com.training.starthub.ui.company.home
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,17 +11,14 @@ class HomeProductViewModel : ViewModel() {
 
     private val repository: HomeProductRepository = HomeProductRepository()
 
-    // LiveData لحفظ البيانات اللي هترجع من Firebase
     val products = MutableLiveData<List<Product>>()
     val errorMessage = MutableLiveData<String>()
 
-    // دالة لتحميل المنتجات باستخدام Coroutines
     fun loadUserProducts() {
-        // تشغيل العملية في background باستخدام viewModelScope
         viewModelScope.launch {
             try {
                 val productList = repository.getUserProducts()
-                products.postValue(productList)  // تحديث الـ LiveData بالنتائج
+                products.postValue(productList)
             } catch (e: Exception) {
                 errorMessage.postValue("Failed to load products: ${e.message}")
             }

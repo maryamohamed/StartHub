@@ -15,20 +15,15 @@ class ProductViewModel : ViewModel() {
     val successMessage = MutableLiveData<String>()
     val errorMessage = MutableLiveData<String>()
 
-    // دالة لتحميل الصورة وحفظ المنتج
+
     fun uploadProduct(fileUri: Uri, name: String, description: String, price: String, category: String) {
         viewModelScope.launch {
             try {
-                // رفع الصورة
+
                 val imageUrl = repository.uploadImage(fileUri)
-
-                // حفظ بيانات المنتج
                 repository.saveProductData(name, description, price, category, imageUrl)
-
-                // تحديث رسالة النجاح
                 successMessage.postValue("Product added successfully")
             } catch (e: Exception) {
-                // تحديث رسالة الخطأ
                 errorMessage.postValue("Failed to add product: ${e.message}")
             }
         }
