@@ -21,7 +21,7 @@ class ProductViewModel : ViewModel() {
             try {
 
                 val imageUrl = repository.uploadImage(fileUri)
-                repository.saveProductData(name, description, price, category, imageUrl)
+                repository.saveProductData(name, description, price, category, imageUrl ,0)
                 successMessage.postValue("Product added successfully")
             } catch (e: Exception) {
                 errorMessage.postValue("Failed to add product: ${e.message}")

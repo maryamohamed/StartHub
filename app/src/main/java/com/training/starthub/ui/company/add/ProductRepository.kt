@@ -21,13 +21,14 @@ class ProductRepository {
         return imageRef.downloadUrl.await().toString()
     }
 
-    suspend fun saveProductData(name: String, description: String, price: Double , category: String, imageUrl: String) {
+    suspend fun saveProductData(name: String, description: String, price: Double , category: String, imageUrl: String , sold: Int) {
         val productDetails = hashMapOf(
             "name" to name,
             "description" to description,
             "price" to price.toInt(),
             "category" to category,
-            "imageUrl" to imageUrl
+            "imageUrl" to imageUrl,
+            "sold" to sold
         )
 
         val userId = auth.currentUser?.uid ?: throw IllegalStateException("User not logged in")
@@ -36,5 +37,6 @@ class ProductRepository {
             .collection("Products")
             .add(productDetails)
             .await()
+        db.collection("Companies").document("All-products").collection("Products").add(productDetails).await()
     }
 }

@@ -32,11 +32,14 @@ class ProductsAdapter(private val productList: MutableList<Product>) : RecyclerV
     override fun getItemCount(): Int {
         return productList.size
     }
+
+    // Clear the list of products
     fun clearProducts() {
         productList.clear()
     }
+
+    // Add new products to the list
     fun addAll(products: List<Product>) {
         productList.addAll(products)
     }
-
 }

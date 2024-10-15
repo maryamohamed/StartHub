@@ -13,18 +13,19 @@ import com.training.starthub.R
 import com.training.starthub.databinding.FragmentCompanyHomeBinding
 import com.training.starthub.ui.adapter.ProductsAdapter
 import com.training.starthub.ui.model.Product
-import com.training.starthub.ui.company.home.HomeProductViewModel
 
 class CompanyHomeFragment : Fragment() {
 
     private lateinit var binding: FragmentCompanyHomeBinding
-
     private val productViewModel: HomeProductViewModel by viewModels()
+
+    // Declare the adapter once
+    private lateinit var adapter: ProductsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentCompanyHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -32,18 +33,25 @@ class CompanyHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Initialize the adapter with an empty list
+        adapter = ProductsAdapter(mutableListOf())
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = adapter
+
+        // Load products and observe changes
         productViewModel.loadUserProducts()
         productViewModel.products.observe(viewLifecycleOwner) { productList ->
-            productList.toMutableList().clear()
-            productList.toMutableList().addAll(productList)
-            displayProducts(productList.toMutableList())
+            // Clear existing data and add new products
+            adapter.clearProducts()
+            adapter.addAll(productList)
+            adapter.notifyDataSetChanged()  // Notify adapter to refresh the UI
         }
-
 
         productViewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
             Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
         }
 
+        // Set up navigation to other fragments
         binding.addProduct.setOnClickListener {
             findNavController().navigate(R.id.action_CompanyHomeFragment_to_CompanyAddProductFragment)
         }
@@ -51,11 +59,5 @@ class CompanyHomeFragment : Fragment() {
         binding.profile.setOnClickListener {
             findNavController().navigate(R.id.action_CompanyHomeFragment_to_CompanyProfileFragment)
         }
-    }
-
-    private fun displayProducts(products: MutableList<Product>) {
-        val adapter = ProductsAdapter(products)
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.adapter = adapter
     }
 }
