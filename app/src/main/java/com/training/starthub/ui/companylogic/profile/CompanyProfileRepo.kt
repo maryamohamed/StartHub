@@ -1,4 +1,4 @@
-package com.training.starthub.ui.customerprofile
+package com.training.starthub.ui.companylogic.profile
 
 import android.content.Context
 import android.net.Uri
@@ -11,7 +11,7 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import java.util.UUID
 
-class CustomerProfileRepo(private val context: Context, private val auth: FirebaseAuth) {
+class CompanyProfileRepo(private val context: Context, private val auth: FirebaseAuth) {
     private val storage = FirebaseStorage.getInstance()
     private val storageRef = storage.reference
     private val db = FirebaseFirestore.getInstance()
@@ -26,23 +26,26 @@ class CustomerProfileRepo(private val context: Context, private val auth: Fireba
         }
     }
 
-    suspend fun fetchUserName(userId: String): Map<String, String>? {
+    suspend fun fetchUserDescriptionAndName(userId: String): Map<String, String>? {
         return withContext(Dispatchers.IO) {
             try {
-                val docRef = db.collection("customers").document(userId).collection("Profile").document(userId)
+                val docRef = db.collection("Companies").document(userId).collection("secPage").document(userId)
                 val snapshot = docRef.get().await()
                 if (snapshot.exists()) {
-                    val email = snapshot.getString("email") ?: ""
-                    val phone = snapshot.getString("phone") ?: ""
+                    val description = snapshot.getString("description") ?: ""
+                    val category = snapshot.getString("category") ?: ""
                     val imageUrl = snapshot.getString("imageUrl") ?: ""
+                    val coverImageUrl = snapshot.getString("coverImageUrl") ?: ""
                     val name = snapshot.getString("name") ?: ""
 
                     mapOf(
-                        "email" to email,
-                        "phone" to phone,
+                        "description" to description,
+                        "category" to category,
                         "imageUrl" to imageUrl,
+                        "coverImageUrl" to coverImageUrl,
                         "name" to name
                     )
+
                 } else {
                     null
                 }
@@ -52,28 +55,45 @@ class CustomerProfileRepo(private val context: Context, private val auth: Fireba
         }
     }
 
-    suspend fun updateUserImage(imageUrl: String?, oldData: Map<String, String>) {
+    suspend fun updateUserImage(imageUrl: String?, coverImageUrl: String?, oldData: Map<String, String>) {
         val data = oldData.toMutableMap()
+        var companyLogo = hashMapOf<String, String>()   // edited
         if (imageUrl != null) {
             data["imageUrl"] = imageUrl
+
+            // edited
+            companyLogo = hashMapOf(
+                "imageUrl" to imageUrl
+            )
         }
+        if (coverImageUrl != null) {
+            data["coverImageUrl"] = coverImageUrl
+        }
+
+
 
         withContext(Dispatchers.IO) {
             try {
-                db.collection("customers").document(auth.currentUser!!.uid).collection("Profile")
+                db.collection("Companies").document(auth.currentUser!!.uid).collection("secPage")
                     .document(auth.currentUser!!.uid)
                     .set(data, SetOptions.merge()).await()
             } catch (e: Exception) {
                 // Handle exception
             }
         }
-    }
 
-    fun updateUserName(newName: String, map: Map<String, String>) {
-        val data = map.toMutableMap()
-        data["name"] = newName
-        db.collection("customers").document(auth.currentUser!!.uid).collection("Profile")
-            .document(auth.currentUser!!.uid)
-            .set(data, SetOptions.merge())
+
+        // edited
+        withContext(Dispatchers.IO){
+            try {
+
+            db.collection("Companies").document(auth.currentUser!!.uid).collection("Products")
+                .document(auth.currentUser!!.uid)
+                .set(companyLogo, SetOptions.merge()).await()
+
+            } catch (e: Exception){
+
+            }
+        }
     }
 }

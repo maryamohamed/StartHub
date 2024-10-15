@@ -1,4 +1,4 @@
-package com.training.starthub.ui.companyprofile
+package com.training.starthub.ui.companylogic.profile
 
 import android.content.Context
 import android.net.Uri

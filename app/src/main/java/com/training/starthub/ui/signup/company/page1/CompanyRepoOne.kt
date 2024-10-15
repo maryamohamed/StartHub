@@ -6,6 +6,7 @@ import androidx.navigation.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import com.training.starthub.R
 import com.training.starthub.utils.ToastUtil
 import kotlinx.coroutines.Dispatchers
@@ -23,6 +24,8 @@ class CompanyRepoOne constructor(val view: View, private val context: Context, p
             "phone" to phone,
             "password" to password)
         val name = hashMapOf(
+            "name" to name)
+        val companyName = hashMapOf(
             "name" to name)
 
         withContext(Dispatchers.IO) {
@@ -67,6 +70,18 @@ class CompanyRepoOne constructor(val view: View, private val context: Context, p
                     ToastUtil.showToast(
                         context = context,
                         "Error adding user data to Firestore: ${e.message}"
+                    )
+                }.await()
+
+        }
+
+        withContext(Dispatchers.IO){
+            db.collection("Companies/${auth.currentUser!!.uid}/Products").document(auth.currentUser!!.uid)
+                .set(companyName , SetOptions.merge())
+                .addOnFailureListener { e ->
+                    ToastUtil.showToast(
+                        context = context,
+                        "Error adding Company name to Firestore: ${e.message}"
                     )
                 }.await()
 

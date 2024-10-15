@@ -1,4 +1,4 @@
-package com.training.starthub.ui.customerprofile
+package com.training.starthub.ui.customerlogic.profile
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent

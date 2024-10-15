@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/secondarywhite"
-    tools:context=".ui.companyprofile.CompanyProfileFragment">
+    tools:context=".ui.companylogic.profile.CompanyProfileFragment">
 
 
     <TextView

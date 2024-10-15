@@ -1,4 +1,4 @@
-package com.training.starthub.ui.companyprofile
+package com.training.starthub.ui.companylogic.profile
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
@@ -102,6 +102,11 @@ class CompanyProfileFragment : Fragment() {
         }
         binding.coverImage.setOnClickListener {
             openGallery(REQUEST_COVER_IMAGE_PICK)
+        }
+
+        // edited
+        binding.salesButton.setOnClickListener {
+            findNavController().navigate(R.id.action_CompanyProfileFragment_to_CompanySalesFragment)
         }
     }
 
