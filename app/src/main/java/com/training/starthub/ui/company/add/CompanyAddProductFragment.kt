@@ -48,7 +48,7 @@ class CompanyAddProductFragment : Fragment() {
         binding.post.setOnClickListener {
             val name = binding.productName.text.toString().trim()
             val description = binding.description.text.toString().trim()
-            val price = binding.price.text.toString().trim()
+            val price = binding.price.id.toDouble()
             val category = binding.category.selectedItem.toString().trim()
 
             if (isValidData(name, description, price, category)) {
@@ -60,7 +60,7 @@ class CompanyAddProductFragment : Fragment() {
             }
         }
 
-        // متابعة الرسائل اللي جاية من الـ ViewModel
+
         productViewModel.successMessage.observe(viewLifecycleOwner, Observer { message ->
             Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_CompanyAddProductFragment_to_CompanyHomeFragment)
@@ -85,13 +85,13 @@ class CompanyAddProductFragment : Fragment() {
         }
     }
 
-    private fun isValidData(name: String, description: String, price: String, category: String): Boolean {
+    private fun isValidData(name: String, description: String, price: Double, category: String): Boolean {
         return when {
             name.isEmpty() -> {
                 ToastUtil.showToast(requireContext(), "Name is required")
                 false
             }
-            price.isEmpty() -> {
+            price == 0.0 -> {
                 ToastUtil.showToast(requireContext(), "Price is required")
                 false
             }

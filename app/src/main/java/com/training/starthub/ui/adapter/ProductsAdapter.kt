@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import com.training.starthub.databinding.CompanyHomeItemBinding
 import com.training.starthub.ui.model.Product
 
-class ProductsAdapter(private val productList: List<Product>) : RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>() {
+class ProductsAdapter(private val productList: MutableList<Product>) : RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>() {
 
     class ProductViewHolder(val binding: CompanyHomeItemBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -32,4 +32,11 @@ class ProductsAdapter(private val productList: List<Product>) : RecyclerView.Ada
     override fun getItemCount(): Int {
         return productList.size
     }
+    fun clearProducts() {
+        productList.clear()
+    }
+    fun addAll(products: List<Product>) {
+        productList.addAll(products)
+    }
+
 }

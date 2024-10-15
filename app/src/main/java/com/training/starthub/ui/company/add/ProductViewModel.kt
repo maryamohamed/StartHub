@@ -16,7 +16,7 @@ class ProductViewModel : ViewModel() {
     val errorMessage = MutableLiveData<String>()
 
 
-    fun uploadProduct(fileUri: Uri, name: String, description: String, price: String, category: String) {
+    fun uploadProduct(fileUri: Uri, name: String, description: String, price: Double, category: String) {
         viewModelScope.launch {
             try {
 

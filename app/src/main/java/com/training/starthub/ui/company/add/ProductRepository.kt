@@ -21,7 +21,7 @@ class ProductRepository {
         return imageRef.downloadUrl.await().toString()
     }
 
-    suspend fun saveProductData(name: String, description: String, price: String, category: String, imageUrl: String) {
+    suspend fun saveProductData(name: String, description: String, price: Double , category: String, imageUrl: String) {
         val productDetails = hashMapOf(
             "name" to name,
             "description" to description,

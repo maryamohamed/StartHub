@@ -33,10 +33,12 @@ class CompanyHomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         productViewModel.loadUserProducts()
-
         productViewModel.products.observe(viewLifecycleOwner) { productList ->
-            displayProducts(productList)
+            productList.toMutableList().clear()
+            productList.toMutableList().addAll(productList)
+            displayProducts(productList.toMutableList())
         }
+
 
         productViewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
             Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
@@ -51,7 +53,7 @@ class CompanyHomeFragment : Fragment() {
         }
     }
 
-    private fun displayProducts(products: List<Product>) {
+    private fun displayProducts(products: MutableList<Product>) {
         val adapter = ProductsAdapter(products)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
