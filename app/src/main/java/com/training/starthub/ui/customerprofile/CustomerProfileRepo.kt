@@ -11,7 +11,7 @@ import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import java.util.UUID
 
-class CustomerProfileRepo (private val context: Context, private val auth: FirebaseAuth) {
+class CustomerProfileRepo(private val context: Context, private val auth: FirebaseAuth) {
     private val storage = FirebaseStorage.getInstance()
     private val storageRef = storage.reference
     private val db = FirebaseFirestore.getInstance()
@@ -29,18 +29,19 @@ class CustomerProfileRepo (private val context: Context, private val auth: Fireb
     suspend fun fetchUserName(userId: String): Map<String, String>? {
         return withContext(Dispatchers.IO) {
             try {
-                val docRef = db.collection("Companies").document(userId).collection("secPage").document(userId)
+                val docRef = db.collection("customers").document(userId).collection("Profile").document(userId)
                 val snapshot = docRef.get().await()
                 if (snapshot.exists()) {
-                    val description = snapshot.getString("description") ?: ""
-                    val category = snapshot.getString("category") ?: ""
+                    val email = snapshot.getString("email") ?: ""
+                    val phone = snapshot.getString("phone") ?: ""
                     val imageUrl = snapshot.getString("imageUrl") ?: ""
-                    val coverImageUrl = snapshot.getString("coverImageUrl") ?: ""
+                    val name = snapshot.getString("name") ?: ""
+
                     mapOf(
-                        "description" to description,
-                        "category" to category,
+                        "email" to email,
+                        "phone" to phone,
                         "imageUrl" to imageUrl,
-                        "coverImageUrl" to coverImageUrl
+                        "name" to name
                     )
                 } else {
                     null
@@ -51,22 +52,28 @@ class CustomerProfileRepo (private val context: Context, private val auth: Fireb
         }
     }
 
-    suspend fun updateUserImage(imageUrl: String? , oldData: Map<String, String>) {
+    suspend fun updateUserImage(imageUrl: String?, oldData: Map<String, String>) {
         val data = oldData.toMutableMap()
         if (imageUrl != null) {
             data["imageUrl"] = imageUrl
         }
-//        if (coverImageUrl != null) {
-//            data["coverImageUrl"] = coverImageUrl
-//        }
+
         withContext(Dispatchers.IO) {
             try {
-                db.collection("customers").document(auth.currentUser!!.uid).collection("ProfileInfo")
+                db.collection("customers").document(auth.currentUser!!.uid).collection("Profile")
                     .document(auth.currentUser!!.uid)
                     .set(data, SetOptions.merge()).await()
             } catch (e: Exception) {
                 // Handle exception
             }
         }
+    }
+
+    fun updateUserName(newName: String, map: Map<String, String>) {
+        val data = map.toMutableMap()
+        data["name"] = newName
+        db.collection("customers").document(auth.currentUser!!.uid).collection("Profile")
+            .document(auth.currentUser!!.uid)
+            .set(data, SetOptions.merge())
     }
 }

@@ -47,6 +47,9 @@
         <action
             android:id="@+id/action_loginCustomerFragment_to_SignupCustomerFragment"
             app:destination="@+id/SignupCustomerFragment" />
+        <action
+            android:id="@+id/action_loginCustomerFragment_to_CustomerProfileFragment"
+            app:destination="@id/CustomerProfileFragment" />
 
     </fragment>
 
@@ -84,6 +87,9 @@
         <action
             android:id="@+id/action_SignupCustomerFragment_to_loginCustomerFragment"
             app:destination="@id/loginCustomerFragment" />
+        <action
+            android:id="@+id/action_SignupCustomerFragment_to_CustomerProfileFragment"
+            app:destination="@id/CustomerProfileFragment" />
     </fragment>
 
     <fragment
@@ -173,6 +179,19 @@
             android:id="@+id/action_CompanyProfileFragment_to_CompanyHomeFragment"
             app:destination="@id/CompanyHomeFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/CustomerProfileFragment"
+        tools:layout="@layout/fragment_customer_profile"
+        android:name="com.training.starthub.ui.customerprofile.CustomerProfileFragment"
+        android:label="CustomerProfileFragment">
+
+
+        <action
+            android:id="@+id/action_CustomerProfileFragment_to_CompanyHomeFragment"
+            app:destination="@id/CompanyHomeFragment" />
+    </fragment>
+
 
 
 </navigation>

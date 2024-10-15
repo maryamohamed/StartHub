@@ -33,6 +33,7 @@ class LoginCustomerFragment : Fragment() {
             findNavController().navigate(R.id.action_loginCustomerFragment_to_SignupCustomerFragment)
         }
 
+
         binding.loginButton.setOnClickListener {
             val email = binding.loginEmail.text.toString().trim()
             val password = binding.loginPassword.text.toString().trim()
@@ -40,6 +41,7 @@ class LoginCustomerFragment : Fragment() {
             if (validateInputs(email, password)) {
                 viewModel.login(email, password)
             }
+            findNavController().navigate(R.id.action_loginCustomerFragment_to_CustomerProfileFragment)
         }
 
         viewModel.loginResult.observe(viewLifecycleOwner, Observer { result ->

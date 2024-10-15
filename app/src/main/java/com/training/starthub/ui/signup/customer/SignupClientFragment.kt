@@ -38,7 +38,7 @@ class SignupClientFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        customerRepo = CustomerRepo(requireContext(),db,auth)
+        customerRepo = CustomerRepo(view,requireContext(),db,auth)
         viewModel = CustomerViewModel(requireContext(),customerRepo)
 
         binding.loginTextBtn.setOnClickListener{
