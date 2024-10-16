@@ -42,7 +42,7 @@ class LoginCompanyFragment : Fragment() {
             if (validateInputs(email, password)) {
                 viewModel.login(email, password)
             }
-            findNavController().navigate(R.id.action_loginCompanyFragment_to_CompanyHomeFragment)
+
         }
 
 
@@ -52,6 +52,7 @@ class LoginCompanyFragment : Fragment() {
                 onSuccess = {
                     showToast("Sign-in successful!")
                     // Navigate to the next fragment
+                    findNavController().navigate(R.id.action_loginCompanyFragment_to_CompanyHomeFragment)
                 },
                 onFailure = { e ->
                     showToast("Failed to sign in: ${e.message}")
