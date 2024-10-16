@@ -1,4 +1,4 @@
-package com.training.starthub.ui.company.home
+package com.training.starthub.ui.companylogic.home
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore

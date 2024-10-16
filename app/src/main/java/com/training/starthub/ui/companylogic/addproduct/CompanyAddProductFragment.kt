@@ -1,4 +1,4 @@
-package com.training.starthub.ui.company.add
+package com.training.starthub.ui.companylogic.addproduct
 
 import android.app.Activity
 import android.content.Intent

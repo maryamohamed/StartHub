@@ -1,4 +1,4 @@
-package com.training.starthub.ui.company.home
+package com.training.starthub.ui.companylogic.home
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

@@ -1,4 +1,4 @@
-package com.training.starthub.ui.company.home
+package com.training.starthub.ui.companylogic.home
 
 import android.os.Bundle
 import android.view.LayoutInflater

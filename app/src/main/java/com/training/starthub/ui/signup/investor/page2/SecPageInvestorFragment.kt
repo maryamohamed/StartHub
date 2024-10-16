@@ -34,6 +34,9 @@ class SecPageInvestorFragment : Fragment() {
         binding.loginTextBtn.setOnClickListener {
             findNavController().navigate(R.id.action_SecPageInvestorFragment_to_loginInvestorFragment)
         }
+        binding.signupButton.setOnClickListener {
+            findNavController().navigate(R.id.action_SecPageInvestorFragment_to_InvestorProfileFragment)
+        }
 
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, list)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)

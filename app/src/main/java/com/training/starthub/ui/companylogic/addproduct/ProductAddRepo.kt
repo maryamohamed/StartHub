@@ -1,8 +1,9 @@
-package com.training.starthub.ui.company.add
+package com.training.starthub.ui.companylogic.addproduct
 
 import android.net.Uri
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.tasks.await
 import java.util.*
@@ -22,19 +23,41 @@ class ProductAddRepo {
     }
 
     suspend fun saveProductData(name: String, description: String, price: String, category: String, imageUrl: String) {
-        val productDetails = hashMapOf(
-            "name" to name,
-            "description" to description,
-            "price" to price.toInt(),
-            "category" to category,
-            "imageUrl" to imageUrl
-        )
+        var productDetails = hashMapOf<String, Any>()
+
+        val docRef = db.collection("Companies")
+            .document(auth.currentUser!!.uid).collection("secPage")
+            .document(auth.currentUser!!.uid)
+
+        val snapshot = docRef.get().await()
+        if (snapshot.exists()) {
+            val companyLogo = snapshot.getString("imageUrl") ?: ""
+
+            productDetails = hashMapOf(
+                "name" to name,
+                "description" to description,
+                "price" to price.toInt(),
+                "category" to category,
+                "imageUrl" to imageUrl,
+                "CompanyLogo" to companyLogo
+            )
+        }
+        else{
+            productDetails = hashMapOf(
+                "name" to name,
+                "description" to description,
+                "price" to price.toInt(),
+                "category" to category,
+                "imageUrl" to imageUrl
+
+            )
+        }
 
         val userId = auth.currentUser?.uid ?: throw IllegalStateException("User not logged in")
         db.collection("Companies")
             .document(userId)
-            .collection("Products")
-            .add(productDetails)
+            .collection("Products").document(userId)
+            .set(productDetails, SetOptions.merge())
             .await()
     }
 }

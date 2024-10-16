@@ -6,6 +6,7 @@ import androidx.navigation.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import com.training.starthub.R
 import com.training.starthub.utils.ToastUtil
 import kotlinx.coroutines.Dispatchers
@@ -42,6 +43,11 @@ class InvestorRepoOne  {
         )
         withContext(Dispatchers.IO) {
             db.collection("Investors").document(userId).set(user).await()
+        }
+
+        withContext(Dispatchers.IO){
+            db.collection("Investors/${auth.currentUser!!.uid}/Profile").document(auth.currentUser!!.uid)
+                .set(user, SetOptions.merge()).await()
         }
     }
 

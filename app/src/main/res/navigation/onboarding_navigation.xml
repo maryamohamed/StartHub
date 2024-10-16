@@ -64,6 +64,7 @@
             android:id="@+id/action_loginCompanyFragment_to_SignupCompanyFragment"
             app:destination="@+id/SignupCompanyFragment" />
 
+
         <action
             android:id="@+id/action_loginCompanyFragment_to_CompanyHomeFragment"
             app:destination="@id/CompanyHomeFragment" />
@@ -79,6 +80,9 @@
         <action
             android:id="@+id/action_loginInvestorFragment_to_SignupInvestorFragment"
             app:destination="@+id/SignupInvestorFragment" />
+        <action
+            android:id="@+id/action_loginInvestorFragment_to_InvestorProfileFragment"
+            app:destination="@id/InvestorProfileFragment" />
     </fragment>
 
     <fragment
@@ -128,6 +132,9 @@
         <action
             android:id="@+id/action_SecPageInvestorFragment_to_loginInvestorFragment"
             app:destination="@id/loginInvestorFragment" />
+        <action
+            android:id="@+id/action_SecPageInvestorFragment_to_InvestorProfileFragment"
+            app:destination="@id/InvestorProfileFragment" />
     </fragment>
 
     <fragment
@@ -148,7 +155,7 @@
     <fragment
         android:id="@+id/CompanyAddProductFragment"
         tools:layout="@layout/fragment_company_add_product"
-        android:name="com.training.starthub.ui.company.add.CompanyAddProductFragment"
+        android:name="com.training.starthub.ui.companylogic.addproduct.CompanyAddProductFragment"
         android:label="SecPageCompanyFragment">
 
         <action
@@ -159,7 +166,7 @@
     <fragment
         android:id="@+id/CompanyHomeFragment"
         tools:layout="@layout/fragment_company_home"
-        android:name="com.training.starthub.ui.company.home.CompanyHomeFragment"
+        android:name="com.training.starthub.ui.companylogic.home.CompanyHomeFragment"
         android:label="SecPageCompanyFragment">
 
         <action
@@ -168,6 +175,7 @@
         <action
             android:id="@+id/action_CompanyHomeFragment_to_CompanyProfileFragment"
             app:destination="@id/CompanyProfileFragment" />
+
     </fragment>
 
 
@@ -197,6 +205,19 @@
             app:destination="@id/CompanyHomeFragment" />
     </fragment>
 
+
+    <fragment
+        android:id="@+id/InvestorProfileFragment"
+        tools:layout="@layout/fragment_investor_profile"
+        android:name="com.training.starthub.ui.profile.InvestorProfileFragment"
+        android:label="InvestorProfileFragment">
+
+
+        <action
+            android:id="@+id/action_InvestorProfileFragment_to_CompanyHomeFragment"
+            app:destination="@id/CompanyHomeFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/CompanySalesFragment"
         tools:layout="@layout/fragment_company_sales"
@@ -206,6 +227,8 @@
             android:id="@+id/action_CompanySalesFragment_to_CompanyProfileFragment"
             app:destination="@id/CompanyProfileFragment" />
     </fragment>
+
+
 
 
 

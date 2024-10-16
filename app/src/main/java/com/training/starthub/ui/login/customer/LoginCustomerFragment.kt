@@ -41,7 +41,6 @@ class LoginCustomerFragment : Fragment() {
             if (validateInputs(email, password)) {
                 viewModel.login(email, password)
             }
-            findNavController().navigate(R.id.action_loginCustomerFragment_to_CustomerProfileFragment)
         }
 
         viewModel.loginResult.observe(viewLifecycleOwner, Observer { result ->
