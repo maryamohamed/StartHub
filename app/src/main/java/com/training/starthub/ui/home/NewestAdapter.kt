@@ -1,11 +1,11 @@
 package com.training.starthub.ui.home
 
-import Product
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.training.starthub.databinding.ItemNewestBinding
+import Product
 
 class NewestAdapter(
     private var productList: MutableList<Product>,
@@ -53,4 +53,3 @@ class NewestAdapter(
         notifyDataSetChanged()
     }
 }
-

@@ -78,6 +78,10 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.8.2")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.2")
 
+    // Coroutines for asynchronous programming
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
     //room database
     implementation("androidx.room:room-runtime:2.6.1")
     kapt("androidx.room:room-compiler:2.6.1")
@@ -89,6 +93,8 @@ dependencies {
 
     //firebase
     implementation ("com.google.firebase:firebase-firestore:23.0.3")
-    // Add the dependency for the Firebase SDK for Google Analytics
+    // Firebase Firestore with Kotlin Coroutines support
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
+
 //    implementation("com.google.firebase:firebase-analytics")
 }
