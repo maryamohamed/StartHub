@@ -52,7 +52,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun navigateToProductDetails(position: Int) {
-        // Add navigation logic here
     }
 
     override fun onDestroyView() {

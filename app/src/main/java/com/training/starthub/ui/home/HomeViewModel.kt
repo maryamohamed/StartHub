@@ -1,4 +1,3 @@
-// HomeViewModel.kt
 package com.training.starthub.ui.home
 
 import androidx.lifecycle.MutableLiveData
