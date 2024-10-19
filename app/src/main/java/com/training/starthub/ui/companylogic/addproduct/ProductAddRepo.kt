@@ -29,9 +29,15 @@ class ProductAddRepo {
             .document(auth.currentUser!!.uid).collection("secPage")
             .document(auth.currentUser!!.uid)
 
-        val snapshot = docRef.get().await()
-        if (snapshot.exists()) {
-            val companyLogo = snapshot.getString("imageUrl") ?: ""
+        // Get the data from the document
+        val data = docRef.get().await()
+
+
+        val companyName = data.getString("name") ?: ""
+
+//        val snapshot = docRef.get().await()
+        if (data.exists()) {
+            val companyLogo = data.getString("imageUrl") ?: ""
 
             productDetails = hashMapOf(
                 "name" to name,
@@ -39,16 +45,19 @@ class ProductAddRepo {
                 "price" to price.toInt(),
                 "category" to category,
                 "imageUrl" to imageUrl,
-                "CompanyLogo" to companyLogo
+                "CompanyLogo" to companyLogo,
+                "CompanyName" to companyName
             )
         }
         else{
+
             productDetails = hashMapOf(
                 "name" to name,
                 "description" to description,
                 "price" to price.toInt(),
                 "category" to category,
-                "imageUrl" to imageUrl
+                "imageUrl" to imageUrl,
+                "CompanyName" to companyName
 
             )
         }
@@ -56,8 +65,10 @@ class ProductAddRepo {
         val userId = auth.currentUser?.uid ?: throw IllegalStateException("User not logged in")
         db.collection("Companies")
             .document(userId)
-            .collection("Products").document(userId)
+            .collection("Products").document()
             .set(productDetails, SetOptions.merge())
             .await()
+
+        db.collection("AllProducts").document().set(productDetails, SetOptions.merge()).await()
     }
 }

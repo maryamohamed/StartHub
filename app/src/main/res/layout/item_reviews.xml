@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/characterCard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/space8"
+    android:layout_marginVertical="@dimen/space12"
+    android:elevation="24dp"
+    app:cardCornerRadius="16dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/secondarywhite">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/firstGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.04" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/secGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.38" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/person_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space8"
+            android:scaleType="centerCrop"
+            android:src="@drawable/person"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/firstGuideline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/RoundedCorners" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/review_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space8"
+            android:layout_marginStart="@dimen/space8"
+            android:layout_marginEnd="@dimen/space12"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_medium"
+            android:maxLines="3"
+            android:text="@string/lorem_short"
+            android:textAlignment="textStart"
+            android:textColor="@color/primaryDark"
+            android:textSize="@dimen/text10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/thirdGuideline"
+            app:layout_constraintStart_toStartOf="@+id/secGuideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/Person_Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space10"
+            android:layout_marginTop="@dimen/space16"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="Maryam"
+            android:textColor="@color/secondaryDark"
+            android:textSize="@dimen/text10"
+            app:layout_constraintEnd_toStartOf="@+id/secGuideline"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/person_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/thirdGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.96" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageView5"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/space8"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space4"
+            app:layout_constraintEnd_toStartOf="@+id/review_desc"
+            app:layout_constraintStart_toEndOf="@+id/person_image"
+            app:layout_constraintTop_toBottomOf="@+id/Person_Name"
+            app:srcCompat="@drawable/five_stars" />
+
+        <!--        <RatingBar-->
+        <!--            android:id="@+id/ratingBar"-->
+        <!--            style="@style/CustomRatingBar"-->
+        <!--            android:layout_width="0dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_margin="@dimen/space8"-->
+        <!--            android:isIndicator="false"-->
+        <!--            android:numStars="10"-->
+        <!--            android:rating="3"-->
+        <!--            android:stepSize="1"-->
+        <!--            app:layout_constraintEnd_toStartOf="@+id/secGuideline"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/person_image"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/Person_Name" />-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

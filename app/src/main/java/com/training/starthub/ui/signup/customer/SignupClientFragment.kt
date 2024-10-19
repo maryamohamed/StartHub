@@ -1,5 +1,6 @@
 package com.training.starthub.ui.signup.customer
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.training.starthub.R
 import com.training.starthub.databinding.FragmentSignupClientBinding
+import com.training.starthub.ui.CustomerHomeActivity
 
 class SignupClientFragment : Fragment() {
 
@@ -46,8 +48,6 @@ class SignupClientFragment : Fragment() {
         }
         binding.signUpButton.setOnClickListener {
 
-
-
             val name = binding.signupName.text.toString().trim()
             val email = binding.signupGmail.text.toString().trim()
             val password = binding.signupPass.text.toString().trim()
@@ -55,6 +55,10 @@ class SignupClientFragment : Fragment() {
             val phone = binding.signupPhone.text.toString().trim()
 
             viewModel.registerUser(name, email, password, confirmPassword, phone)
+
+            val intent = Intent(requireContext(), CustomerHomeActivity::class.java)
+            startActivity(intent)
+            requireActivity().finish()
         }
 
 

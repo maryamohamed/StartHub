@@ -35,7 +35,8 @@ class SecPageInvestorFragment : Fragment() {
             findNavController().navigate(R.id.action_SecPageInvestorFragment_to_loginInvestorFragment)
         }
         binding.signupButton.setOnClickListener {
-            findNavController().navigate(R.id.action_SecPageInvestorFragment_to_InvestorProfileFragment)
+//            findNavController().navigate(R.id.action_SecPageInvestorFragment_to_InvestorProfileFragment)
+            findNavController().navigate(R.id.action_SecPageInvestorFragment_to_HomeFragment)
         }
 
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, list)

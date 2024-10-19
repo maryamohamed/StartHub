@@ -102,7 +102,7 @@ class InvestorProfileFragment : Fragment() {
         binding.bottomNavigationBar.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_home -> {
-                    findNavController().navigate(R.id.action_InvestorProfileFragment_to_CompanyHomeFragment)
+                    findNavController().navigate(R.id.action_InvestorProfileFragment_to_HomeFragment)
                     true
                 }
 

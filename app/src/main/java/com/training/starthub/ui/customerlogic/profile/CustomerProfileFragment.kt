@@ -29,7 +29,7 @@ class CustomerProfileFragment : Fragment() {
         binding = FragmentCustomerProfileBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(requireActivity()).get(CustomerProfileViewModel::class.java)
         viewModel.initialize(requireContext(), auth)
-        binding.bottomNavigationBar.selectedItemId = R.id.navigation_profile
+//        binding.bottomNavigationBar.selectedItemId = R.id.navigation_profile
 
         fetchUserData()
 
@@ -72,16 +72,16 @@ class CustomerProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.bottomNavigationBar.setOnNavigationItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.navigation_home -> {
-                    findNavController().navigate(R.id.action_CustomerProfileFragment_to_CompanyHomeFragment)
-                    true
-                }
-
-                else -> false
-            }
-        }
+//        binding.bottomNavigationBar.setOnNavigationItemSelectedListener { item ->
+//            when (item.itemId) {
+//                R.id.navigation_home -> {
+//                    findNavController().navigate(R.id.action_CustomerProfileFragment_to_CompanyHomeFragment)
+//                    true
+//                }
+//
+//                else -> false
+//            }
+//        }
         binding.profileImage.setOnClickListener {
             openGallery()
         }
@@ -98,7 +98,6 @@ class CustomerProfileFragment : Fragment() {
             binding.save.visibility = View.INVISIBLE
             viewModel.updateUserName(newName)
         }
-
 
     }
 

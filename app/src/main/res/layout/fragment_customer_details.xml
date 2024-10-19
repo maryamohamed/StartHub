@@ -1,0 +1,204 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primarywhite"
+    tools:context="com.training.starthub.ui.customerlogic.details.CustomerDetailsFragment">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/productImage"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/back_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space32"
+        android:scaleType="centerCrop"
+        android:src="@drawable/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/firstGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:cardBackgroundColor="@color/black60"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/firstGuideline">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/card_shape">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/details_company_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space24"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Apple"
+                android:textColor="@color/primaryDark"
+                android:textSize="@dimen/text10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/details_product_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space24"
+                android:layout_marginTop="@dimen/space12"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:text="Macbook"
+                android:textColor="@color/primaryDark"
+                android:textSize="@dimen/text20"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/details_company_name" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/details_product_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space24"
+                android:layout_marginTop="@dimen/space8"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Tech"
+                android:textColor="@color/primaryDark"
+                android:textSize="@dimen/text10"
+                app:layout_constraintBottom_toTopOf="@+id/secondGuideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/details_product_name" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/details_favorites"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space24"
+                android:src="@drawable/favorites"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/details_product_price"
+                android:layout_width="45dp"
+                android:layout_height="25dp"
+                android:layout_margin="@dimen/space24"
+                android:background="@drawable/custom_shape"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:gravity="center"
+                android:padding="@dimen/space4"
+                android:text="100$"
+                android:textColor="@color/secondaryDark"
+                android:textSize="@dimen/text12"
+                app:layout_constraintBottom_toTopOf="@+id/secondGuideline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/details_favorites" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/secondGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.2" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/primarywhite"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/secondGuideline"
+                app:tabIndicatorColor="@color/primaryDark"
+                app:tabSelectedTextColor="@color/secondaryDark" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/primarywhite"
+                app:layout_constraintBottom_toTopOf="@+id/thirdGuideline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tabLayout" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/thirdGuideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.85" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/add_to_cart"
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                android:layout_margin="@dimen/space24"
+                android:backgroundTint="@color/secondaryDark"
+                android:text="Add to Cart"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/linearLayout"
+                app:layout_constraintTop_toTopOf="@+id/thirdGuideline" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space24"
+                android:background="@drawable/custom_shape"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/thirdGuideline">
+
+                <Button
+                    android:id="@+id/minus"
+                    android:layout_width="25dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="@dimen/space4"
+                    android:backgroundTint="@color/secondaryDark"
+                    android:padding="@dimen/space4"
+                    android:text="@string/minus" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/product_quantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/space4"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:padding="@dimen/space4"
+                    android:text="2"
+                    android:textColor="@color/secondaryDark"
+                    android:textSize="@dimen/text20" />
+
+                <Button
+                    android:id="@+id/plus"
+                    android:layout_width="25dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="@dimen/space4"
+                    android:backgroundTint="@color/secondaryDark"
+                    android:padding="@dimen/space4"
+                    android:text="@string/plus" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

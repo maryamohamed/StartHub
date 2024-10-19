@@ -44,7 +44,8 @@ class LoginInvestorFragment : Fragment() {
             result.fold(
                 onSuccess = {
                     showToast("Sign-in successful!")
-                    findNavController().navigate(R.id.action_loginInvestorFragment_to_InvestorProfileFragment)
+//                    findNavController().navigate(R.id.action_loginInvestorFragment_to_InvestorProfileFragment)
+                    findNavController().navigate(R.id.action_loginInvestorFragment_to_HomeFragment)
                 },
                 onFailure = { e ->
                     showToast("Failed to sign in: ${e.message}")

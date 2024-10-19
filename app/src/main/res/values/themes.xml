@@ -11,6 +11,16 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
     </style>
+    <style name="RoundedCorners">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+    <style name="CustomRatingBar" parent="Widget.AppCompat.RatingBar">
+        <item name="android:progressDrawable">@drawable/custom_star</item>
+        <item name="android:minHeight">10dp</item>  <!-- Adjust star size -->
+        <item name="android:maxHeight">10dp</item>  <!-- Adjust star size -->
+        <!--        <item name="android:padding">4dp</item>     &lt;!&ndash; Adjust spacing &ndash;&gt;-->
+    </style>
 
     <style name="Theme.StartHub" parent="Base.Theme.StartHub" />
 </resources>

@@ -1,9 +1,12 @@
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     //Firebase
     id("com.google.gms.google-services")
+//    kotlin("android")
+//    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -43,6 +46,23 @@ android {
     }
 }
 
+//buildscript {
+//    repositories {
+//        google()
+//        mavenCentral()
+//    }
+//    dependencies {
+//        classpath("com.android.tools.build:gradle:8.1.0") // your existing Gradle plugin
+//        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.7.0") // Safe Args plugin
+//        // Other classpath dependencies
+//    }
+//}
+//allprojects {
+//    repositories {
+//        google()
+//        mavenCentral()
+//    }
+//}
 dependencies {
 
     implementation("androidx.core:core-ktx:1.13.1")
@@ -51,6 +71,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.firebase:firebase-auth-ktx:23.0.0")
     implementation("androidx.databinding:databinding-runtime:8.7.0")
+    implementation("androidx.activity:activity:1.9.3")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
@@ -121,5 +142,9 @@ dependencies {
 
     // FirebaseUI Storage only
     implementation ("com.firebaseui:firebase-ui-storage:7.2.0")
+
+
+
+
 
 }

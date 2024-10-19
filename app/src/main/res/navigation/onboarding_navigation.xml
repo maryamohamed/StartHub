@@ -81,8 +81,8 @@
             android:id="@+id/action_loginInvestorFragment_to_SignupInvestorFragment"
             app:destination="@+id/SignupInvestorFragment" />
         <action
-            android:id="@+id/action_loginInvestorFragment_to_InvestorProfileFragment"
-            app:destination="@id/InvestorProfileFragment" />
+            android:id="@+id/action_loginInvestorFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
     </fragment>
 
     <fragment
@@ -133,8 +133,8 @@
             android:id="@+id/action_SecPageInvestorFragment_to_loginInvestorFragment"
             app:destination="@id/loginInvestorFragment" />
         <action
-            android:id="@+id/action_SecPageInvestorFragment_to_InvestorProfileFragment"
-            app:destination="@id/InvestorProfileFragment" />
+            android:id="@+id/action_SecPageInvestorFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
     </fragment>
 
     <fragment
@@ -206,17 +206,7 @@
     </fragment>
 
 
-    <fragment
-        android:id="@+id/InvestorProfileFragment"
-        tools:layout="@layout/fragment_investor_profile"
-        android:name="com.training.starthub.ui.profile.InvestorProfileFragment"
-        android:label="InvestorProfileFragment">
 
-
-        <action
-            android:id="@+id/action_InvestorProfileFragment_to_CompanyHomeFragment"
-            app:destination="@id/CompanyHomeFragment" />
-    </fragment>
 
     <fragment
         android:id="@+id/CompanySalesFragment"
@@ -226,6 +216,44 @@
         <action
             android:id="@+id/action_CompanySalesFragment_to_CompanyProfileFragment"
             app:destination="@id/CompanyProfileFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SearchFragment"
+        tools:layout="@layout/fragment_search"
+        android:name="com.training.starthub.ui.investorlogic.SearchFragment"
+        android:label="SearchFragment">
+        <action
+            android:id="@+id/action_SearchFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+        <action
+            android:id="@+id/action_SearchFragment_to_InvestorProfileFragment"
+            app:destination="@id/InvestorProfileFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/HomeFragment"
+        tools:layout="@layout/fragment_home"
+        android:name="com.training.starthub.ui.investorlogic.HomeFragment"
+        android:label="HomeFragment">
+        <action
+            android:id="@+id/action_HomeFragment_to_SearchFragment"
+            app:destination="@id/SearchFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_InvestorProfileFragment"
+            app:destination="@id/InvestorProfileFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/InvestorProfileFragment"
+        tools:layout="@layout/fragment_investor_profile"
+        android:name="com.training.starthub.ui.profile.InvestorProfileFragment"
+        android:label="InvestorProfileFragment">
+
+
+        <action
+            android:id="@+id/action_InvestorProfileFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
     </fragment>
 
 

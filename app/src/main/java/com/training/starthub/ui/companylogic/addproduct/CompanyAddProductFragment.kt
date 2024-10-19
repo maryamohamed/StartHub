@@ -50,6 +50,8 @@ class CompanyAddProductFragment : Fragment() {
             val price = binding.price.text.toString().trim()
             val category = binding.category.selectedItem.toString().trim()
 
+
+
             if (isValidData(name, description, price, category)) {
                 if (::selectedImageUri.isInitialized) {
                     productViewModel.uploadProduct(selectedImageUri, name, description, price, category)
