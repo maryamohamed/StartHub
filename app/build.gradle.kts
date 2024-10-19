@@ -5,8 +5,6 @@ plugins {
     id("kotlin-kapt")
     //Firebase
     id("com.google.gms.google-services")
-//    kotlin("android")
-//    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -46,23 +44,23 @@ android {
     }
 }
 
-//buildscript {
-//    repositories {
-//        google()
-//        mavenCentral()
-//    }
-//    dependencies {
-//        classpath("com.android.tools.build:gradle:8.1.0") // your existing Gradle plugin
-//        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.7.0") // Safe Args plugin
-//        // Other classpath dependencies
-//    }
-//}
-//allprojects {
-//    repositories {
-//        google()
-//        mavenCentral()
-//    }
-//}
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:8.1.0") // your existing Gradle plugin
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.7.0") // Safe Args plugin
+        // Other classpath dependencies
+    }
+}
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
 dependencies {
 
     implementation("androidx.core:core-ktx:1.13.1")
