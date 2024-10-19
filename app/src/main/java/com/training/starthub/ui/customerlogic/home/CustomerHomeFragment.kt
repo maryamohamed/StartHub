@@ -62,7 +62,8 @@ class CustomerHomeFragment : Fragment() {
 
 
 //        val action = CustomerHomeFragmentDirections.actionNavigationHomeToProductDetailsFragment(position)
-//            findNavController().navigate(R.id.action_navigation_home_to_productDetailsFragment)
+//        findNavController().navigate(action)
+            findNavController().navigate(R.id.action_navigation_home_to_productDetailsFragment)
 
     }
 

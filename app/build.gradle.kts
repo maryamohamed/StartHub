@@ -5,7 +5,10 @@ plugins {
     id("kotlin-kapt")
     //Firebase
     id("com.google.gms.google-services")
+//    id("androidx.navigation.safeargs.kotlin")
 }
+
+
 
 android {
     namespace = "com.training.starthub"
@@ -19,6 +22,13 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 
     buildTypes {
@@ -44,23 +54,7 @@ android {
     }
 }
 
-buildscript {
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath("com.android.tools.build:gradle:8.1.0") // your existing Gradle plugin
-        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.7.0") // Safe Args plugin
-        // Other classpath dependencies
-    }
-}
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+
 dependencies {
 
     implementation("androidx.core:core-ktx:1.13.1")
@@ -93,8 +87,9 @@ dependencies {
     implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
 
     // navigation fragment
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
+
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.3")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.3")
 
     // live data & view model
     implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.8.2")
@@ -140,6 +135,8 @@ dependencies {
 
     // FirebaseUI Storage only
     implementation ("com.firebaseui:firebase-ui-storage:7.2.0")
+
+
 
 
 

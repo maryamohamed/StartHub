@@ -35,6 +35,7 @@ class ItemDetailsFragment : Fragment() {
         var productId : String? = null
         val bundle = arguments
         val position = bundle?.getInt("position")
+
         Log.d("ItemDetailsFragment", "Position: $position")
         viewModel.listOfIds.observe(viewLifecycleOwner) { listOfIds ->
             productId = listOfIds[position?.toInt()].toString()
