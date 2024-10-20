@@ -34,7 +34,6 @@ class LoginCustomerFragment : Fragment() {
             findNavController().navigate(R.id.action_loginCustomerFragment_to_SignupCustomerFragment)
         }
 
-
         binding.loginButton.setOnClickListener {
             val email = binding.loginEmail.text.toString().trim()
             val password = binding.loginPassword.text.toString().trim()
@@ -52,7 +51,6 @@ class LoginCustomerFragment : Fragment() {
                     val intent = Intent(requireContext(), CustomerHomeActivity::class.java)
                     startActivity(intent)
                     requireActivity().finish()
-
                 },
                 onFailure = { e ->
                     showToast("Failed to sign in: ${e.message}")

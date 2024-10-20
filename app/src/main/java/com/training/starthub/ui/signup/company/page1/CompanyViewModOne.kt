@@ -52,7 +52,7 @@ class CompanyViewModOne constructor(private val context: Context, private val co
     fun registerUser(name: String, email: String, password: String , confirmPassword: String, phone: String ) {
         if (validateInputs(name, email, password, confirmPassword ,phone)){
             viewModelScope.launch {
-                companyRepoOne.saveUserToFirestore(name, email, phone ,password)
+                companyRepoOne.saveUserToFirestore(name, email, phone ,password, "Company")
             }
         }
         else{
