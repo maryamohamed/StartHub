@@ -11,6 +11,9 @@
         android:label="@string/home"
         tools:layout="@layout/fragment_home">
 
+        <action
+            android:id="@+id/action_navigation_home_to_item_details_fragment"
+            app:destination="@id/item_details_fragment" />
 
         <action
             android:id="@+id/action_navigation_home_to_productDetailsFragment"
@@ -67,11 +70,29 @@
 
         <argument
             android:name="position"
-            app:argType="int" />
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_productDetailsFragment_to_item_details_fragment"
+            app:destination="@id/item_details_fragment" />
+
         <action
             android:id="@+id/action_productDetailsFragment_to_navigation_home"
             app:destination="@id/navigation_home" />
     </fragment>
+    <fragment
+        android:id="@+id/item_details_fragment"
+        android:name="com.training.starthub.ui.customerlogic.details.ItemDetailsFragment"
+        android:label="fragment_item_details"
+        tools:layout="@layout/fragment_item_details" >
+
+        <argument
+            android:name="position"
+            app:argType="string" />
+
+    </fragment>
+
+
 
 
 </navigation>

@@ -9,32 +9,27 @@ import kotlinx.coroutines.withContext
 class ItemDetailsRepo {
     private var db: FirebaseFirestore = FirebaseFirestore.getInstance()
 
-
-    suspend fun fetchProductDetails(productId: String) : CustomerProduct {
-        var product: CustomerProduct? = null
-        withContext(Dispatchers.IO) {
-            val productRef = db.collection("All_Products").document(productId)
-            productRef.get().addOnSuccessListener { documentSnapshot ->
-                product = documentSnapshot.toObject(CustomerProduct::class.java)
-                return@addOnSuccessListener
-            }.addOnFailureListener {
-                return@addOnFailureListener
+    suspend fun fetchProductDetails(productId: String): CustomerProduct? {
+        return withContext(Dispatchers.IO) {
+            val productRef = db.collection("AllProducts").document(productId)
+            val documentSnapshot = productRef.get().await()
+            if (documentSnapshot.exists()) {
+                documentSnapshot.toObject(CustomerProduct::class.java)
+            } else {
+                null
             }
         }
-        return product!!
-
     }
 
-
-    suspend fun getIds(): HashMap<Int, String> {
-        val listOfIds = hashMapOf<Int, String>()
+    suspend fun getIds(): HashMap<String, String> {
+        val listOfIds = hashMapOf<String, String>()
         withContext(Dispatchers.IO) {
             val querySnapshot = db.collection("AllProducts")
                 .get()
                 .await()
             var i = 0
             for (document in querySnapshot) {
-                listOfIds.put(i, document.id)
+                listOfIds["$i"] = document.id
                 i++
             }
         }

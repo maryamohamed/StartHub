@@ -10,13 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.training.starthub.databinding.FragmentItemDetailsBinding
-import com.training.starthub.ui.customerlogic.home.CustomerHomeViewModel
+import com.training.starthub.ui.model.CustomerProduct
 
 class ItemDetailsFragment : Fragment() {
     private var _binding: FragmentItemDetailsBinding? = null
     private val binding get() = _binding!!
     private val viewModel: ItemDetailsViewModel by viewModels()
-    private val cusViewModel: CustomerHomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,38 +27,48 @@ class ItemDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+//
+        val position = arguments?.getString("position") ?: "0"
+
+        var finalPosition = position.toInt()
+
         viewModel.getIds()
-        viewModel.listOfIds.observe(viewLifecycleOwner) { listOfIds ->
-            Log.d("ItemDetailsFragment", "Loaded products: $listOfIds")
-        }
-        var productId : String? = null
-        val bundle = arguments
-        val position = bundle?.getInt("position")
+        viewModel.listOfIds.observe(viewLifecycleOwner) { mapOfIds ->
+            val idList = mapOfIds.entries.toList()
+            if (finalPosition in idList.indices) {
+                val selectedEntry = idList[finalPosition]
+                val productId = selectedEntry.value
+                Log.d("ItemDetailsFragment", "Product ID: $productId")
 
-        Log.d("ItemDetailsFragment", "Position: $position")
-        viewModel.listOfIds.observe(viewLifecycleOwner) { listOfIds ->
-            productId = listOfIds[position?.toInt()].toString()
-        }
-
-        if (productId != null) {
-            Log.d("ItemDetailsFragment", "Product ID: $productId")
-            viewModel.fetchProductDetails(cusViewModel.setPosition.value.toString())
-            viewModel.productDetails.observe(viewLifecycleOwner) { productDetails ->
-                productDetails?.let {
-                    binding.newestProductName.text = it.name
-                    binding.newestProductCompany.text = it.company
-                    binding.newestPrice.text = it.price.toString()
-                    binding.newestProductCategory.text = it.category
-                    binding.productDesc.text = it.description
-                    Glide.with(requireContext())
-                        .load(it.imageUrl)
-                        .into(binding.newestProductImage)
+                viewModel.fetchProductDetails(productId)
+                viewModel.productDetails.observe(viewLifecycleOwner) { productDetails ->
+                    if (productDetails != null) {
+                        displayProductDetails(productDetails)
+                    } else {
+                        Log.e("ItemDetailsFragment", "Product details are null")
+                        Toast.makeText(requireContext(), "Product details not found", Toast.LENGTH_SHORT).show()
+                    }
                 }
+                viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
+                    Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Log.e("ItemDetailsFragment", "Invalid position: $position")
+                Toast.makeText(requireContext(), "Invalid product position", Toast.LENGTH_SHORT).show()
             }
-        } else {
-            Log.e("ItemDetailsFragment", "Product ID is null")
-            Toast.makeText(requireContext(), "Product ID is null", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun displayProductDetails(productDetails: CustomerProduct) {
+        binding.newestProductName.text = productDetails.name
+        binding.newestProductCompany.text = productDetails.company
+        binding.newestPrice.text = productDetails.price.toString()
+        binding.newestProductCategory.text = productDetails.category
+        binding.productDesc.text = productDetails.description
+        Glide.with(requireContext())
+            .load(productDetails.imageUrl)
+            .into(binding.newestProductImage)
     }
 
     override fun onDestroyView() {
