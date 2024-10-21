@@ -18,17 +18,17 @@ class ProductDetailsViewPagerAdapter(
         Log.d("ProductDetailsViewPagerAdapter", "Received position: $sheredPosition")
         return when (position) {
             0 -> {
-                ItemDetailsFragment().apply {
+                ItemDetailsFragment(sheredPosition).apply {
                 // Pass the position as an argument using a Bundle
                      arguments = Bundle().apply {
                         putString("position", sheredPosition)
                     }
                 }
-                ItemDetailsFragment()
+                ItemDetailsFragment(sheredPosition)
             }
-            1 -> CustomerReviewProductFragment()
-            2 -> RateProductFragment()
-            else -> ItemDetailsFragment()
+            1 -> CustomerReviewProductFragment(sheredPosition)
+            2 -> RateProductFragment(sheredPosition)
+            else -> ItemDetailsFragment(sheredPosition)
         }
     }
 

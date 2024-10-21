@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 import com.training.starthub.databinding.FragmentRateProductBinding
 
-class RateProductFragment: Fragment() {
+class RateProductFragment(val sheredPosition: String): Fragment() {
     private val viewModel : RateProductViewModel by viewModels()
     private lateinit var binding: FragmentRateProductBinding
     private val auth = FirebaseAuth.getInstance()
@@ -32,9 +32,10 @@ class RateProductFragment: Fragment() {
             val rating = binding.rating.rating.toDouble()
             val feedback = binding.feedback.text.toString()
 
-            val position = arguments?.getString("position") ?: "0"
 
-            var finalPosition = position.toInt()
+
+            var finalPosition = sheredPosition.toInt()
+
             Log.d("ItemDetailsFragment", "Final Received position: $finalPosition")
 
             viewModel.getIds()
@@ -52,7 +53,7 @@ class RateProductFragment: Fragment() {
                         viewModel.setProductRating(productId, rating, feedback, imageUrl, name)
                     }
                 } else {
-                    Log.e("ItemDetailsFragment", "Invalid position: $position")
+                    Log.e("ItemDetailsFragment", "Invalid position: $finalPosition")
                     Toast.makeText(requireContext(), "Invalid product position", Toast.LENGTH_SHORT).show()
                 }
             }

@@ -24,7 +24,7 @@ class RateProductRepo {
             db.collection("AllProducts")
                 .document(productId)
                 .collection("Ratings")
-                .document(productId)
+                .document()
                 .set(ratingMap, SetOptions.merge())
                 .addOnSuccessListener {
                     Log.d("RateProductRepo", "Rating set successfully")

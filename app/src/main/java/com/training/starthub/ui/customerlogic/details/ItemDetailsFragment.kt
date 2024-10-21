@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.training.starthub.databinding.FragmentItemDetailsBinding
 import com.training.starthub.ui.model.CustomerProduct
 
-class ItemDetailsFragment : Fragment() {
+class ItemDetailsFragment(val sheredPosition: String) : Fragment() {
     private var _binding: FragmentItemDetailsBinding? = null
     private val binding get() = _binding!!
     private val viewModel: ItemDetailsViewModel by viewModels()
@@ -29,9 +29,9 @@ class ItemDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        val position = arguments?.getString("position") ?: "0"
 
-        var finalPosition = position.toInt()
+        var finalPosition = sheredPosition.toInt()
+
         Log.d("ItemDetailsFragment", "Final Received position: $finalPosition")
 
         viewModel.getIds()
@@ -55,7 +55,7 @@ class ItemDetailsFragment : Fragment() {
                     Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Log.e("ItemDetailsFragment", "Invalid position: $position")
+                Log.e("ItemDetailsFragment", "Invalid position: $sheredPosition")
                 Toast.makeText(requireContext(), "Invalid product position", Toast.LENGTH_SHORT).show()
             }
         }

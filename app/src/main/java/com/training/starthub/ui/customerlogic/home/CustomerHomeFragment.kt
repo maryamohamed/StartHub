@@ -58,7 +58,6 @@ class CustomerHomeFragment : Fragment() {
             navigateToProductDetails(it.tag as Int)
         }
 
-
     }
 
     private fun navigateToProductDetails(position: Int) {

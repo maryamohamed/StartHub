@@ -17,12 +17,13 @@ import kotlinx.coroutines.withContext
 class CompanyRepoOne constructor(val view: View, private val context: Context, private val db: FirebaseFirestore, private val auth: FirebaseAuth) {
 
     // user: User
-    suspend fun saveUserToFirestore(name: String, email: String, phone: String, password: String){
+    suspend fun saveUserToFirestore(name: String, email: String, phone: String, password: String, userType: String){
         val user = hashMapOf(
             "name" to name,
             "email" to email,
             "phone" to phone,
-            "password" to password)
+            "password" to password,
+            "userType" to userType)
         val name = hashMapOf(
             "name" to name)
         val companyName = hashMapOf(
