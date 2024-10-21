@@ -1,27 +1,29 @@
 package com.training.starthub.ui.home
 
-import Product
 import com.google.firebase.firestore.FirebaseFirestore
+import com.training.starthub.data.local.CustomerProduct
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class RepoCustomerHome {
 
+
     private val firestore = FirebaseFirestore.getInstance()
 
-    suspend fun fetchProducts(): List<Product> {
-        val productList = mutableListOf<Product>()
+    suspend fun fetchProducts(): List<CustomerProduct> {
+        val productList = mutableListOf<CustomerProduct>()
+        withContext(Dispatchers.IO) {
 
-        val querySnapshot = firestore.collection("Companies")
-            .document("All-products")
-            .collection("products")
-            .get()
-            .await()
-
-        for (document in querySnapshot.documents) {
-            val product = document.toObject(Product::class.java)
-            product?.let { productList.add(it) }
+            val querySnapshot = firestore.collection("AllProducts")
+                .get()
+                .await()
+            for (document in querySnapshot) {
+                val product = document.toObject(CustomerProduct::class.java)
+                productList.add(product)
+            }
         }
-
         return productList
     }
+
 }

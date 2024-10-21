@@ -1,25 +1,25 @@
 package com.training.starthub.ui
 
-import Product
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.training.starthub.data.local.CustomerProduct
 import com.training.starthub.databinding.ItemProductBinding
 
 class SearchAdapter(
-    private var productList : List<Product> = emptyList()
+    private var productList : List<CustomerProduct> = emptyList()
 ) : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
-    private var filteredList : List<Product> = productList
+    private var filteredList : List<CustomerProduct> = productList
 
     inner class SearchViewHolder(val binding : ItemProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(product : Product) {
+        fun bind(product : CustomerProduct) {
             binding.productName.text = product.name
             binding.productPrice.text = product.price.toString()
             binding.productCategory.text = product.category
             binding.productCompany.text = product.company
-            binding.productImg.setImageResource(product.image.toInt())
+            binding.productImg.setImageResource(product.imageUrl.toInt())
         }
     }
 
@@ -45,7 +45,7 @@ class SearchAdapter(
         notifyDataSetChanged()
     }
 
-    fun updateData(newList : List<Product>) {
+    fun updateData(newList : List<CustomerProduct>) {
         productList = newList
         filteredList = newList
         notifyDataSetChanged()
