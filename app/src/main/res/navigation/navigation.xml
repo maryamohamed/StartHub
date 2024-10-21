@@ -61,12 +61,16 @@
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/productDetailsFragment"
-        android:name="com.training.starthub.ui.ProductDetailsFragment"
+        android:name="com.training.starthub.ui.details.ProductDetailsFragment"
         android:label="fragment_product_details"
         tools:layout="@layout/fragment_product_details" >
         <action
             android:id="@+id/action_productDetailsFragment_to_navigation_home"
             app:destination="@id/navigation_home" />
+        <argument
+            android:name="position"
+            app:argType="integer" />
+
     </fragment>
 
 </navigation>

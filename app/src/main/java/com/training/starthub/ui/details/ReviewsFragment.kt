@@ -1,4 +1,4 @@
-package com.training.starthub.ui
+package com.training.starthub.ui.details
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,12 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.training.starthub.R
-import com.training.starthub.databinding.FragmentAllProductsBinding
-import com.training.starthub.databinding.FragmentHomeBinding
 import com.training.starthub.databinding.FragmentReviewsBinding
-import com.training.starthub.ui.home.NewestAdapter
-import com.training.starthub.ui.home.SpecialOffersAdapter
 
 
 class ReviewsFragment : Fragment() {

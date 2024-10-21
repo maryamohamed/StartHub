@@ -1,4 +1,4 @@
-package com.training.starthub.ui
+package com.training.starthub.ui.details
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,8 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.training.starthub.R
 
-
-class DetailsFragment : Fragment() {
+class RateProductFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -16,7 +15,7 @@ class DetailsFragment : Fragment() {
         savedInstanceState : Bundle?
     ) : View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_details, container, false)
+        return inflater.inflate(R.layout.fragment_rate_product, container, false)
     }
 
 }

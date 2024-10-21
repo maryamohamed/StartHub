@@ -59,9 +59,9 @@ class HomeFragment : Fragment() {
         Log.d("CustomerHomeFragment", "Navigating to product details for position: $position")
 
 
-//        val action = CustomerHomeFragmentDirections.actionNavigationHomeToProductDetailsFragment(position.toString())
-//        findNavController().navigate(action)
-        findNavController().navigate(R.id.action_navigation_home_to_productDetailsFragment)
+        val action = HomeFragmentDirections.actionNavigationHomeToProductDetailsFragment(position.toInt())
+        findNavController().navigate(action)
+//        findNavController().navigate(R.id.action_navigation_home_to_productDetailsFragment)
 
     }
 

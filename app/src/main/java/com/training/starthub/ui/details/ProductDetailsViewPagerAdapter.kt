@@ -1,9 +1,10 @@
-package com.training.starthub.ui
+package com.training.starthub.ui.details
 
 
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.training.starthub.ui.details.description.DescriptionDetailsFragment
 
 class ProductDetailsViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
@@ -11,10 +12,10 @@ class ProductDetailsViewPagerAdapter(fragment: Fragment) : FragmentStateAdapter(
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> DetailsFragment()
+            0 -> DescriptionDetailsFragment()
             1 -> ReviewsFragment()
             2 -> RateProductFragment()
-            else -> DetailsFragment()
+            else -> DescriptionDetailsFragment()
         }
     }
 }
