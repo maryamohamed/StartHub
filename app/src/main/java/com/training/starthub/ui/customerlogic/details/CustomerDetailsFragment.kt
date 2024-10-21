@@ -7,19 +7,25 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.firestore.FirebaseFirestore
 import com.training.starthub.R
+import com.training.starthub.ui.model.CustomerProduct
 
 class CustomerDetailsFragment : Fragment() {
 
     private var _binding: FragmentCustomerDetailsBinding? = null
     private val binding get() = _binding!!
     private lateinit var db : FirebaseFirestore
+    private val viewModel: ItemDetailsViewModel by viewModels()
+    private var finalPosition = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,9 +46,9 @@ class CustomerDetailsFragment : Fragment() {
         // Retrieve the position from the args or set it manually for testing
         val args = CustomerDetailsFragmentArgs.fromBundle(requireArguments())
         val position = args.position
-
+        finalPosition = position.toInt()
         Log.d("CustomerDetailsFragment", "Received position: $position")
-        val action = CustomerDetailsFragmentDirections.actionProductDetailsFragmentToItemDetailsFragment(position)
+
 
         val adapter = ProductDetailsViewPagerAdapter(this, position)
         viewPager.adapter = adapter
@@ -59,43 +65,33 @@ class CustomerDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.getIds()
+        viewModel.listOfIds.observe(viewLifecycleOwner) { mapOfIds ->
+            val idList = mapOfIds.entries.toList()
+            if (finalPosition in idList.indices) {
+                val selectedEntry = idList[finalPosition]
+                val productId = selectedEntry.value
+                Log.d("ItemDetailsFragment", "Product ID: $productId")
+
+                viewModel.fetchProductDetails(productId)
+                viewModel.productDetails.observe(viewLifecycleOwner) { productDetails ->
+                    if (productDetails != null) {
+                        displayProductDetails(productDetails)
+                    } else {
+                        Log.e("ItemDetailsFragment", "Product details are null")
+                        Toast.makeText(requireContext(), "Product details not found", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
+                    Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Log.e("ItemDetailsFragment", "Invalid position: $finalPosition")
+                Toast.makeText(requireContext(), "Invalid product position", Toast.LENGTH_SHORT).show()
+            }
+        }
 
 
-//        CustomerDetailsFragmentDirections.actionProductDetailsFragmentToItemDetailsFragment(position.toString())
-//        findNavController().navigate(action)
-
-////        binding.productImage.setImageResource()
-//        binding.detailsFavorites.setOnClickListener {
-//            val docRef = db.collection("All_Products")
-//                .document().collection("secPage")
-//                .document()
-//
-//            // Get the data from the document
-//            val data = docRef.get()
-//
-//            val name = data.getString("name") ?: ""
-//            val companyName = data.getString("name") ?: ""
-//            val imageUrl = data.getString("imageUrl") ?: ""
-//            val description = data.getString("description") ?: ""
-//            val price = data.getString("price") ?: ""
-//            val category = data.getString("category") ?: ""
-//            val companyLogo = data.getString("CompanyLogo") ?: ""
-//
-////        val snapshot = docRef.get().await()
-//            if (data.exists()) {
-//                val companyLogo = data.getString("imageUrl") ?: ""
-//
-//                val productDetails = hashMapOf(
-//                    "name" to name,
-//                    "description" to description,
-//                    "price" to price.toInt(),
-//                    "category" to category,
-//                    "imageUrl" to imageUrl,
-//                    "CompanyLogo" to companyLogo,
-//                    "CompanyName" to companyName
-//                )
-//            }
-//        }
     }
 
     private fun handleBackArrowClick() {
@@ -108,4 +104,20 @@ class CustomerDetailsFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+    private fun displayProductDetails(productDetails: CustomerProduct) {
+        binding.detailsProductName.text = productDetails.name
+        binding.detailsCompanyName.text = productDetails.CompanyName
+        binding.detailsProductPrice.text = productDetails.price.toString()
+        binding.detailsProductCategory.text = productDetails.category
+        Glide.with(requireContext())
+            .load(productDetails.imageUrl)
+            .into(binding.productImage)
+        binding.productImage.visibility = View.VISIBLE
+        binding.detailsCompanyName.visibility = View.VISIBLE
+        binding.detailsProductCategory.visibility = View.VISIBLE
+        binding.detailsProductPrice.visibility = View.VISIBLE
+        binding.detailsProductName.visibility = View.VISIBLE
+    }
+
 }

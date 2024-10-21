@@ -62,14 +62,8 @@ class ItemDetailsFragment(val sheredPosition: String) : Fragment() {
     }
 
     private fun displayProductDetails(productDetails: CustomerProduct) {
-        binding.newestProductName.text = productDetails.name
-        binding.newestProductCompany.text = productDetails.CompanyName
-        binding.newestPrice.text = productDetails.price.toString()
-        binding.newestProductCategory.text = productDetails.category
-        binding.productDesc.text = productDetails.description
-        Glide.with(requireContext())
-            .load(productDetails.imageUrl)
-            .into(binding.newestProductImage)
+        binding.detailsContent.text = productDetails.description
+        binding.detailsContent.visibility = View.VISIBLE
     }
 
     override fun onDestroyView() {
