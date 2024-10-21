@@ -11,7 +11,8 @@ class CustomerHomeViewModel(private val repository: CustomerHomeRepo = CustomerH
     val products = MutableLiveData<List<CustomerProduct>>()
     val errorMessage = MutableLiveData<String>()
     var listOfIds = hashMapOf<Int, String>()
-    var setPosition = MutableLiveData<String>()
+    private val _userData = MutableLiveData<Map<String, String>>()
+    val userData: MutableLiveData<Map<String, String>> get() = _userData
 
     fun loadProducts() {
         viewModelScope.launch {
@@ -22,6 +23,13 @@ class CustomerHomeViewModel(private val repository: CustomerHomeRepo = CustomerH
             } catch (e: Exception) {
                 errorMessage.postValue("Error fetching products: ${e.message}")
             }
+        }
+    }
+
+    fun fetchUserName(userId: String) {
+        viewModelScope.launch {
+            val data = repository.fetchUserName(userId)
+            data?.let { _userData.value = it }
         }
     }
 

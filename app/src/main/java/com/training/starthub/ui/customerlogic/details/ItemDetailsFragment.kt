@@ -28,10 +28,11 @@ class ItemDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//
+
         val position = arguments?.getString("position") ?: "0"
 
         var finalPosition = position.toInt()
+        Log.d("ItemDetailsFragment", "Final Received position: $finalPosition")
 
         viewModel.getIds()
         viewModel.listOfIds.observe(viewLifecycleOwner) { mapOfIds ->
@@ -62,7 +63,7 @@ class ItemDetailsFragment : Fragment() {
 
     private fun displayProductDetails(productDetails: CustomerProduct) {
         binding.newestProductName.text = productDetails.name
-        binding.newestProductCompany.text = productDetails.company
+        binding.newestProductCompany.text = productDetails.CompanyName
         binding.newestPrice.text = productDetails.price.toString()
         binding.newestProductCategory.text = productDetails.category
         binding.productDesc.text = productDetails.description
@@ -74,5 +75,6 @@ class ItemDetailsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        viewModel.clearProductDetails()
     }
 }

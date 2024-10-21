@@ -29,7 +29,7 @@ class CustomerProfileRepo(private val context: Context, private val auth: Fireba
     suspend fun fetchUserName(userId: String): Map<String, String>? {
         return withContext(Dispatchers.IO) {
             try {
-                val docRef = db.collection("customers").document(userId).collection("Profile").document(userId)
+                val docRef = db.collection("Customers").document(userId).collection("Profile").document(userId)
                 val snapshot = docRef.get().await()
                 if (snapshot.exists()) {
                     val email = snapshot.getString("email") ?: ""
@@ -60,7 +60,7 @@ class CustomerProfileRepo(private val context: Context, private val auth: Fireba
 
         withContext(Dispatchers.IO) {
             try {
-                db.collection("customers").document(auth.currentUser!!.uid).collection("Profile")
+                db.collection("Customers").document(auth.currentUser!!.uid).collection("Profile")
                     .document(auth.currentUser!!.uid)
                     .set(data, SetOptions.merge()).await()
             } catch (e: Exception) {
@@ -72,7 +72,7 @@ class CustomerProfileRepo(private val context: Context, private val auth: Fireba
     fun updateUserName(newName: String, map: Map<String, String>) {
         val data = map.toMutableMap()
         data["name"] = newName
-        db.collection("customers").document(auth.currentUser!!.uid).collection("Profile")
+        db.collection("Customers").document(auth.currentUser!!.uid).collection("Profile")
             .document(auth.currentUser!!.uid)
             .set(data, SetOptions.merge())
     }

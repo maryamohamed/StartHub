@@ -5,6 +5,6 @@ data class CustomerProduct(
     var price: Double = 0.0,
     var description: String = "",
     var category: String = "",
-    var company: String = "",
+    var CompanyName: String = "",
     var imageUrl: String = ""
 )

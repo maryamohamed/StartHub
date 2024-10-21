@@ -42,6 +42,7 @@ class CustomerDetailsFragment : Fragment() {
         val position = args.position
 
         Log.d("CustomerDetailsFragment", "Received position: $position")
+        val action = CustomerDetailsFragmentDirections.actionProductDetailsFragmentToItemDetailsFragment(position)
 
         val adapter = ProductDetailsViewPagerAdapter(this, position)
         viewPager.adapter = adapter
@@ -58,8 +59,7 @@ class CustomerDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val args = CustomerDetailsFragmentArgs.fromBundle(requireArguments())
-        val position = args.position.toInt()
+
 
 //        CustomerDetailsFragmentDirections.actionProductDetailsFragmentToItemDetailsFragment(position.toString())
 //        findNavController().navigate(action)

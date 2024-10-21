@@ -62,10 +62,11 @@
         android:name="com.training.starthub.ui.customerlogic.search.CustomerSearchFragment"
         android:label="Search"
         tools:layout="@layout/fragment_search" />
+
     <fragment
         android:id="@+id/productDetailsFragment"
         android:name="com.training.starthub.ui.customerlogic.details.CustomerDetailsFragment"
-        android:label="fragment_product_details"
+        android:label="Product Details"
         tools:layout="@layout/fragment_customer_details" >
 
         <argument

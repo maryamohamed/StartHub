@@ -6,104 +6,85 @@ import androidx.navigation.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import com.training.starthub.R
 import com.training.starthub.utils.ToastUtil
-import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class CustomerRepo constructor(val view: View, private val context: Context, private val db: FirebaseFirestore, private val auth: FirebaseAuth) {
+class CustomerRepo {
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
-    // user: User
-    suspend fun saveUserToFirestore(name: String, email: String, phone: String, password: String){
+    private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
+
+    suspend fun registerUser(
+        name: String,
+        email: String,
+        password: String,
+        phone: String,
+    ): FirebaseUser? {
+        return try {
+            val user = withContext(Dispatchers.IO) {
+                auth.createUserWithEmailAndPassword(email, password).await()
+                auth.currentUser
+            }
+            user?.let {
+                saveUserToFirestore(it.uid, name, email, phone, "Customer")
+                sendEmailVerification(it)
+            }
+            user
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    private suspend fun saveUserToFirestore(
+        userId: String,
+        name: String,
+        email: String,
+        phone: String,
+        userType: String
+    ) {
         val user = hashMapOf(
             "name" to name,
             "email" to email,
             "phone" to phone,
-            "password" to password)
-
-        val info = hashMapOf(
-            "name" to name,
-            "email" to email,
-            "phone" to phone)
+            "userType" to userType
+        )
+        withContext(Dispatchers.IO) {
+            db.collection("Customers").document(userId).set(user).await()
+        }
 
         withContext(Dispatchers.IO) {
-
-            try {
-                auth.createUserWithEmailAndPassword(email, password).await()
-                sendEmailVerification(auth.currentUser!!)
-                checkEmailVerification(auth.currentUser!!)
-
-                db.collection("customers").document(auth.currentUser!!.uid).set(user)
-                    .addOnSuccessListener {
-                        ToastUtil.showToast(
-                            context = context,
-                            "User data successfully added to Firestore."
-                        )
-                    }
-                    .addOnFailureListener { e ->
-                        ToastUtil.showToast(
-                            context = context,
-                            "Error adding user data to Firestore: ${e.message}"
-                        )
-                    }.await()
-
-                db.collection("customers").document(auth.currentUser!!.uid)
-                    .collection("Profile")
-                    .document(auth.currentUser!!.uid).set(info).addOnFailureListener{
-                        ToastUtil.showToast(context = context,"Failed to save Personal Information: ${it.message}")
-                    }.await()
-
-            }catch (e: Exception){
-                ToastUtil.showToast(context = context,"Failed to create account: ${e.message}")
-            }
-
-
-
-
+            db.collection("Customers/${auth.currentUser!!.uid}/Profile")
+                .document(auth.currentUser!!.uid)
+                .set(user, SetOptions.merge()).await()
         }
-
     }
 
-
-    private suspend fun sendEmailVerification(user: FirebaseUser){
-        try {
-        user.sendEmailVerification()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    ToastUtil.showToast(context = context,"Verification email sent to ${user.email}")
-                } else {
-                    ToastUtil.showToast(context = context,"Error sending verification email: ${task.exception?.message}")
-                }
-            }.await()
-        }catch (e: Exception){
-            ToastUtil.showToast(context = context,"Failed to create account: ${e.message}")
+    private suspend fun sendEmailVerification(user: FirebaseUser) {
+        withContext(Dispatchers.IO) {
+            user.sendEmailVerification().await()
         }
-
     }
 
-    suspend fun checkEmailVerification(user: FirebaseUser = auth.currentUser!!){
-
-
+    suspend fun checkEmailVerification(
+        user: FirebaseUser,
+        onSuccess: () -> Unit,
+        onFailure: () -> Unit
+    ) {
         while (true) {
-
             user.reload()
             if (user.isEmailVerified) {
-                ToastUtil.showToast(context = context, "Email verified")
-                withContext(Dispatchers.Main){
-                    view.findNavController().navigate(R.id.action_SignupCustomerFragment_to_CustomerProfileFragment)
-                }
+                withContext(Dispatchers.Main) { onSuccess() }
                 break
-
             } else {
-                delay(1000)
+                withContext(Dispatchers.Main) { onFailure() }
+                delay(5000)
             }
         }
     }
-
-
 }

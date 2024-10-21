@@ -35,4 +35,8 @@ class ItemDetailsViewModel : ViewModel() {
             }
         }
     }
+
+    fun clearProductDetails() {
+        _productDetails.value = null
+    }
 }

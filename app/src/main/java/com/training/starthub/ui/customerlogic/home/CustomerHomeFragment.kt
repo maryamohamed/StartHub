@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import com.training.starthub.databinding.FragmentCustomerHomeBinding
 import com.training.starthub.ui.adapter.NewestAdapter
 
@@ -19,6 +20,7 @@ class CustomerHomeFragment : Fragment() {
     private val binding get() = _binding!!
     private val homeViewModel: CustomerHomeViewModel by viewModels()
     private lateinit var newestAdapter: NewestAdapter
+    private val auth = FirebaseAuth.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,6 +36,10 @@ class CustomerHomeFragment : Fragment() {
         homeViewModel.loadProducts()
         newestAdapter = NewestAdapter(mutableListOf() ) { position ->
             navigateToProductDetails(position)
+        }
+        homeViewModel.fetchUserName(auth.currentUser!!.uid)
+        homeViewModel.userData.observe(viewLifecycleOwner) { data ->
+            binding.homeCustomerName.text = data["name"]
         }
 
         binding.recyclerViewVewest.apply {
@@ -57,7 +63,6 @@ class CustomerHomeFragment : Fragment() {
 
     private fun navigateToProductDetails(position: Int) {
         Log.d("CustomerHomeFragment", "Navigating to product details for position: $position")
-
 
         val action = CustomerHomeFragmentDirections.actionNavigationHomeToProductDetailsFragment(position.toString())
         findNavController().navigate(action)

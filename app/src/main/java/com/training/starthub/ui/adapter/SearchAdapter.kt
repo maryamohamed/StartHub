@@ -18,7 +18,7 @@ class SearchAdapter(
             binding.productName.text = product.name
             binding.productPrice.text = product.price.toString()
             binding.productCategory.text = product.category
-            binding.productCompany.text = product.company
+            binding.productCompany.text = product.CompanyName
             binding.productImg.setImageResource(product.imageUrl.toInt())
         }
     }

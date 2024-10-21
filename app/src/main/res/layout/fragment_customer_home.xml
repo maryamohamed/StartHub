@@ -102,7 +102,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_semi_bold"
-        android:text="Maryam"
+        android:text=""
         android:textColor="@color/primarywhite"
         android:textSize="@dimen/text20"
         app:layout_constraintStart_toEndOf="@+id/hello_message"

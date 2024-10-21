@@ -35,7 +35,7 @@ class NewestAdapter(
                 newestPrice.text = "$${product.price}"
                 productDesc.text = product.description
                 newestProductCategory.text = product.category
-                newestProductCompany.text = product.company
+                newestProductCompany.text = product.CompanyName
                 newestProductImage.let {
                     Glide.with(it.context)
                         .load(product.imageUrl)
