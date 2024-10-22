@@ -234,7 +234,7 @@
     <fragment
         android:id="@+id/HomeFragment"
         tools:layout="@layout/fragment_home"
-        android:name="com.training.starthub.ui.investorlogic.HomeFragment"
+        android:name="com.training.starthub.ui.investorlogic.home.HomeFragment"
         android:label="HomeFragment">
         <action
             android:id="@+id/action_HomeFragment_to_SearchFragment"

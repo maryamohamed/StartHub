@@ -1,60 +1,94 @@
 package com.training.starthub.ui.customerlogic.search
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.training.starthub.R
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import com.training.starthub.databinding.FragmentCustomerSearchBinding
+import com.training.starthub.ui.adapter.SearchAdapter
+import com.training.starthub.ui.customerlogic.FilterDialog
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [CustomerSearchFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CustomerSearchFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private var _binding : FragmentCustomerSearchBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var searchAdapter : SearchAdapter
+
+    override fun onCreateView(
+        inflater : LayoutInflater, container : ViewGroup?,
+        savedInstanceState : Bundle?
+    ) : View {
+        _binding = FragmentCustomerSearchBinding.inflate(inflater, container, false)
+        binding.iconFilter.setOnClickListener {
+            val dialog = FilterDialog()
+            dialog.show(parentFragmentManager, "FilterDialog")
+        }
+
+        setupRecyclerView()
+        setupSearchListener()
+
+        handleEmptyState()
+
+        return binding.root
+    }
+
+    private fun setupRecyclerView() {
+        searchAdapter = SearchAdapter()
+        binding.recyclerSearch.apply {
+            layoutManager = GridLayoutManager(context, 2)
+            adapter = searchAdapter
+        }
+
+        // Initially no data scenario
+        searchAdapter.updateData(emptyList()) // No data yet
+    }
+
+    private fun setupSearchListener() {
+        binding.searchEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(
+                s : CharSequence?,
+                start : Int,
+                count : Int,
+                after : Int
+            ) {
+            }
+
+            override fun onTextChanged(s : CharSequence?, start : Int, before : Int, count : Int) {
+                searchAdapter.filter(s.toString())
+                handleEmptyState() // Check if RecyclerView should appear or not
+            }
+
+            override fun afterTextChanged(s : Editable?) {}
+        })
+    }
+
+    private fun handleEmptyState() {
+        val query = binding.searchEditText.text.toString()
+
+        if (searchAdapter.itemCount == 0 && query.isEmpty()) {
+            // No search yet, show placeholder and hide RecyclerView
+            binding.recyclerSearch.visibility = View.GONE
+            binding.emptyStateTextView.text = "Start typing to search for products."
+            binding.emptyStateTextView.visibility = View.VISIBLE
+        } else if (searchAdapter.itemCount == 0 && query.isNotEmpty()) {
+            // No results found, show "no results" message
+            binding.recyclerSearch.visibility = View.GONE
+            binding.emptyStateTextView.text = "No offers found for your search."
+            binding.emptyStateTextView.visibility = View.VISIBLE
+        } else {
+            // Results found, show RecyclerView and hide placeholder message
+            binding.recyclerSearch.visibility = View.VISIBLE
+            binding.emptyStateTextView.visibility = View.GONE
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_customer_search, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SearchFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CustomerSearchFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

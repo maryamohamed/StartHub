@@ -15,6 +15,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.training.starthub.R
 import com.training.starthub.ui.model.CustomerProduct
@@ -26,6 +27,7 @@ class CustomerDetailsFragment : Fragment() {
     private lateinit var db : FirebaseFirestore
     private val viewModel: ItemDetailsViewModel by viewModels()
     private var finalPosition = 0
+    private var productId = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +48,15 @@ class CustomerDetailsFragment : Fragment() {
         // Retrieve the position from the args or set it manually for testing
         val args = CustomerDetailsFragmentArgs.fromBundle(requireArguments())
         val position = args.position
-        finalPosition = position.toInt()
+
+
+        if (isNumericDouble(position)) {
+            finalPosition = position.toInt()
+        }
+        else{
+            productId = position
+        }
+
         Log.d("CustomerDetailsFragment", "Received position: $position")
 
 
@@ -65,29 +75,52 @@ class CustomerDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getIds()
-        viewModel.listOfIds.observe(viewLifecycleOwner) { mapOfIds ->
-            val idList = mapOfIds.entries.toList()
-            if (finalPosition in idList.indices) {
-                val selectedEntry = idList[finalPosition]
-                val productId = selectedEntry.value
-                Log.d("ItemDetailsFragment", "Product ID: $productId")
-
-                viewModel.fetchProductDetails(productId)
-                viewModel.productDetails.observe(viewLifecycleOwner) { productDetails ->
-                    if (productDetails != null) {
-                        displayProductDetails(productDetails)
-                    } else {
-                        Log.e("ItemDetailsFragment", "Product details are null")
-                        Toast.makeText(requireContext(), "Product details not found", Toast.LENGTH_SHORT).show()
-                    }
+        if (productId.isNotEmpty()) {
+            viewModel.fetchProductDetails(productId)
+            viewModel.productDetails.observe(viewLifecycleOwner) { productDetails ->
+                if (productDetails != null) {
+                    displayProductDetails(productDetails)
+                } else {
+                    Log.e("ItemDetailsFragment", "Product details are null")
                 }
                 viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
                     Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
                 }
-            } else {
-                Log.e("ItemDetailsFragment", "Invalid position: $finalPosition")
-                Toast.makeText(requireContext(), "Invalid product position", Toast.LENGTH_SHORT).show()
+            }
+        }
+        else{
+            viewModel.getIds()
+            viewModel.listOfIds.observe(viewLifecycleOwner) { mapOfIds ->
+                val idList = mapOfIds.entries.toList()
+                if (finalPosition in idList.indices) {
+                    val selectedEntry = idList[finalPosition]
+                    productId = selectedEntry.value
+                    Log.d("ItemDetailsFragment", "Product ID: $productId")
+
+                    viewModel.fetchProductDetails(productId)
+                    viewModel.productDetails.observe(viewLifecycleOwner) { productDetails ->
+                        if (productDetails != null) {
+                            displayProductDetails(productDetails)
+                        } else {
+                            Log.e("ItemDetailsFragment", "Product details are null")
+                            Toast.makeText(requireContext(), "Product details not found", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
+                        Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Log.e("ItemDetailsFragment", "Invalid position: $finalPosition")
+                    Toast.makeText(requireContext(), "Invalid product position", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        binding.detailsFavorites.setOnClickListener {
+            binding.detailsFavorites.setImageResource(R.drawable.favorite_solid)
+            val userId = FirebaseAuth.getInstance().currentUser?.uid
+            if (userId != null) {
+                viewModel.setFavorite(productId, userId)
             }
         }
 
@@ -118,6 +151,10 @@ class CustomerDetailsFragment : Fragment() {
         binding.detailsProductCategory.visibility = View.VISIBLE
         binding.detailsProductPrice.visibility = View.VISIBLE
         binding.detailsProductName.visibility = View.VISIBLE
+    }
+
+    fun isNumericDouble(str: String): Boolean {
+        return str.toDoubleOrNull() != null
     }
 
 }

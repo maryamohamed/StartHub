@@ -1,60 +1,77 @@
 package com.training.starthub.ui.customerlogic.allproduct
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.training.starthub.R
+import com.training.starthub.databinding.FragmentAllProductsBinding
+import com.training.starthub.ui.adapter.AllProductsAdapter
+import com.training.starthub.ui.customerlogic.home.CustomerHomeViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AllProductsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AllProductsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _binding: FragmentAllProductsBinding? = null
+    private val binding get() = _binding!!
+    private val viewModel: CustomerHomeViewModel by viewModels()
+    private lateinit var allProductsAdapter: AllProductsAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_all_products, container, false)
+    ): View {
+        _binding = FragmentAllProductsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        handleBackArrowClick()
+
+        viewModel.loadProducts()
+        allProductsAdapter = AllProductsAdapter(mutableListOf() ) { position ->
+            navigateToProductDetails(position)
+        }
+
+        binding.recyclerAllProducts.apply {
+            layoutManager = GridLayoutManager(requireContext(),2)
+            adapter = allProductsAdapter
+        }
+        viewModel.products.observe(viewLifecycleOwner) { productList ->
+            allProductsAdapter.setData(productList)
+        }
+        viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
+            Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+        }
+
+        binding.recyclerAllProducts.setOnClickListener {
+            navigateToProductDetails(it.tag as Int)
+        }
+
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AllProductsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AllProductsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun navigateToProductDetails(position: Int) {
+        // Navigate to ProductDetailsFragment with the position as an argument
+        val action = AllProductsFragmentDirections.actionNavProductsToProductDetailsFragment(position.toString())
+        findNavController().navigate(action)
     }
+
+    private fun handleBackArrowClick() {
+        binding.backArrow.setOnClickListener {
+            findNavController().navigate(R.id.action_nav_products_to_navigation_home)
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+
 }

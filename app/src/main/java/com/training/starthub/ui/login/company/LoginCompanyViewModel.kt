@@ -3,16 +3,15 @@ package com.training.starthub.ui.login.company
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.training.starthub.ui.login.investor.LoginInvestorRepo
 import kotlinx.coroutines.launch
 
 class LoginCompanyViewModel : ViewModel() {
-    private val repository = LoginInvestorRepo()
+    private val repository = LoginCompanyRepo()
     val loginResult = MutableLiveData<Result<Boolean>>()
 
     fun login(email: String, password: String) {
         viewModelScope.launch {
-            val result = repository.signInUser(email, password)
+            val result = repository.signInUser(email, password, "Company")
             loginResult.postValue(result)
         }
     }

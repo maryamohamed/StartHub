@@ -5,15 +5,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.training.starthub.ui.investorlogic.HomeFragment">
+    tools:context="com.training.starthub.ui.investorlogic.home.HomeFragment">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/home_shapee"
+        android:layout_width="387dp"
+        android:layout_height="128dp"
+        android:src="@drawable/home_shape"
+        app:layout_constraintBottom_toTopOf="@+id/secGuideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/secGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.19" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="72dp"
         android:text="All Companies"
-        android:textColor="@color/secondaryDark"
+        android:textColor="@color/primarywhite"
         android:textSize="@dimen/space24"
 
         android:textStyle="bold"
@@ -23,16 +41,16 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/companyRecyclerView"
-        android:layout_width="410dp"
-        android:layout_height="553dp"
-        android:layout_marginTop="112dp"
+        android:layout_width="416dp"
+        android:layout_height="527dp"
         android:scrollbars="vertical"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:spanCount="2" />
+        app:layout_constraintTop_toTopOf="@id/secGuideline"
+        app:spanCount="1"
+        tools:listitem="@layout/customer_all_companies_item" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"

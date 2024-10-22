@@ -1,60 +1,49 @@
 package com.training.starthub.ui.customerlogic.allcompany
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.training.starthub.R
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.training.starthub.databinding.FragmentAllCompaniesBinding
+import com.training.starthub.ui.adapter.AllCompanyAdapter
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [AllCompaniesFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class AllCompaniesFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentAllCompaniesBinding
+    private lateinit var allCompanyAdapter: AllCompanyAdapter
+
+    // Initialize ViewModel
+    private val viewModel: AllCompanyViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_all_companies, container, false)
-    }
+        // Inflate the layout using data binding
+        binding = FragmentAllCompaniesBinding.inflate(inflater, container, false)
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AllCompaniesFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AllCompaniesFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        // Setup RecyclerView with LinearLayoutManager
+        binding.companiesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        allCompanyAdapter = AllCompanyAdapter(mutableListOf())
+        binding.companiesRecyclerView.adapter = allCompanyAdapter
+
+        // Set click listener for the back button
+        binding.backButton.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
+
+        // Observe the companies LiveData from ViewModel
+        viewModel.companies.observe(viewLifecycleOwner, Observer { companiesList ->
+            allCompanyAdapter.updateData(companiesList)
+        })
+
+        // Fetch companies from Firestore
+        viewModel.fetchCompaniesFromFirestore()
+
+        return binding.root
     }
 }

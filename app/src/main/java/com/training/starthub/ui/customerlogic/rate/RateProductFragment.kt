@@ -16,6 +16,8 @@ class RateProductFragment(val sheredPosition: String): Fragment() {
     private val viewModel : RateProductViewModel by viewModels()
     private lateinit var binding: FragmentRateProductBinding
     private val auth = FirebaseAuth.getInstance()
+    private var finalPosition = 0
+    private var productId = ""
 
 
     override fun onCreateView(
@@ -33,34 +35,60 @@ class RateProductFragment(val sheredPosition: String): Fragment() {
             val feedback = binding.feedback.text.toString()
 
 
+            if (isNumericDouble(sheredPosition)) {
+                finalPosition = sheredPosition.toInt()
+            }
+            else{
+                productId = sheredPosition
+            }
 
-            var finalPosition = sheredPosition.toInt()
+//            finalPosition = sheredPosition.toInt()
 
             Log.d("ItemDetailsFragment", "Final Received position: $finalPosition")
 
-            viewModel.getIds()
-
-            viewModel.listOfIds.observe(viewLifecycleOwner) { mapOfIds ->
-                val idList = mapOfIds.entries.toList()
-                if (finalPosition in idList.indices) {
-                    val selectedEntry = idList[finalPosition]
-                    val productId = selectedEntry.value
-                    Log.d("ItemDetailsFragment", "Product ID: $productId")
-                    viewModel.fetchUserData(auth.currentUser?.uid.toString())
-                    viewModel.userData.observe(viewLifecycleOwner) { userData ->
-                        val imageUrl = userData["imageUrl"] ?: ""
-                        val name = userData["name"] ?: ""
-                        viewModel.setProductRating(productId, rating, feedback, imageUrl, name)
+            if (productId.isNotEmpty()) {
+                viewModel.fetchUserData(auth.currentUser?.uid.toString())
+                viewModel.userData.observe(viewLifecycleOwner) { userData ->
+                    val imageUrl = userData["imageUrl"] ?: ""
+                    val name = userData["name"] ?: ""
+                    viewModel.setProductRating(productId, rating, feedback, imageUrl, name)
+                }
+            }
+            else{
+                viewModel.getIds()
+                viewModel.listOfIds.observe(viewLifecycleOwner) { mapOfIds ->
+                    val idList = mapOfIds.entries.toList()
+                    if (finalPosition in idList.indices) {
+                        val selectedEntry = idList[finalPosition]
+                        val productId = selectedEntry.value
+                        Log.d("ItemDetailsFragment", "Product ID: $productId")
+                        viewModel.fetchUserData(auth.currentUser?.uid.toString())
+                        viewModel.userData.observe(viewLifecycleOwner) { userData ->
+                            val imageUrl = userData["imageUrl"] ?: ""
+                            val name = userData["name"] ?: ""
+                            viewModel.setProductRating(productId, rating, feedback, imageUrl, name)
+                        }
+                    } else {
+                        Log.e("ItemDetailsFragment", "Invalid position: $finalPosition")
+                        Toast.makeText(requireContext(), "Invalid product position", Toast.LENGTH_SHORT).show()
                     }
-                } else {
-                    Log.e("ItemDetailsFragment", "Invalid position: $finalPosition")
-                    Toast.makeText(requireContext(), "Invalid product position", Toast.LENGTH_SHORT).show()
                 }
             }
 
+            binding.feedback.text?.clear()
+            binding.submitButton.isEnabled = false
+            binding.submitButton.isClickable = false
+            binding.submitButton.visibility = View.INVISIBLE
+            binding.feedback.visibility = View.INVISIBLE
+            binding.rating.visibility = View.INVISIBLE
+            binding.submitted.visibility = View.VISIBLE
 
-
+            Toast.makeText(requireContext(), "Rating submitted successfully", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    fun isNumericDouble(str: String): Boolean {
+        return str.toDoubleOrNull() != null
     }
 
 }

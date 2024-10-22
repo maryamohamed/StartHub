@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.training.starthub.databinding.FragmentCustomerHomeBinding
 import com.training.starthub.ui.adapter.NewestAdapter
+import com.training.starthub.ui.adapter.SpecialOffersAdapter
 
 
 class CustomerHomeFragment : Fragment() {
@@ -20,6 +21,7 @@ class CustomerHomeFragment : Fragment() {
     private val binding get() = _binding!!
     private val homeViewModel: CustomerHomeViewModel by viewModels()
     private lateinit var newestAdapter: NewestAdapter
+    private lateinit var specialOffersAdapter: SpecialOffersAdapter
     private val auth = FirebaseAuth.getInstance()
 
     override fun onCreateView(
@@ -37,6 +39,15 @@ class CustomerHomeFragment : Fragment() {
         newestAdapter = NewestAdapter(mutableListOf() ) { position ->
             navigateToProductDetails(position)
         }
+        specialOffersAdapter = SpecialOffersAdapter { position ->
+            navigateToProductDetails(position)
+        }
+        binding.recyclerViewSpecialOffer.apply {
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = specialOffersAdapter
+        }
+
+
         homeViewModel.fetchUserName(auth.currentUser!!.uid)
         homeViewModel.userData.observe(viewLifecycleOwner) { data ->
             binding.homeCustomerName.text = data["name"]
@@ -53,6 +64,7 @@ class CustomerHomeFragment : Fragment() {
             Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
         }
 
+
         binding.recyclerViewVewest.setOnClickListener {
             Log.d("CustomerHomeFragment", "Item clicked ${it.tag as Int}")
             navigateToProductDetails(it.tag as Int)
@@ -65,9 +77,9 @@ class CustomerHomeFragment : Fragment() {
 
         val action = CustomerHomeFragmentDirections.actionNavigationHomeToProductDetailsFragment(position.toString())
         findNavController().navigate(action)
-//        findNavController().navigate(R.id.action_navigation_home_to_productDetailsFragment)
 
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

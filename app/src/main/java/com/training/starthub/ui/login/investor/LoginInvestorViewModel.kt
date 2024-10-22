@@ -12,7 +12,7 @@ class LoginViewModel : ViewModel() {
 
     fun login(email: String, password: String) {
         viewModelScope.launch {
-            val result = repository.signInUser(email, password)
+            val result = repository.signInUser(email, password, "Investor")
             loginResult.postValue(result)
         }
     }

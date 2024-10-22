@@ -100,7 +100,7 @@
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/details_product_price"
-                android:layout_width="45dp"
+                android:layout_width="wrap_content"
                 android:layout_height="25dp"
                 android:layout_margin="@dimen/space24"
                 android:background="@drawable/custom_shape"

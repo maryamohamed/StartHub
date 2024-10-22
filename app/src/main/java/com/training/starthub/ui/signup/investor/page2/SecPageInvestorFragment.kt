@@ -51,6 +51,7 @@ class SecPageInvestorFragment : Fragment() {
             if (isValidData(from, to, category)) {
                 viewModel.saveInvestorData(from, to, category, onSuccess = { showToast(it) }, onError = { showToast(it) })
             }
+            findNavController().navigate(R.id.action_SecPageInvestorFragment_to_HomeFragment)
         }
     }
 

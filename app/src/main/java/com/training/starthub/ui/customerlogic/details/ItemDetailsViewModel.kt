@@ -36,6 +36,16 @@ class ItemDetailsViewModel : ViewModel() {
         }
     }
 
+    fun setFavorite(productId: String, userId: String) {
+        viewModelScope.launch {
+            try {
+                repo.setFavorite(productId, userId)
+            } catch (e: Exception) {
+                errorMessage.postValue("Error setting favorite: ${e.message}")
+            }
+        }
+    }
+
     fun clearProductDetails() {
         _productDetails.value = null
     }

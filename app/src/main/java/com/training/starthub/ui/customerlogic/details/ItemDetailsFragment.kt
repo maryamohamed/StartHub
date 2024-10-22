@@ -16,6 +16,8 @@ class ItemDetailsFragment(val sheredPosition: String) : Fragment() {
     private var _binding: FragmentItemDetailsBinding? = null
     private val binding get() = _binding!!
     private val viewModel: ItemDetailsViewModel by viewModels()
+    private var finalPosition = 0
+    private var productId = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,35 +30,56 @@ class ItemDetailsFragment(val sheredPosition: String) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        if (isNumericDouble(sheredPosition)) {
+            finalPosition = sheredPosition.toInt()
+        }
+        else{
+            productId = sheredPosition
+        }
 
-
-        var finalPosition = sheredPosition.toInt()
+//        finalPosition = sheredPosition.toInt()
 
         Log.d("ItemDetailsFragment", "Final Received position: $finalPosition")
 
-        viewModel.getIds()
-        viewModel.listOfIds.observe(viewLifecycleOwner) { mapOfIds ->
-            val idList = mapOfIds.entries.toList()
-            if (finalPosition in idList.indices) {
-                val selectedEntry = idList[finalPosition]
-                val productId = selectedEntry.value
-                Log.d("ItemDetailsFragment", "Product ID: $productId")
-
-                viewModel.fetchProductDetails(productId)
-                viewModel.productDetails.observe(viewLifecycleOwner) { productDetails ->
-                    if (productDetails != null) {
-                        displayProductDetails(productDetails)
-                    } else {
-                        Log.e("ItemDetailsFragment", "Product details are null")
-                        Toast.makeText(requireContext(), "Product details not found", Toast.LENGTH_SHORT).show()
-                    }
+        if (productId.isNotEmpty()) {
+            viewModel.fetchProductDetails(productId)
+            viewModel.productDetails.observe(viewLifecycleOwner) { productDetails ->
+                if (productDetails != null) {
+                    displayProductDetails(productDetails)
+                } else {
+                    Log.e("ItemDetailsFragment", "Product details are null")
+                    Toast.makeText(requireContext(), "Product details not found", Toast.LENGTH_SHORT).show()
                 }
+
                 viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
                     Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
                 }
-            } else {
-                Log.e("ItemDetailsFragment", "Invalid position: $sheredPosition")
-                Toast.makeText(requireContext(), "Invalid product position", Toast.LENGTH_SHORT).show()
+            }
+        }else{
+            viewModel.getIds()
+            viewModel.listOfIds.observe(viewLifecycleOwner) { mapOfIds ->
+                val idList = mapOfIds.entries.toList()
+                if (finalPosition in idList.indices) {
+                    val selectedEntry = idList[finalPosition]
+                    val productId = selectedEntry.value
+                    Log.d("ItemDetailsFragment", "Product ID: $productId")
+
+                    viewModel.fetchProductDetails(productId)
+                    viewModel.productDetails.observe(viewLifecycleOwner) { productDetails ->
+                        if (productDetails != null) {
+                            displayProductDetails(productDetails)
+                        } else {
+                            Log.e("ItemDetailsFragment", "Product details are null")
+                            Toast.makeText(requireContext(), "Product details not found", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    viewModel.errorMessage.observe(viewLifecycleOwner) { errorMessage ->
+                        Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Log.e("ItemDetailsFragment", "Invalid position: $sheredPosition")
+                    Toast.makeText(requireContext(), "Invalid product position", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
@@ -70,5 +93,9 @@ class ItemDetailsFragment(val sheredPosition: String) : Fragment() {
         super.onDestroyView()
         _binding = null
         viewModel.clearProductDetails()
+    }
+
+    fun isNumericDouble(str: String): Boolean {
+        return str.toDoubleOrNull() != null
     }
 }

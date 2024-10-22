@@ -26,7 +26,7 @@ class InvestorRepoOne  {
                 auth.currentUser
             }
             user?.let {
-                saveUserToFirestore(it.uid, name, email, phone)
+                saveUserToFirestore(it.uid, name, email, phone, "Investor")
                 sendEmailVerification(it)
             }
             user
@@ -35,11 +35,12 @@ class InvestorRepoOne  {
         }
     }
 
-    private suspend fun saveUserToFirestore(userId: String, name: String, email: String, phone: String) {
+    private suspend fun saveUserToFirestore(userId: String, name: String, email: String, phone: String, userType: String) {
         val user = hashMapOf(
             "name" to name,
             "email" to email,
-            "phone" to phone
+            "phone" to phone,
+            "userType" to "Investor"
         )
         withContext(Dispatchers.IO) {
             db.collection("Investors").document(userId).set(user).await()

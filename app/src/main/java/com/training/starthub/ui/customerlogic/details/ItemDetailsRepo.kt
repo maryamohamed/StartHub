@@ -35,4 +35,15 @@ class ItemDetailsRepo {
         }
         return listOfIds
     }
+
+    suspend fun setFavorite(productId: String, userId: String) {
+        withContext(Dispatchers.IO) {
+            val favoriteRef = db.collection("Customers")
+                .document(userId)
+                .collection("Favorites")
+                .document(productId)
+                .set(mapOf("productId" to productId)).await()
+
+        }
+    }
 }

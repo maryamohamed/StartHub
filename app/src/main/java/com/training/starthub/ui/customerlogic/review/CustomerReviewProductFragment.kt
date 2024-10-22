@@ -17,6 +17,8 @@ class CustomerReviewProductFragment(val sheredPosition: String) : Fragment() {
     private val binding get() = _binding!!
     private lateinit var reviewsAdapter: ReviewsAdapter
     private val viewModel: CustomerReviewViewModel by viewModels()
+    private var finalPosition = 0
+    private var productId = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,12 +32,19 @@ class CustomerReviewProductFragment(val sheredPosition: String) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        if (isNumericDouble(sheredPosition)) {
+            finalPosition = sheredPosition.toInt()
+        }
+        else{
+            productId = sheredPosition
+            Log.d("CustomerReviewFragment", "Received Position: $productId")
+        }
 
-        val finalPosition = sheredPosition.toInt()
+//        val finalPosition = sheredPosition.toInt()
         Log.d("CustomerReviewFragment", "Received Position: $finalPosition")
 
         setupRecyclerView()
-        observeViewModel(finalPosition)
+        observeViewModel(finalPosition, productId)
     }
 
     private fun setupRecyclerView() {
@@ -47,33 +56,48 @@ class CustomerReviewProductFragment(val sheredPosition: String) : Fragment() {
         }
     }
 
-    private fun observeViewModel(position: Int) {
-        viewModel.getIds()
+    private fun observeViewModel(position: Int, productId: String) {
 
-        viewModel.listOfIds.observe(viewLifecycleOwner) { mapOfIds ->
-            val idList = mapOfIds.entries.toList()
-            if (position in idList.indices) {
-                val productId = idList[position].value
-                Log.d("CustomerReviewFragment", "Product ID: $productId")
-                viewModel.fetchReviews(productId)
-            } else {
-                Log.e("CustomerReviewFragment", "Invalid position: $position")
-                Toast.makeText(requireContext(), "Invalid product position", Toast.LENGTH_SHORT).show()
+        if (productId.isNotEmpty()) {
+            viewModel.fetchReviews(productId)
+            viewModel.products.observe(viewLifecycleOwner) { productList ->
+                reviewsAdapter.setData(productList)
             }
-        }
+            viewModel.error.observe(viewLifecycleOwner) { errorMsg ->
+                Toast.makeText(requireContext(), "Error: $errorMsg", Toast.LENGTH_SHORT).show()
+                Log.e("CustomerReviewFragment", "Error: $errorMsg")
+            }
+        } else {
+            viewModel.getIds()
+            viewModel.listOfIds.observe(viewLifecycleOwner) { mapOfIds ->
+                val idList = mapOfIds.entries.toList()
+                if (position in idList.indices) {
+                    val productId = idList[position].value
+                    Log.d("CustomerReviewFragment", "Product ID: $productId")
+                    viewModel.fetchReviews(productId)
+                } else {
+                    Log.e("CustomerReviewFragment", "Invalid position: $position")
+                    Toast.makeText(requireContext(), "Invalid product position", Toast.LENGTH_SHORT).show()
+                }
+            }
 
-        viewModel.products.observe(viewLifecycleOwner) { productList ->
-            reviewsAdapter.setData(productList)
-        }
+            viewModel.products.observe(viewLifecycleOwner) { productList ->
+                reviewsAdapter.setData(productList)
+            }
 
-        viewModel.error.observe(viewLifecycleOwner) { errorMsg ->
-            Toast.makeText(requireContext(), "Error: $errorMsg", Toast.LENGTH_SHORT).show()
-            Log.e("CustomerReviewFragment", "Error: $errorMsg")
+            viewModel.error.observe(viewLifecycleOwner) { errorMsg ->
+                Toast.makeText(requireContext(), "Error: $errorMsg", Toast.LENGTH_SHORT).show()
+                Log.e("CustomerReviewFragment", "Error: $errorMsg")
+            }
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun isNumericDouble(str: String): Boolean {
+        return str.toDoubleOrNull() != null
     }
 }

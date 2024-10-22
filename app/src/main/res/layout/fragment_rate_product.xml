@@ -41,6 +41,7 @@
                 android:inputType="text"
                 android:textColor="@color/secondaryDark"
                 android:textColorHint="@color/primaryDark" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/submit_button"
                 android:layout_width="@dimen/space150"
@@ -57,5 +58,25 @@
         </LinearLayout>
     </ScrollView>
 
+    <TextView
+        android:id="@+id/submitted"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:background="@color/secondarywhite"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center"
+        android:text="@string/submitted"
+        android:textStyle="bold"
+        android:textSize="@dimen/text18"
+        android:visibility="invisible"
+        android:layout_marginTop="@dimen/space56"
+        android:inputType="text"
+        android:padding="@dimen/space24"
+        android:textColor="@color/secondaryDark"
+        android:textColorHint="@color/secondaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
