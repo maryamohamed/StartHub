@@ -3,6 +3,7 @@ package com.training.starthub.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.training.starthub.databinding.ItemAllProductBinding
 import com.training.starthub.ui.model.CustomerProduct
 
@@ -19,7 +20,10 @@ class SearchAdapter(
             binding.productPrice.text = product.price.toString()
             binding.productCategory.text = product.category
             binding.productCompany.text = product.CompanyName
-            binding.productImg.setImageResource(product.imageUrl.toInt())
+            val imageView = binding.productImg
+            Glide.with(itemView.context)
+                .load(product.imageUrl)
+                .into(imageView)
         }
     }
 

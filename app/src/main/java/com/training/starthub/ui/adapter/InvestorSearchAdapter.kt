@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.training.starthub.databinding.ItemInvestorSearchBinding
+import com.training.starthub.ui.model.Company
 
 
 data class Company(
@@ -15,7 +16,7 @@ data class Company(
     val category: String
 )
 
-class InvestorSearchAdapter(private val context: Context, private val companyList: List<Company>) :
+class InvestorSearchAdapter(private val context: Context, private val companyList: MutableList<com.training.starthub.ui.model.Company>) :
     RecyclerView.Adapter<InvestorSearchAdapter.CompanyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CompanyViewHolder {
@@ -34,7 +35,7 @@ class InvestorSearchAdapter(private val context: Context, private val companyLis
 
     inner class CompanyViewHolder(private val binding: ItemInvestorSearchBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(company: Company) {
-            Glide.with(context).load(company.logoUrl).into(binding.companyLogo)
+            Glide.with(context).load(company.imageUrl).into(binding.companyLogo)
             binding.companyName.text = company.name
             binding.inputDec.text = company.description
             binding.category.text = company.category

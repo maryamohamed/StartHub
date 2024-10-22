@@ -34,6 +34,7 @@ class InvestorProfileFragment : Fragment() {
 
         fetchUserData()
 
+
         // Handle the profile image
         viewModel.imageUrl.observe(viewLifecycleOwner, { url ->
             if (url != null && url.isNotEmpty()) {
