@@ -9,8 +9,7 @@ class HomeProductRepo {
 
     private val db = FirebaseFirestore.getInstance()
 
-    suspend fun getUserProducts(): List<Product> {
-        val userId = FirebaseAuth.getInstance().currentUser?.uid
+    suspend fun getUserProducts( userId: String = FirebaseAuth.getInstance().currentUser?.uid.toString()): List<Product> {
         val productList = mutableListOf<Product>()
 
         if (userId != null) {

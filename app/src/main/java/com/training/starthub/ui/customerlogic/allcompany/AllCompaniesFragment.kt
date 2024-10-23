@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.training.starthub.databinding.FragmentAllCompaniesBinding
 import com.training.starthub.ui.adapter.AllCompanyAdapter
+import com.training.starthub.ui.investorlogic.home.HomeFragmentDirections
 
 class AllCompaniesFragment : Fragment() {
 
@@ -28,7 +30,9 @@ class AllCompaniesFragment : Fragment() {
 
         // Setup RecyclerView with LinearLayoutManager
         binding.companiesRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        allCompanyAdapter = AllCompanyAdapter(mutableListOf())
+        allCompanyAdapter = AllCompanyAdapter(mutableListOf()){ companyId ->
+            navigateToCompanyDetails(companyId.toString())
+        }
         binding.companiesRecyclerView.adapter = allCompanyAdapter
 
         // Set click listener for the back button
@@ -45,5 +49,10 @@ class AllCompaniesFragment : Fragment() {
         viewModel.fetchCompaniesFromFirestore()
 
         return binding.root
+    }
+
+    fun navigateToCompanyDetails(companyId: String) {
+        val action = HomeFragmentDirections.actionHomeFragmentToCompanyDetailsFragment(companyId)
+        findNavController().navigate(action)
     }
 }

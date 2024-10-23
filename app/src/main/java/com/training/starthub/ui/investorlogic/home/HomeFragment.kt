@@ -1,6 +1,5 @@
 package com.training.starthub.ui.investorlogic.home
 
-import com.training.starthub.ui.adapter.CompanyAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -32,13 +31,14 @@ class HomeFragment : Fragment() {
 
         // Setup RecyclerView with LinearLayoutManager
         binding.companyRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        allCompanyAdapter = AllCompanyAdapter(mutableListOf())
+
+        allCompanyAdapter = AllCompanyAdapter(mutableListOf()) { companyId ->
+            navigateToCompanyDetails(companyId.toString())
+        }
+
         binding.companyRecyclerView.adapter = allCompanyAdapter
 
-        // Set click listener for the back button
-//        binding.backButton.setOnClickListener {
-//            requireActivity().onBackPressed()
-//        }
+
 
         // Observe the companies LiveData from ViewModel
         viewModel.companies.observe(viewLifecycleOwner, Observer { companiesList ->
@@ -67,6 +67,11 @@ class HomeFragment : Fragment() {
             }
         }
 
+    }
+
+    fun navigateToCompanyDetails(companyId: String) {
+        val action = HomeFragmentDirections.actionHomeFragmentToCompanyDetailsFragment(companyId)
+        findNavController().navigate(action)
     }
 
 }

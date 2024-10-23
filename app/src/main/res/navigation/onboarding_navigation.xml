@@ -223,6 +223,8 @@
         tools:layout="@layout/fragment_search"
         android:name="com.training.starthub.ui.investorlogic.SearchFragment"
         android:label="SearchFragment">
+
+
         <action
             android:id="@+id/action_SearchFragment_to_HomeFragment"
             app:destination="@id/HomeFragment" />
@@ -236,6 +238,11 @@
         tools:layout="@layout/fragment_home"
         android:name="com.training.starthub.ui.investorlogic.home.HomeFragment"
         android:label="HomeFragment">
+
+        <action
+            android:id="@+id/action_HomeFragment_to_CompanyDetailsFragment"
+            app:destination="@id/CompanyDetailsFragment" />
+
         <action
             android:id="@+id/action_HomeFragment_to_SearchFragment"
             app:destination="@id/SearchFragment" />
@@ -249,10 +256,32 @@
         tools:layout="@layout/fragment_investor_profile"
         android:name="com.training.starthub.ui.profile.InvestorProfileFragment"
         android:label="InvestorProfileFragment">
+        <action
+            android:id="@+id/action_InvestorProfileFragment_to_SearchFragment"
+            app:destination="@id/SearchFragment" />
 
+        <action
+            android:id="@+id/action_InvestorProfileFragment_to_CompanyHomeFragment"
+            app:destination="@id/CompanyHomeFragment" />
 
         <action
             android:id="@+id/action_InvestorProfileFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/CompanyDetailsFragment"
+        tools:layout="@layout/fragment_company_details"
+        android:name="com.training.starthub.ui.investorlogic.home.details.CompanyDetailsFragment"
+        android:label="CompanyDetailsFragment">
+
+        <argument
+            android:name="position"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_CompanyDetailsFragment_to_HomeFragment"
             app:destination="@id/HomeFragment" />
     </fragment>
 

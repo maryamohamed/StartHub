@@ -105,7 +105,13 @@ class InvestorProfileFragment : Fragment() {
                     findNavController().navigate(R.id.action_InvestorProfileFragment_to_HomeFragment)
                     true
                 }
-
+                R.id.navigation_search -> {
+                    findNavController().navigate(R.id.action_InvestorProfileFragment_to_SearchFragment)
+                    true
+                }
+                R.id.navigation_profile -> {
+                    true
+                }
                 else -> false
             }
         }

@@ -7,7 +7,9 @@ import com.bumptech.glide.Glide
 import com.training.starthub.databinding.CustomerAllCompaniesItemBinding
 import com.training.starthub.ui.model.Company
 
-class AllCompanyAdapter(private var companies: List<Company>) :
+class AllCompanyAdapter(
+    private var companies: List<Company>
+, private val onItemClick: (Int) -> Unit) :
     RecyclerView.Adapter<AllCompanyAdapter.CompanyViewHolder>() {
 
     class CompanyViewHolder(private val binding: CustomerAllCompaniesItemBinding) :
@@ -33,6 +35,7 @@ class AllCompanyAdapter(private var companies: List<Company>) :
 
     override fun onBindViewHolder(holder: CompanyViewHolder, position: Int) {
         holder.bind(companies[position])
+        holder.itemView.setOnClickListener { onItemClick(position) }
     }
 
     override fun getItemCount(): Int = companies.size

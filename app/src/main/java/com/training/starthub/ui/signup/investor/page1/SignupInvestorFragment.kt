@@ -60,7 +60,7 @@ class SignupInvestorFragment : Fragment() {
     }
 
     private fun onRegistrationSuccess(user: FirebaseUser) {
-        showToast("Registration successful! Please verify your email.")
+
         viewModel.checkEmailVerification(user, {
             showToast("Email successfully verified!")
             findNavController().navigate(R.id.action_SignupInvestorFragment_to_SecPageInvestorFragment)

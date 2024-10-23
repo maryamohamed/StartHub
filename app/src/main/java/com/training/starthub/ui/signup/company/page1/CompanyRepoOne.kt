@@ -1,132 +1,94 @@
 package com.training.starthub.ui.signup.company.page1
 
-import android.content.Context
-import android.view.View
-import androidx.navigation.findNavController
+
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import com.training.starthub.R
-import com.training.starthub.utils.ToastUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
-class CompanyRepoOne constructor(val view: View, private val context: Context, private val db: FirebaseFirestore, private val auth: FirebaseAuth) {
+class CompanyRepoOne {
 
-    // user: User
-    suspend fun saveUserToFirestore(name: String, email: String, phone: String, password: String, userType: String){
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val db: FirebaseFirestore = FirebaseFirestore.getInstance()
+
+    suspend fun registerUser(name: String, email: String, password: String, phone: String): FirebaseUser? {
+        return try {
+            val user = withContext(Dispatchers.IO) {
+                auth.createUserWithEmailAndPassword(email, password).await()
+                auth.currentUser
+            }
+            user?.let {
+                saveUserToFirestore(it.uid, name, email, phone, "Investor")
+                sendEmailVerification(it)
+            }
+            user
+        } catch (e: Exception) {
+            null
+        }
+    }
+
+    private suspend fun saveUserToFirestore(userId: String, name: String, email: String, phone: String, userType: String) {
         val user = hashMapOf(
             "name" to name,
             "email" to email,
             "phone" to phone,
-            "password" to password,
-            "userType" to userType)
+            "userType" to "Company"
+        )
         val name = hashMapOf(
             "name" to name)
         val companyName = hashMapOf(
             "name" to name)
 
         withContext(Dispatchers.IO) {
+            db.collection("Companies").document(userId).set(user).await()
+        }
 
-            // Check if the user is already authenticated
-            try {
-                auth.createUserWithEmailAndPassword(email, password).await()
-                sendEmailVerification(auth.currentUser!!)
-                checkEmailVerification(auth.currentUser!!)
-
-                db.collection("Companies").document(auth.currentUser!!.uid).set(user)
-                    .addOnSuccessListener {
-                        ToastUtil.showToast(
-                            context = context,
-                            "User data successfully added to Firestore."
-                        )
-                    }
-                    .addOnFailureListener { e ->
-                        ToastUtil.showToast(
-                            context = context,
-                            "Error adding user data to Firestore: ${e.message}"
-                        )
-                    }.await()
-
-
-                checkEmailVerification(auth.currentUser!!)
-            }catch (e: Exception){
-                ToastUtil.showToast(context = context,"Failed to create account: ${e.message}")
-            }
-
+        withContext(Dispatchers.IO){
+            db.collection("Companies/${auth.currentUser!!.uid}/Profile").document(auth.currentUser!!.uid)
+                .set(user, SetOptions.merge()).await()
         }
 
         withContext(Dispatchers.IO){
             db.collection("Companies/${auth.currentUser!!.uid}/secPage").document(auth.currentUser!!.uid)
-                .set(name).addOnSuccessListener {
-                    ToastUtil.showToast(
-                        context = context,
-                        "User data successfully added to Firestore."
-                    )
-                }
-                .addOnFailureListener { e ->
-                    ToastUtil.showToast(
-                        context = context,
-                        "Error adding user data to Firestore: ${e.message}"
-                    )
-                }.await()
+                .set(name).await()
 
         }
 
         withContext(Dispatchers.IO){
             db.collection("Companies/${auth.currentUser!!.uid}/Products").document(auth.currentUser!!.uid)
-                .set(companyName , SetOptions.merge())
-                .addOnFailureListener { e ->
-                    ToastUtil.showToast(
-                        context = context,
-                        "Error adding Company name to Firestore: ${e.message}"
-                    )
-                }.await()
+                .set(companyName , SetOptions.merge()).await()
 
         }
 
     }
 
-
-    private suspend fun sendEmailVerification(user: FirebaseUser){
-        try {
-            user.sendEmailVerification()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        ToastUtil.showToast(context = context,"Verification email sent to ${user.email}")
-                    } else {
-                        ToastUtil.showToast(context = context,"Error sending verification email: ${task.exception?.message}")
-                    }
-                }.await()
-        }catch (e: Exception){
-            ToastUtil.showToast(context = context,"Failed to create account: ${e.message}")
+    private suspend fun sendEmailVerification(user: FirebaseUser) {
+        withContext(Dispatchers.IO) {
+            user.sendEmailVerification().await()
         }
-
     }
 
-
-    suspend fun checkEmailVerification(user: FirebaseUser = auth.currentUser!!){
-
-
+    suspend fun checkEmailVerification(
+        user: FirebaseUser,
+        onSuccess: () -> Unit,
+        onFailure: () -> Unit
+    ) {
         while (true) {
-
             user.reload()
             if (user.isEmailVerified) {
-                ToastUtil.showToast(context = context, "Email verified")
-                withContext(Dispatchers.Main){
-                    view.findNavController().navigate(R.id.action_SignupCompanyFragment_to_SecPageCompanyFragment)
-                }
+                withContext(Dispatchers.Main) { onSuccess() }
                 break
-
             } else {
-                delay(1000)
+                withContext(Dispatchers.Main) { onFailure() }
+                delay(5000)
             }
         }
-
     }
+
 
 
 

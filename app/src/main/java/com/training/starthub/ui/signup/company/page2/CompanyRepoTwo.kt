@@ -20,6 +20,9 @@ class CompanyRepoTwo constructor(val view: View, private val context: Context, p
             "category" to category,
 //            "name" to name
         )
+        val dec = hashMapOf(
+            "description" to description,
+        )
 
         withContext(Dispatchers.IO) {
 
@@ -37,6 +40,8 @@ class CompanyRepoTwo constructor(val view: View, private val context: Context, p
                             "Error adding user data to Firestore: ${e.message}"
                         )
                     }.await()
+
+                db.collection("Companies").document(auth.currentUser!!.uid).set(dec, SetOptions.merge()).await()
 
             }catch (e: Exception){
                 ToastUtil.showToast(context = context, "${e.message}")

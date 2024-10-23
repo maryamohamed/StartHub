@@ -8,6 +8,16 @@
     android:background="@color/secondarywhite"
     tools:context=".ui.companylogic.profile.CompanyProfileFragment">
 
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/home_shapee"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:src="@drawable/home_shape"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/title_sales"
@@ -16,7 +26,7 @@
         android:layout_marginTop="40dp"
         android:gravity="center"
         android:text="All Products"
-        android:textColor="@color/secondaryDark"
+        android:textColor="@color/primarywhite"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,8 +36,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:layout_width="410dp"
-        android:layout_height="595dp"
+        android:layout_width="411dp"
+        android:layout_height="552dp"
         android:clipToPadding="false"
         android:padding="16dp"
         android:scrollbars="vertical"
@@ -36,13 +46,14 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_sales"
-        app:layout_constraintVertical_bias="0.264" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_product"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="20dp"
         android:backgroundTint="@color/secondaryDark"
         android:src="@drawable/plus"
         app:layout_constraintBottom_toBottomOf="@+id/recycler_view"
