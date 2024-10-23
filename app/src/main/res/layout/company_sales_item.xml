@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="150dp"
+    android:layout_width="170dp"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/card_shape"
@@ -17,67 +17,67 @@
         android:contentDescription="Product Image" />
 
     <!-- Product Name -->
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-
-    <TextView
-        android:id="@+id/product_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Product Name"
-        android:textColor="@color/secondaryDark"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:gravity="center_horizontal"/>
-
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="92dp"
-        android:orientation="vertical"
-        android:paddingTop="5dp">
+        android:orientation="horizontal">
 
-        <!-- Product Price -->
-
-        <!-- Discounted Price (crossed out) -->
         <TextView
-            android:id="@+id/product_price"
+            android:id="@+id/product_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="10dp"
-            android:text="price"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:text="Product Name"
             android:textColor="@color/secondaryDark"
             android:textSize="14sp"
             android:textStyle="bold" />
 
-<!--        <ImageView-->
-<!--            android:id="@+id/slash"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="25dp"-->
-<!--            android:layout_marginStart="8dp"-->
-<!--            android:layout_marginTop="18dp"-->
-<!--            android:contentDescription="Product Image"-->
-<!--            android:scaleType="centerInside"-->
-<!--            android:src="@drawable/slash" />-->
+        <RelativeLayout
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="85dp"
+            android:orientation="vertical"
+            android:paddingTop="5dp">
 
-<!--        <TextView-->
-<!--            android:id="@+id/product_discount_price"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="8dp"-->
-<!--            android:paddingLeft="3dp"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:text="price"-->
-<!--            android:textColor="#C94B4B"-->
-<!--            android:textSize="12sp" />-->
+            <!-- Product Price -->
 
+            <!-- Discounted Price (crossed out) -->
+            <TextView
+                android:id="@+id/product_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:text="price"
+                android:textColor="@color/secondaryDark"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <!--        <ImageView-->
+            <!--            android:id="@+id/slash"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="25dp"-->
+            <!--            android:layout_marginStart="8dp"-->
+            <!--            android:layout_marginTop="18dp"-->
+            <!--            android:contentDescription="Product Image"-->
+            <!--            android:scaleType="centerInside"-->
+            <!--            android:src="@drawable/slash" />-->
+
+            <!--        <TextView-->
+            <!--            android:id="@+id/product_discount_price"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginStart="8dp"-->
+            <!--            android:paddingLeft="3dp"-->
+            <!--            android:layout_marginTop="20dp"-->
+            <!--            android:text="price"-->
+            <!--            android:textColor="#C94B4B"-->
+            <!--            android:textSize="12sp" />-->
+
+        </RelativeLayout>
     </RelativeLayout>
-</RelativeLayout>
 
 
     <!-- Price and Discount -->

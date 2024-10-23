@@ -41,6 +41,7 @@
         android:clipToPadding="false"
         android:padding="16dp"
         android:scrollbars="vertical"
+        android:paddingVertical="@dimen/text10"
         app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -109,7 +110,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="33dp"
             android:layout_marginTop="41dp"
-            android:text="Profile"
+            android:text="Home"
             android:textSize="12sp"
 
             />

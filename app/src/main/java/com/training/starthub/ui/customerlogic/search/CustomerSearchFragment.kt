@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.training.starthub.databinding.FragmentCustomerSearchBinding
 import com.training.starthub.ui.adapter.SearchAdapter
+import com.training.starthub.ui.customerlogic.FilterDialog
 import com.training.starthub.ui.customerlogic.home.CustomerHomeViewModel
 
 class CustomerSearchFragment : Fragment() {
@@ -26,10 +27,14 @@ class CustomerSearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCustomerSearchBinding.inflate(inflater, container, false)
-        binding.emptyStateTextView.text = "Start typing to search for products."
-        binding.emptyStateTextView.visibility = View.VISIBLE
-        binding.searchCardView.setOnClickListener { binding.recyclerSearch.visibility = View.VISIBLE
+         _binding = FragmentCustomerSearchBinding.inflate(inflater, container, false)
+         binding.emptyStateTextView.text = "Start typing to search for products."
+         binding.emptyStateTextView.visibility = View.VISIBLE
+         binding.searchCardView.setOnClickListener { binding.recyclerSearch.visibility = View.VISIBLE
+         binding.iconFilter.setOnClickListener {
+             val dialog = FilterDialog()
+             dialog.show(parentFragmentManager, "FilterDialog")
+         }
             setupRecyclerView()
             setupSearchListener()
             observeProductsData()

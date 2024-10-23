@@ -6,6 +6,7 @@
     android:layout_height="@dimen/space150"
     android:padding="16dp"
     android:layout_marginVertical="@dimen/space12"
+    android:layout_marginHorizontal="@dimen/space12"
     android:background="@drawable/company_card_background"
     android:elevation="2dp"
     android:layout_marginBottom="12dp">
@@ -67,8 +68,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:layout_width="218dp"
-        android:layout_height="46dp"
+        android:layout_width="211dp"
+        android:layout_height="32dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="44dp"
         app:layout_constraintStart_toEndOf="@id/secGuideline"
@@ -99,7 +100,7 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.882"
         app:layout_constraintStart_toEndOf="@id/secGuideline"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
