@@ -1,5 +1,6 @@
 package com.training.starthub.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -35,6 +36,10 @@ class SelectFragment : Fragment() {
         }
         binding.investorBtn.setOnClickListener {
             findNavController().navigate(R.id.action_SelectFragment_to_loginInvestorFragment)
+        }
+        binding.visitorBtn.setOnClickListener {
+            val intent = Intent(requireContext(), CustomerHomeActivity::class.java)
+            startActivity(intent)
         }
     }
 

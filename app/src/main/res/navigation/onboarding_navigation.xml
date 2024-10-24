@@ -254,7 +254,7 @@
     <fragment
         android:id="@+id/InvestorProfileFragment"
         tools:layout="@layout/fragment_investor_profile"
-        android:name="com.training.starthub.ui.profile.InvestorProfileFragment"
+        android:name="com.training.starthub.ui.investorlogic.profile.InvestorProfileFragment"
         android:label="InvestorProfileFragment">
         <action
             android:id="@+id/action_InvestorProfileFragment_to_SearchFragment"

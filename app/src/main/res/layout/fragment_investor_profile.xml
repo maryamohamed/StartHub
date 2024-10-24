@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/secondarywhite"
-    tools:context=".ui.profile.InvestorProfileFragment">
+    tools:context=".ui.investorlogic.profile.InvestorProfileFragment">
 
     <!-- Top Header with Image -->
     <LinearLayout
