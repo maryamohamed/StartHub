@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/company_profile_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/secondarywhite"
+    tools:context=".ui.companylogic.profile.CompanyProfileFragment">
+
+    <!-- Top Header with Image -->
+    <LinearLayout
+        android:id="@+id/header_layout"
+        android:layout_width="0dp"
+        android:layout_height="180dp"
+        android:background="#A29582"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="spread">
+
+        <!-- Placeholder for the cover image -->
+        <ImageView
+            android:id="@+id/cover_image"
+            android:layout_width="407dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
+            android:src="@drawable/profile_background" />
+    </LinearLayout>
+
+    <!-- Profile Picture -->
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        cirsle="true"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="-50dp"
+        android:src="@drawable/user"
+        app:civ_border_color="@color/primarywhite"
+        app:civ_border_width="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header_layout" />
+
+    <!-- Name -->
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Name"
+        android:textColor="@color/secondaryDark"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_image" />
+
+    <!-- Divider -->
+
+    <!-- Sales Button -->
+    <TextView
+        android:id="@+id/input_dec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="................................................................................................................................................................................................................................................................................................................................................................................................................................................................................."
+        android:padding="10dp"
+        android:textColor="@color/secondaryDark"
+        android:textColorHint="@color/secondaryDark"
+        android:visibility="invisible"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/sales_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/user_name" />
+
+    <LinearLayout
+        android:id="@+id/sales_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_dec">
+
+        <ImageView
+            android:id="@+id/sales_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/cart" />
+
+        <TextView
+            android:id="@+id/sales_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Sales"
+            android:textColor="#4F4F4F"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <!-- Projects Button -->
+    <LinearLayout
+        android:id="@+id/projects_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sales_button">
+
+        <ImageView
+            android:id="@+id/projects_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/clock" />
+
+        <TextView
+            android:id="@+id/projects_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Projects"
+            android:textColor="#4F4F4F"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <!-- Settings Button -->
+    <LinearLayout
+        android:id="@+id/settings_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/projects_button">
+
+        <ImageView
+            android:id="@+id/settings_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/settings" />
+
+        <TextView
+            android:id="@+id/settings_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Settings"
+            android:textColor="#4F4F4F"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <!-- Log Out Button -->
+    <LinearLayout
+        android:id="@+id/logout_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settings_button">
+
+        <ImageView
+            android:id="@+id/logout_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/logout_19"
+            tools:ignore="UseAppTint" />
+
+        <TextView
+            android:id="@+id/logout_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Log Out"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="410dp"
+        android:layout_height="58dp"
+        android:background="@color/primarywhite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" >
+
+        <ImageView
+            android:id="@+id/home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17.5dp"
+            android:layout_marginStart="33dp"
+            android:src="@drawable/home"/>
+
+        <ImageView
+            android:id="@+id/reviews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17.5dp"
+            android:src="@drawable/reviews"
+            android:backgroundTint="@color/secondaryDark"
+            android:layout_marginStart="134dp"/>
+
+        <ImageView
+            android:id="@+id/favorites"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17.5dp"
+            android:src="@drawable/favorites"
+            android:layout_marginStart="233dp"/>
+
+        <ImageView
+            android:id="@+id/profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17.5dp"
+            android:layout_marginStart="333dp"
+            android:src="@drawable/profile_dark" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="41dp"
+            android:layout_marginStart="330dp"
+            android:text="Profile"
+            android:textSize="12sp"
+
+            />
+
+
+    </RelativeLayout>
+
+    <!-- Bottom Navigation -->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

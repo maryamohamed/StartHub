@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/primarywhite"
-    tools:context=".ui.Signup.SignUpCompanyFragment">
+    tools:context=".ui.signup.company.page1.SignUpCompanyFragment">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/top_right"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
+        android:layout_marginEnd="-80dp"
+        android:layout_marginTop="-80dp"
         android:src="@drawable/top_right"
-        tools:layout_editor_absoluteX="259dp"
-        tools:layout_editor_absoluteY="-84dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
+
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/welcome_text"
@@ -49,7 +51,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_input_signup_name"
         android:layout_width="328dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:textColorHint="@color/primaryDark"
         android:layout_marginTop="130dp"
@@ -60,7 +62,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/signup_name"
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Your Name"
@@ -71,9 +73,9 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_signup_gmail"
+        android:id="@+id/gmail"
         android:layout_width="328dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:textColorHint="@color/primaryDark"
         android:layout_marginTop="204dp"
@@ -87,7 +89,7 @@
             android:id="@+id/signup_gmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Gmail"
+            android:hint="Email"
             android:backgroundTint="@color/primaryDark"
             android:textColor="@color/secondaryDark"
             android:inputType="textEmailAddress"/>
@@ -98,7 +100,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_input_signup_pass"
         android:layout_width="328dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:textColorHint="@color/primaryDark"
         android:layout_marginTop="278dp"
@@ -109,7 +111,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/signup_pass"
+            android:id="@+id/pass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
@@ -123,7 +125,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_input_signup_confirm_pass"
         android:layout_width="328dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:textColorHint="@color/primaryDark"
         android:layout_marginTop="352dp"
@@ -134,7 +136,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/signup_confirm_pass"
+            android:id="@+id/confirm_pass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Confirm Password"
@@ -145,9 +147,9 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_signup_phone"
+        android:id="@+id/phone_frame"
         android:layout_width="328dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:textColorHint="@color/primaryDark"
         android:layout_marginTop="426dp"
@@ -158,7 +160,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/signup_phone"
+            android:id="@+id/phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Phone"
@@ -168,7 +170,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/company_sign_upButton"
+        android:id="@+id/signup_next"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/space24"
@@ -182,7 +184,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_input_signup_phone" />
+        app:layout_constraintTop_toBottomOf="@+id/phone_frame" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -192,7 +194,7 @@
         android:src="@drawable/second_shape"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/company_sign_upButton" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_next" />
 
 
     <ImageView
@@ -222,18 +224,18 @@
         android:id="@+id/dont_have_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="95dp"
+        android:layout_marginStart="92dp"
         android:fontFamily="@font/poppins_regular"
         android:text="Already have an Account? "
         android:textColor="@color/primaryDark"
         android:textSize="@dimen/text14"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/company_sign_upButton"
-        app:layout_constraintVertical_bias="0.75" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_next"
+        app:layout_constraintVertical_bias="0.733" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/sign_up_text"
+        android:id="@+id/login_textBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/space32"

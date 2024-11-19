@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/secondarywhite">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/home_shapee"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:src="@drawable/home_shape"
+        app:layout_constraintBottom_toTopOf="@+id/secGuideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/secGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.19" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/spacial_offer_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space8"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:text="Spcial Offers"
+        android:layout_marginStart="@dimen/space32"
+        android:textColor="@color/secondaryDark"
+        android:textSize="@dimen/text18"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/secGuideline" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewSpecialOffer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/space8"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/thirdGuideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spacial_offer_text"
+        tools:listitem="@layout/item_special_offer" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/thirdGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.62" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/newest_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:text="Newest"
+        android:layout_marginTop="@dimen/space8"
+        android:layout_marginStart="@dimen/space32"
+        android:textColor="@color/secondaryDark"
+        android:textSize="@dimen/text18"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/thirdGuideline" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_vewest"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/space32"
+        android:layout_marginVertical="@dimen/space8"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newest_text"
+        tools:listitem="@layout/item_newest" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/hello_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space52"
+        android:layout_marginTop="@dimen/space32"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:text="@string/hi"
+        android:textColor="@color/primarywhite"
+        android:textSize="@dimen/text20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/home_customer_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semi_bold"
+        android:text=""
+        android:textColor="@color/primarywhite"
+        android:textSize="@dimen/text20"
+        app:layout_constraintStart_toEndOf="@+id/hello_message"
+        app:layout_constraintTop_toBottomOf="@+id/hello_message" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

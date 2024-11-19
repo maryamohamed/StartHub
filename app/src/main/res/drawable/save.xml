@@ -1,0 +1,33 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+
+    <!-- House structure -->
+    <path
+        android:pathData="M34,42V26H14V42"
+        android:strokeColor="@color/secondaryDark"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="@android:color/transparent"/>
+
+    <!-- Roof -->
+    <path
+        android:pathData="M14,6V16H30"
+        android:strokeColor="@color/secondaryDark"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="@android:color/transparent"/>
+
+    <!-- Outer frame of the house -->
+    <path
+        android:pathData="M38,42H10C8.93913,42 7.92172,41.5786 7.17157,40.8284C6.42143,40.0783 6,39.0609 6,38V10C6,8.93913 6.42143,7.92172 7.17157,7.17157C7.92172,6.42143 8.93913,6 10,6H32L42,16V38C42,39.0609 41.5786,40.0783 40.8284,40.8284C40.0783,41.5786 39.0609,42 38,42Z"
+        android:strokeColor="@color/secondaryDark"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:fillColor="@android:color/transparent"/>
+</vector>

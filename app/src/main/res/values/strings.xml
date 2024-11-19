@@ -6,4 +6,43 @@
     <string name="welcome_login">Welcome, \nLogin</string>
     <string name="welcome_signup">Welcome, \nSign up</string>
     <string name="or_sign_up_with">or sign up with</string>
+
+
+    <string name="FullName_Is_Required">FullName Is Required</string>
+    <string name="Email_Is_Required">Email Is Required</string>
+    <string name="Phone_Number_Is_Required">Phone Number Is Required</string>
+    <string name="Password_Is_Required">Password Is Required</string>
+    <string name="Confirm_Password_Is_Required">Confirm Password Is Required</string>
+    <string name="Password_Do_not_match">Password Don\'t match</string>
+    <string name="success">Success</string>
+
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="favorites">Favorites</string>
+    <string name="cart">Cart</string>
+    <string name="profile">Profile</string>
+    <string name="navigation_drawer_open">open</string>
+    <string name="navigation_drawer_close">close</string>
+    <string name="all_companies">All Companies</string>
+    <string name="all_products">All Products</string>
+    <string name="hi">Hi,</string>
+    <string name="search_product">Search Product</string>
+    <string name="lorem_short">Lorem ipsum dolor sit amet consectetur. Molestie elit sit a tempor suscipit pretium faucibus.</string>
+    <string name="lorem">Lorem ipsum dolor sit amet consectetur.Volutpat eget vel dui malesuada quam dictum. Volutpat eget vel dui malesuada quam dictum. Volutpat eget vel dui malesuada quam dictum. Facilisi nullam convallis gravida arcu interdum ut a auctor sit. Egestas interdum turpis mattis tincidunt curabitur mauris. Nunc quam nisl vulputate sagittis feugiat. Nunc quam nisl vulputate sagittis feugiat.</string>
+    <string name="select_category">Select Category</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="write_your_feedback_here">Write Your Feedback Here</string>
+    <string name="submitted">Submitted Successfully</string>
+    <string name="submit">Submit</string>
+    <string-array name="category_options">
+        <item>Select Category</item>
+        <item>Technology</item>
+        <item>Clothes</item>
+        <item>Books</item>
+    </string-array>
+
+
 </resources>

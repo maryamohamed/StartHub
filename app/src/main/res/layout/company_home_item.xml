@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginVertical="@dimen/space12"
+    android:elevation="24dp"
+    android:padding="16dp"
+    android:background="@drawable/company_card_background">
+
+    <!-- Image of the product -->
+    <ImageView
+        android:id="@+id/product_image"
+        android:layout_width="80dp"
+        android:layout_height="83dp"
+        android:layout_gravity="center_vertical"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher_background" />
+
+    <!-- Container for product details -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingStart="16dp"
+        android:layout_gravity="center_vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/edit_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:padding="8dp"
+                android:src="@drawable/edit" />
+
+            <ImageView
+                android:id="@+id/delete_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="246dp"
+                android:layout_gravity="center_vertical"
+                android:padding="8dp"
+                android:src="@drawable/delete" />
+
+            <TextView
+                android:id="@+id/product_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="56dp"
+                android:paddingBottom="4dp"
+                android:text="Product Name"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+        <!-- Product name -->
+
+
+        <!-- Product description -->
+        <TextView
+            android:id="@+id/product_description"
+            android:layout_width="283dp"
+            android:layout_height="45dp"
+            android:paddingBottom="4dp"
+            android:text="Description"
+            android:textSize="14sp" />
+
+        <!-- Product category and price layout -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Product category -->
+            <TextView
+                android:id="@+id/product_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category"
+                android:textSize="12sp"
+                android:layout_marginEnd="16dp" />
+
+            <!-- Product price -->
+            <TextView
+                android:id="@+id/product_price"
+                android:layout_width="90dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="125dp"
+                android:layout_marginRight="@dimen/space12"
+                android:text="Price $100"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Edit and Delete Buttons -->
+
+</LinearLayout>

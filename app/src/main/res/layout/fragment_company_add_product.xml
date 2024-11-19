@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#EFE8DC"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Placeholder for Upload Icon or Image -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginBottom="16dp"
+        android:background="#7A6A56"
+        android:gravity="center">
+
+        <!-- Upload Icon (SVG / ImageView) -->
+        <ImageView
+            android:id="@+id/upload_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/upload" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Product Name"
+            android:textSize="18sp"
+            android:textColor="@color/secondaryDark"
+            android:layout_marginEnd="8dp" />
+
+        <EditText
+            android:id="@+id/product_name"
+            android:layout_width="156dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space56"
+            android:background="@drawable/edittext_background"
+            android:hint="name"
+            android:gravity="center"
+            android:inputType="textAutoComplete"
+            android:padding="8dp"
+            android:textColor="@color/secondaryDark" />
+
+
+    </LinearLayout>
+
+    <!-- Description Label -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description:"
+        android:textColor="@color/secondaryDark"
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Description Field (Multi-line EditText) -->
+    <EditText
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/edittext_background"
+        android:padding="12dp"
+        android:hint="Enter description"
+        android:textColor="@color/secondaryDark"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:lines="5"
+        android:scrollbars="vertical" />
+
+    <!-- Price Field -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="24dp"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Price"
+                android:textSize="18sp"
+                android:textColor="@color/secondaryDark"
+                android:layout_marginEnd="8dp" />
+
+            <EditText
+                android:id="@+id/price"
+                android:layout_width="133dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space56"
+                android:background="@drawable/edittext_background"
+                android:hint="Price"
+                android:textColor="@color/secondaryDark"
+                android:inputType="numberDecimal"
+                android:padding="8dp" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/categoryP2"
+                android:layout_width="100dp"
+                android:layout_height="27dp"
+                android:layout_marginTop="@dimen/space12"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Category"
+                android:textColor="@color/secondaryDark"
+                android:textSize="@dimen/text18" />
+
+
+
+            <Spinner
+                android:id="@+id/category"
+                android:layout_width="227dp"
+                android:layout_height="49dp"
+                android:background="@drawable/edittext_background"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/secondaryDark"
+                android:layout_marginTop="@dimen/space12"
+                android:layout_marginLeft="@dimen/space8"/>
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_gravity="center"
+        android:text="post" />
+
+</LinearLayout>

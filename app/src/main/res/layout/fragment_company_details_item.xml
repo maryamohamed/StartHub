@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primarywhite" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="218dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_phone" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/details_number"
+            android:layout_width="196dp"
+            android:layout_height="27dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="48dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text=""
+            android:textColor="@color/secondaryDark"
+            android:textSize="@dimen/text18"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/secondGuideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.08">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_email" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/details_email"
+            android:layout_width="wrap_content"
+            android:layout_height="27dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="48dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text=""
+            android:textColor="@color/secondaryDark"
+            android:textSize="@dimen/text10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/calendar_svgrepo_com" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/details_data"
+            android:layout_width="196dp"
+            android:layout_height="27dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="48dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text=""
+            android:textColor="@color/secondaryDark"
+            android:textSize="@dimen/text18"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_email"
+            app:layout_constraintBottom_toTopOf="@+id/secondGuideline"/>
+    </LinearLayout>
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/secondGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.17" />
+
+
+    <ScrollView
+        android:id="@+id/details_ScrollView"
+        android:layout_width="412dp"
+        android:layout_height="247dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/secondGuideline"
+        app:layout_constraintVertical_bias="0.3">
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/details_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space24"
+            android:fontFamily="@font/poppins_medium"
+            android:text=""
+            android:textColor="@color/secondaryDark"
+            android:textSize="@dimen/text18" />
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

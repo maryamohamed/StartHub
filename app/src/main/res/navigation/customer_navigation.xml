@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.training.starthub.ui.customerlogic.home.CustomerHomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_navigation_home_to_item_details_fragment"
+            app:destination="@id/item_details_fragment" />
+
+        <action
+            android:id="@+id/action_navigation_home_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_favorites"
+        android:name="com.training.starthub.ui.customerlogic.favorites.CustomerFavoritesFragment"
+        android:label="@string/favorites"
+        tools:layout="@layout/fragment_customer_favorites">
+
+        <action
+            android:id="@+id/action_navigation_favorites_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_cart"
+        android:name="com.training.starthub.ui.customerlogic.cart.CustomerCartFragment"
+        tools:layout="@layout/fragment_customer_cart">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.training.starthub.ui.customerlogic.profile.CustomerProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_customer_profile" />
+    <fragment
+        android:id="@+id/nav_Companies"
+        android:name="com.training.starthub.ui.customerlogic.allcompany.AllCompaniesFragment"
+        android:label="All Companies"
+        tools:layout="@layout/fragment_all_companies" />
+    <fragment
+        android:id="@+id/nav_products"
+        android:name="com.training.starthub.ui.customerlogic.allproduct.AllProductsFragment"
+        android:label="All Products"
+        tools:layout="@layout/fragment_all_products" >
+
+
+        <action
+            android:id="@+id/action_nav_products_to_navigation_home"
+            app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_nav_products_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="com.training.starthub.ui.customerlogic.search.CustomerSearchFragment"
+        android:label="Search"
+        tools:layout="@layout/fragment_search" />
+
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.training.starthub.ui.customerlogic.details.CustomerDetailsFragment"
+        android:label="Product Details"
+        tools:layout="@layout/fragment_customer_details" >
+
+        <argument
+            android:name="position"
+            app:argType="string" />
+
+
+        <action
+            android:id="@+id/action_productDetailsFragment_to_item_details_fragment"
+            app:destination="@id/item_details_fragment" />
+
+        <action
+            android:id="@+id/action_productDetailsFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/item_details_fragment"
+        android:name="com.training.starthub.ui.customerlogic.details.ItemDetailsFragment"
+        android:label="fragment_item_details"
+        tools:layout="@layout/fragment_item_details" >
+
+        <argument
+            android:name="position"
+            app:argType="string" />
+
+    </fragment>
+
+
+
+
+
+
+</navigation>

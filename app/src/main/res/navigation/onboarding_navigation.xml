@@ -13,6 +13,7 @@
             android:id="@+id/action_splashFragment_to_viewPagerFragment"
             app:destination="@id/viewPagerFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/viewPagerFragment"
         tools:layout="@layout/fragment_view_pager"
@@ -23,6 +24,7 @@
             android:id="@+id/action_viewPagerFragment_to_SelectFragment"
             app:destination="@id/SelectFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/SelectFragment"
         android:name="com.training.starthub.ui.SelectFragment"
@@ -42,17 +44,249 @@
     <fragment
         android:id="@+id/loginCustomerFragment"
         tools:layout="@layout/fragment_login_customer"
-        android:name="com.training.starthub.ui.login.LoginCustomerFragment"
-        android:label="LoginCustomerFragment" />
+        android:name="com.training.starthub.ui.login.customer.LoginCustomerFragment"
+        android:label="LoginCustomerFragment" >
+        <action
+            android:id="@+id/action_loginCustomerFragment_to_SignupCustomerFragment"
+            app:destination="@+id/SignupCustomerFragment" />
+        <action
+            android:id="@+id/action_loginCustomerFragment_to_CustomerProfileFragment"
+            app:destination="@id/CustomerProfileFragment" />
+
+    </fragment>
+
     <fragment
         android:id="@+id/loginCompanyFragment"
         tools:layout="@layout/fragment_login_company"
-        android:name="com.training.starthub.ui.login.LoginCompanyFragment"
-        android:label="LoginCompanyFragment" />
+        android:name="com.training.starthub.ui.login.company.LoginCompanyFragment"
+        android:label="LoginCompanyFragment" >
+        <action
+            android:id="@+id/action_loginCompanyFragment_to_SignupCompanyFragment"
+            app:destination="@+id/SignupCompanyFragment" />
+
+
+        <action
+            android:id="@+id/action_loginCompanyFragment_to_CompanyHomeFragment"
+            app:destination="@id/CompanyHomeFragment" />
+
+    </fragment>
+
+
     <fragment
         android:id="@+id/loginInvestorFragment"
         tools:layout="@layout/fragment_login_investor"
-        android:name="com.training.starthub.ui.login.LoginInvestorFragment"
-        android:label="LoginInvestorFragment" />
+        android:name="com.training.starthub.ui.login.investor.LoginInvestorFragment"
+        android:label="LoginInvestorFragment" >
+        <action
+            android:id="@+id/action_loginInvestorFragment_to_SignupInvestorFragment"
+            app:destination="@+id/SignupInvestorFragment" />
+        <action
+            android:id="@+id/action_loginInvestorFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SignupCustomerFragment"
+        tools:layout="@layout/fragment_signup_client"
+        android:name="com.training.starthub.ui.signup.customer.SignupClientFragment"
+        android:label="SignupCustomerFragment" >
+        <action
+            android:id="@+id/action_SignupCustomerFragment_to_loginCustomerFragment"
+            app:destination="@id/loginCustomerFragment" />
+        <action
+            android:id="@+id/action_SignupCustomerFragment_to_CustomerProfileFragment"
+            app:destination="@id/CustomerProfileFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SignupCompanyFragment"
+        tools:layout="@layout/fragment_sign_up_company"
+        android:name="com.training.starthub.ui.signup.company.page1.SignUpCompanyFragment"
+        android:label="SignupCompanyFragment" >
+        <action
+            android:id="@+id/action_SignupCompanyFragment_to_SecPageCompanyFragment"
+            app:destination="@id/SecPageCompanyFragment" />
+        <action
+            android:id="@+id/action_SignupCompanyFragment_to_loginCompanyFragment"
+            app:destination="@id/loginCompanyFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SignupInvestorFragment"
+        tools:layout="@layout/fragment_signup_investor"
+        android:name="com.training.starthub.ui.signup.investor.page1.SignupInvestorFragment"
+        android:label="SignupInvestorFragment" >
+        <action
+            android:id="@+id/action_SignupInvestorFragment_to_SecPageInvestorFragment"
+            app:destination="@id/SecPageInvestorFragment" />
+        <action
+            android:id="@+id/action_SignupInvestorFragment_to_loginInvestorFragment"
+            app:destination="@id/loginInvestorFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SecPageInvestorFragment"
+        tools:layout="@layout/fragment_sec_page_investor"
+        android:name="com.training.starthub.ui.signup.investor.page2.SecPageInvestorFragment"
+        android:label="SecPageInvestorFragment" >
+        <action
+            android:id="@+id/action_SecPageInvestorFragment_to_loginInvestorFragment"
+            app:destination="@id/loginInvestorFragment" />
+        <action
+            android:id="@+id/action_SecPageInvestorFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SecPageCompanyFragment"
+        tools:layout="@layout/fragment_sec_page_company"
+        android:name="com.training.starthub.ui.signup.company.page2.SecPageCompanyFragment"
+        android:label="SecPageCompanyFragment">
+        <action
+            android:id="@+id/action_SecPageCompanyFragment_to_loginCompanyFragment"
+            app:destination="@id/loginCompanyFragment" />
+
+        <action
+            android:id="@+id/action_SecPageCompanyFragment_to_CompanyHomeFragment"
+            app:destination="@id/CompanyHomeFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/CompanyAddProductFragment"
+        tools:layout="@layout/fragment_company_add_product"
+        android:name="com.training.starthub.ui.companylogic.addproduct.CompanyAddProductFragment"
+        android:label="SecPageCompanyFragment">
+
+        <action
+            android:id="@+id/action_CompanyAddProductFragment_to_CompanyHomeFragment"
+            app:destination="@id/CompanyHomeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/CompanyHomeFragment"
+        tools:layout="@layout/fragment_company_home"
+        android:name="com.training.starthub.ui.companylogic.home.CompanyHomeFragment"
+        android:label="SecPageCompanyFragment">
+
+        <action
+            android:id="@+id/action_CompanyHomeFragment_to_CompanyAddProductFragment"
+            app:destination="@id/CompanyAddProductFragment" />
+        <action
+            android:id="@+id/action_CompanyHomeFragment_to_CompanyProfileFragment"
+            app:destination="@id/CompanyProfileFragment" />
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/CompanyProfileFragment"
+        tools:layout="@layout/fragment_company_profile"
+        android:name="com.training.starthub.ui.companylogic.profile.CompanyProfileFragment"
+        android:label="CompanyProfileFragment">
+
+        <action
+            android:id="@+id/action_CompanyProfileFragment_to_CompanyHomeFragment"
+            app:destination="@id/CompanyHomeFragment" />
+        <action
+            android:id="@+id/action_CompanyProfileFragment_to_CompanySalesFragment"
+            app:destination="@id/CompanySalesFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/CustomerProfileFragment"
+        tools:layout="@layout/fragment_customer_profile"
+        android:name="com.training.starthub.ui.customerlogic.profile.CustomerProfileFragment"
+        android:label="CustomerProfileFragment">
+
+
+        <action
+            android:id="@+id/action_CustomerProfileFragment_to_CompanyHomeFragment"
+            app:destination="@id/CompanyHomeFragment" />
+    </fragment>
+
+
+
+
+    <fragment
+        android:id="@+id/CompanySalesFragment"
+        tools:layout="@layout/fragment_company_sales"
+        android:name="com.training.starthub.ui.company.sales.CompanySalesFragment">
+
+        <action
+            android:id="@+id/action_CompanySalesFragment_to_CompanyProfileFragment"
+            app:destination="@id/CompanyProfileFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SearchFragment"
+        tools:layout="@layout/fragment_search"
+        android:name="com.training.starthub.ui.investorlogic.SearchFragment"
+        android:label="SearchFragment">
+
+
+        <action
+            android:id="@+id/action_SearchFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+        <action
+            android:id="@+id/action_SearchFragment_to_InvestorProfileFragment"
+            app:destination="@id/InvestorProfileFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/HomeFragment"
+        tools:layout="@layout/fragment_home"
+        android:name="com.training.starthub.ui.investorlogic.home.HomeFragment"
+        android:label="HomeFragment">
+
+        <action
+            android:id="@+id/action_HomeFragment_to_CompanyDetailsFragment"
+            app:destination="@id/CompanyDetailsFragment" />
+
+        <action
+            android:id="@+id/action_HomeFragment_to_SearchFragment"
+            app:destination="@id/SearchFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_InvestorProfileFragment"
+            app:destination="@id/InvestorProfileFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/InvestorProfileFragment"
+        tools:layout="@layout/fragment_investor_profile"
+        android:name="com.training.starthub.ui.investorlogic.profile.InvestorProfileFragment"
+        android:label="InvestorProfileFragment">
+        <action
+            android:id="@+id/action_InvestorProfileFragment_to_SearchFragment"
+            app:destination="@id/SearchFragment" />
+
+        <action
+            android:id="@+id/action_InvestorProfileFragment_to_CompanyHomeFragment"
+            app:destination="@id/CompanyHomeFragment" />
+
+        <action
+            android:id="@+id/action_InvestorProfileFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/CompanyDetailsFragment"
+        tools:layout="@layout/fragment_company_details"
+        android:name="com.training.starthub.ui.investorlogic.home.details.CompanyDetailsFragment"
+        android:label="CompanyDetailsFragment">
+
+        <argument
+            android:name="position"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_CompanyDetailsFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+
+
+
+
 
 </navigation>
